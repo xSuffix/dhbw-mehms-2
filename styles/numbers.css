@@ -1,0 +1,182 @@
+table {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border-spacing: 100px 20px;
+  border-radius: 4px;
+}
+
+thead {
+  border-bottom: solid 1px var(--color-p-a);
+  background-color: var(--color-primary);
+  font-weight: bold;
+}
+
+tbody > tr {
+  background-color: var(--color-bg);
+}
+
+tbody > tr:nth-child(2n+1) {
+  background-color: var(--color-bg2);
+}
+
+tfoot {
+  background-color: var(--color-bg);
+}
+
+td {
+  padding: 5px 10px;
+  border-right: solid 1px var(--color-p-a); 
+}
+
+th {
+  padding: 5px 10px;
+  width: 50%;
+  text-align: right;
+}
+
+main h3 {
+  text-align: center;
+}
+
+main section {
+  max-width: 960px;
+  margin: 25px auto;
+}
+
+main section + section {
+  margin-top: 4rem;
+}
+
+main p {
+  line-height: 1.7;
+  text-align: justify;
+}
+
+main .place+.place {
+  margin-top: 2rem;
+}
+
+main .place>div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+main .number {
+  font-size: 5rem;
+  color: var(--color-h);
+  font-weight: bold;
+  text-align: center;
+  width: 352px;
+  padding: 0 1rem;
+  margin: 0 auto;
+  display: inline-block;
+  line-break: anywhere;
+}
+
+main .number.big {
+  font-size: 3rem;
+}
+
+main .medal {
+  margin-left: auto;
+  z-index: 8;
+  position: relative;
+}
+
+main .medal-circle {
+  font-size: 2rem;
+  font-weight: bold;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 0.2em;
+  border-style: solid;
+  margin: 0 auto;
+
+  box-shadow: inset 0 0 0 #9ca5c3, 2px 2px 0 rgb(0 0 0 / 8%);
+  border-color: #9cb3ff;
+  text-shadow: 2px 2px 0 #9cb3ff;
+  background: linear-gradient(to bottom right, var(--color-primary) 50%, #4a6bdc 50%);
+}
+
+main .p3 .medal-circle {
+  box-shadow: inset 0 0 0 #955405, 2px 2px 0 rgb(0 0 0 / 8%);
+  border-color: #f7bb23;
+  text-shadow: 0 0 4px #7d4604;
+  background: linear-gradient(to bottom right, #df7e08 50%, #c67007 50%);
+}
+
+main .p2 .medal-circle {
+  box-shadow: inset 0 0 0 #a7b2b8, 2px 2px 0 rgb(0 0 0 / 8%);
+  border-color: #edeff1;
+  text-shadow: 0px 0px 4px #98a6ad;
+  background: linear-gradient(to bottom right, #d1d7da 50%, #c3cbcf 50%);
+}
+
+main .p1 .medal-circle {
+  box-shadow: inset 0 0 0 #b67d05, 2px 2px 0 rgb(0 0 0 / 8%);
+  border-color: #fadd40;
+  text-shadow: 0 0 4px #9d6c04;
+  background: linear-gradient(to bottom right, #f9ad0e 50%, #e89f06 50%);
+}
+
+main .medal-ribbon {
+  display: block;
+  position: absolute;
+  border-style: solid;
+  border-width: 6px 10px;
+  width: 0;
+  height: 20px;
+  top: 50px;
+  z-index: -1;
+}
+
+main .medal-ribbon-left {
+  border-color: #FC402D #FC402D transparent #FC402D;
+  left: calc(50% - 20px);
+  transform: rotate(20deg) translateZ(-32px);
+}
+
+main .medal-ribbon-right {
+  left: calc(50%);
+  border-color: #f31903 #f31903 transparent #f31903;
+  transform: rotate(-20deg) translateZ(-48px);
+}
+
+main .learn-more {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: right;
+  display: block;
+}
+
+main .learn-more:hover {
+  text-decoration: underline;
+}
+
+#return {
+  text-decoration: none;
+  color: darkslategray;
+}
+
+#rickroll {
+  text-decoration: none;
+  color: rgba(0, 168, 255, 0.75);
+}
+
+@media only screen and (max-width: 600px) {
+  main .number {
+    font-size: 40px;
+  }
+  main .number.big {
+    font-size: 30px;
+  }
+}

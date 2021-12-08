@@ -1,0 +1,156 @@
+:root {
+  --banner-top: #b167eb;
+  --banner-bottom: #4bd8f6;
+}
+
+/* Color for selected page in navigation */
+.home {
+  animation: 0.2s color-p-primary forwards;
+}
+
+body.scrolled:not(.scroll-up) header {
+  padding-bottom: 8px;
+}
+
+.toolbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  padding: 8px 0;
+  margin-bottom: 1rem;
+  transition: top 0.2s;
+}
+
+.scrolled .toolbar-wrapper {
+  background: #9054f0;
+  background: linear-gradient(0deg, #8662f2 0%, #9054f0 100%);
+}
+
+.toolbar {
+  background: var(--color-bg2);
+  border: 1px solid var(--color-border);
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.toolbar .i-search {
+  height: 24px;
+  color: var(--color-primary);
+}
+
+.toolbar form[name="search"] {
+  width: 100%;
+}
+
+.toolbar input {
+  outline: 0;
+  border: 0;
+  color: var(--color-p);
+  font-size: 1.25rem;
+  background: transparent;
+  width: 100%;
+  padding: 4px;
+}
+
+.toolbar input::placeholder {
+  color: var(--color-p-a);
+}
+
+#mehm-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mehm-card {
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.mehm-card img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  vertical-align: bottom;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.mehm-card img.selected {
+  z-index: 65;
+  position: relative;
+}
+
+.selected-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 65;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
+  cursor: default;
+}
+
+.selected-container::before {
+  content: attr(name);
+  position: absolute;
+  z-index: 128;
+  color: #fff;
+  top: -32px;
+  left: 4px;
+  font-weight: 500;
+  text-shadow: var(--stroke-heading);
+  white-space: nowrap;
+}
+
+.mehm-card img.selected {
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 112px);
+}
+
+#close-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 8px;
+  z-index: 128;
+  border-radius: 4px;
+  display: flex;
+  cursor: pointer;
+}
+
+#theater {
+  position: fixed;
+  inset: 0;
+  z-index: 64;
+  transition: background 0.2s;
+  pointer-events: none;
+}
+
+#theater.open {
+  background: rgba(0, 0, 0, 0.65);
+  pointer-events: all;
+}
+
+@media (min-width: 640px) {
+  .toolbar-wrapper {
+    top: 8px;
+    padding: 0 0 8px 0;
+  }
+
+  .scroll-up .toolbar-wrapper {
+    top: 80px;
+  }
+
+  .scrolled.scroll-up .toolbar-wrapper {
+    background: linear-gradient(0deg, #7874f4 0%, #8167f2 100%);
+  }
+}
