@@ -30,6 +30,8 @@
 
 			<form action="mehm-formular" method="post" enctype="multipart/form-data">
 				<label for="datei" class="required">Datei</label><input type="file" name="mDatei" id="datei" required>
+				<b> Achtung! Es sind nur die Dateiformate .png .jpg .jepg .gif .webp erlaubt! </b>
+				<br>
 				<br>
 				<label for="kategorie" class="required">Kategorie</label>
 				<select name="mKategorie" id="kategorie" required>
@@ -40,7 +42,7 @@
 				</select>
 				<label for="autor">Autor</label><input id="autor" type="text" placeholder="Autor des Mehms" name="mAutor">
 				<br>
-				<label for="kommentar">Kommentar</label><textarea id="kommentar" placeholder="Kommentar" name="mKommentar"></textarea>
+				<label for="bildbeschreibung">Bildbeschreibung</label><textarea id="bildbeschreibung" placeholder="Bildbeschreibung" name="mbildbeschreibung"></textarea>
 
 				<button>Absenden</button>
 			</form>
