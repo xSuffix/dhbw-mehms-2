@@ -83,6 +83,14 @@ p {
   color: var(--color-p);
 }
 
+button, select, input {
+	font-weight: 500;
+	border-radius: 4px;
+	padding: 0.5rem;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+}
+
 summary {
   color: var(--color-h);
 }

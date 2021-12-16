@@ -19,6 +19,9 @@ body.scrolled:not(.scroll-up) header {
   padding: 8px 0;
   margin-bottom: 1rem;
   transition: top 0.2s;
+  display: flex;
+  flex: 2 1 300px;
+  gap: 1rem;
 }
 
 .scrolled .toolbar-wrapper {
@@ -26,25 +29,27 @@ body.scrolled:not(.scroll-up) header {
   background: linear-gradient(0deg, #8662f2 0%, #9054f0 100%);
 }
 
-.toolbar {
+
+.searchbar {
   background: var(--color-bg2);
   border: 1px solid var(--color-border);
   padding: 4px 8px;
   display: flex;
   align-items: center;
   border-radius: 4px;
+  flex: inherit;
 }
 
-.toolbar .i-search {
+.searchbar .i-search {
   height: 24px;
   color: var(--color-primary);
 }
 
-.toolbar form[name="search"] {
+.searchbar input {
   width: 100%;
 }
 
-.toolbar input {
+.searchbar input {
   outline: 0;
   border: 0;
   color: var(--color-p);
@@ -54,8 +59,17 @@ body.scrolled:not(.scroll-up) header {
   padding: 4px;
 }
 
-.toolbar input::placeholder {
+.searchbar input::placeholder {
   color: var(--color-p-a);
+}
+
+.sortbar {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.5rem;
+}
+
+.sortbar > button {
 }
 
 #mehm-gallery {
