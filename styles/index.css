@@ -69,7 +69,25 @@ body.scrolled:not(.scroll-up) header {
   gap: 0.5rem;
 }
 
-.sortbar > button {
+.sortbar label {
+  display: flex;
+  align-items: center;
+}
+
+.sortbar label > .box {
+  width: 24px;
+}
+
+.sortbar label.desc > .box.asc {
+  display: none;
+}
+
+.sortbar label.asc > .box.desc {
+  display: none;
+}
+
+.sortbar input[type="checkbox"] {
+  display: none;
 }
 
 #mehm-gallery {

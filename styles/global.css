@@ -83,7 +83,16 @@ p {
   color: var(--color-p);
 }
 
-button, select, input {
+select {
+  color: var(--color-p);
+}
+
+select > option {
+  color: var(--color-p);
+  background: var(--color-bg2) !important;
+}
+
+button, select, input, .box {
 	font-weight: 500;
 	border-radius: 4px;
 	padding: 0.5rem;
@@ -117,6 +126,10 @@ summary {
   margin-right: auto;
   padding-left: 16px;
   padding-right: 16px;
+}
+
+.box {
+  background: var(--color-bg2-a);
 }
 
 .paper {
