@@ -32,7 +32,8 @@
 				<ol>
 					<li>2032766 (Jan)</li>
 					<li>2318815 (Gabriel)</li>
-					<li>1145498 (Miriam)<br></li>
+					<li>1145498 (Miriam)</li>
+					<li>9480980 (<span style="text-decoration: line-through">UwU</span> Fabian)<br></li>
 				</ol>
 				<h3>Kontakt:</h3>
 				<p>Telefon: 97379-420034297<br>
