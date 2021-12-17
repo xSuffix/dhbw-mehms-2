@@ -2,28 +2,23 @@
 <html lang="de">
 
 <head>
-  <title>Home - DHBW Mehms</title>
+  <title>Admin - DHBW Mehms</title>
   <link rel="stylesheet" href="./styles/index.css">
   <?php include("includes/meta.php"); ?>
   <style>
     :root {
-      --banner-top: #b167eb;
-      --banner-bottom: #4bd8f6;
-    }
-
-    /* Color for selected page in navigation */
-    .home {
-      animation: 0.2s color-p-primary forwards;
+      --banner-top: #60c9b1;
+      --banner-bottom: #ffffff;
     }
 
     .scrolled .toolbar-wrapper {
-      background: #9054f0;
-      background: linear-gradient(0deg, #8662f2 0%, #7A5FF1 100%);
+      background: #6E8ED9;
+      background: linear-gradient(0deg, #6E8ED9 0%, #7293DC 100%);
     }
 
     @media (min-width: 640px) {
       .scrolled.scroll-up .toolbar-wrapper {
-        background: linear-gradient(0deg, #7874f4 0%, #8167f2 100%);
+        background: linear-gradient(0deg, #769BE0 0%, #7293DC 100%);
       }
     }
   </style>
@@ -33,14 +28,7 @@
 <body>
   <?php include("includes/header.php"); ?>
   <?php
-  $sortOptions = array(
-    array("value" => "date", "name" => "Date"),
-    array("value" => "likes", "name" => "Likes"),
-    array("value" => "comments", "name" => "Comments"),
-  );
-
   $search = isset($_GET['search']) ? $_GET["search"] : "";
-  $sort = isset($_GET['sort']) ? $_GET["sort"] : "date";
   $desc = isset($_GET['desc']) ? $_GET["desc"] : false;
   ?>
 
@@ -55,13 +43,6 @@
 
       </div>
       <div class="sortbar">
-        <select name="sort" id="sort" class="box" onchange="document.getElementById('query').submit()">
-          <?php
-          for ($i = 0; $i < count($sortOptions); $i++) {
-            echo '<option value="' . $sortOptions[$i]["value"] . '" ' . ($sortOptions[$i]["value"] == $sort ? 'selected ' : '') . '>' . $sortOptions[$i]["name"] . '</option>';
-          }
-          ?>
-        </select>
         <label for="desc" class="<?php echo $desc ? 'asc' : 'desc' ?>">
           <svg xmlns="http://www.w3.org/2000/svg" class="box desc" viewBox="0 0 20 20" fill="currentColor">
             <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
