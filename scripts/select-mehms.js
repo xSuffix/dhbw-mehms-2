@@ -11,10 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
   theater.addEventListener('click', closePopup);
 
   for (let mehm of document.getElementsByClassName("mehm-card")) {
-    mehm.addEventListener('click', function (e) {
+    const image = mehm.getElementsByTagName("img")[0];
+
+    image.addEventListener('click', function (e) {
       if (!document.getElementById("selected-container") && e.target.id != "close-btn") {
         theater.classList.add("open");
-        const image = mehm.getElementsByTagName("img")[0];
         const newImage = image.cloneNode(true);
         newImage.classList.add("selected");
         const div = document.createElement("div");
