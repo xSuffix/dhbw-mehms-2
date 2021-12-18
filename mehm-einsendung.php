@@ -40,7 +40,7 @@
 					<option value="DHBW">DHBW</option>
 					<option value="Aandere">Andere</option>
 				</select>
-				<label for="autor">Autor</label><input id="autor" type="text" placeholder="Autor des Mehms" name="mAutor">
+				<label for="autor">Autor</label><input id="autor" type="text" placeholder="Autor des Mehms" name="mAutor"> <!-- Autor ist einfach der Eingeloggte User; evtl hier anzeigen?-->
 				<br>
 				<label for="bildbeschreibung">Bildbeschreibung</label><textarea id="bildbeschreibung" placeholder="Bildbeschreibung" name="mbildbeschreibung"></textarea>
 
