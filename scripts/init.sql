@@ -15,7 +15,7 @@ INSERT INTO Users VALUES (2, 'user', 'user', 'USER');
 
 CREATE TABLE Mehms (
     ID integer PRIMARY KEY AUTO_INCREMENT,
-    Path text NOT NULL,
+    Path text NOT NULL UNIQUE,
     Likes integer,
     Type text,
     Description text,

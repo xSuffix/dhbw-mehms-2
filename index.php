@@ -33,7 +33,9 @@
 <body>
   <?php include("includes/header.php"); ?>
   <?php
-  $db = connectToDatabase();
+  require_once 'scripts/Database.php';
+  $db = new Database();
+  $db = $db->connectToDatabase();
 
   $sortOptions = array(
     array("value" => "date", "name" => "Date"),
@@ -44,40 +46,6 @@
   $search = isset($_GET['search']) ? $_GET["search"] : "";
   $sort = isset($_GET['sort']) ? $_GET["sort"] : "date";
   $desc = isset($_GET['desc']) ? $_GET["desc"] : false;
-
-  # This function connects to the database specified by host, database name, user and password and returns a PDO.
-  # If the database is not initialized yet, it calls setupDatabase
-  function connectToDatabase(): PDO
-  {
-      $mysql_host = "localhost";
-      $mysql_database = "main";
-      $mysql_user = "root";
-      $mysql_password = "";
-      # MySQL with PDO_MYSQL
-      try {
-          return new PDO("mysql:host=$mysql_host;dbname=$mysql_database", $mysql_user, $mysql_password);
-      } catch (PDOException $exception)
-      {
-          # Database is not initialized yet
-          $database = new PDO("mysql:host=$mysql_host;dbname=", $mysql_user, $mysql_password);
-          setupDatabase($database);
-          return new PDO("mysql:host=$mysql_host;dbname=$mysql_database", $mysql_user, $mysql_password);
-      }
-  }
-
-  // Setups the database
-  // Executes init.sql on the $database
-  function setupDatabase(PDO $database) {
-
-      $query = file_get_contents("scripts/init.sql");
-
-      $stmt = $database->prepare($query);
-
-      if ($stmt->execute())
-          echo "<script>console.log('Database successfully created!');</script>";
-      else
-          echo "<script>console.log('Failed to create database!');</script>";
-  }
   ?>
 
   <main class="container">
@@ -129,7 +97,7 @@
       $images = glob($dirname . "*" . ignoreCase($search) . "*");
       if ($sort == "likes") {
           $images = $db->query("SELECT Path FROM mehms ORDER BY Likes ASC")->fetchAll();
-          $images = call_user_func_array('array_merge', $images);
+#          $images = call_user_func_array('array_merge', $images);
           print_r($images);
           return;
       }
