@@ -82,6 +82,23 @@
     <div id="mehm-gallery">
       <?php
 
+      function getQuery($sort, $desc): string {
+          $query = 'SELECT * FROM mehms ';
+          switch ($sort) {
+              case 'date': $query .= 'ORDER BY VisibleOn';
+                  break;
+              case 'likes': $query .= 'ORDER BY Likes';
+                  break;
+              case 'comments': $query .= 'JOIN comments c ON mehms.ID = c.MehmID GROUP BY c.MehmID ORDER BY count(c.MehmID)';
+          }
+
+          if ($desc) {
+              $query .= ' DESC';
+          }
+
+          return $query;
+      }
+
       # TODO: Add comment
       function ignoreCase($str)
       {
@@ -101,6 +118,9 @@
           print_r($images);
           return;
       }
+
+      $images = $db->query("SELECT * FROM mehms")->fetchAll();
+      print_r($images);
 
       foreach ($images as $image) {
 

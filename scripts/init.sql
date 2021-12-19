@@ -39,5 +39,6 @@ CREATE TABLE Comments (
 );
 
 INSERT INTO Comments VALUES (1, 4, 1, NULL, 'ECHT GEIL!!!!!!');
-INSERT INTO Comments VALUES (2, 5, NULL, 'hans@wurst.de', 'Urgh.');
+INSERT INTO Comments VALUES (2, 4, 1, NULL, 'NOICE!!!');
+INSERT INTO Comments VALUES (3, 5, NULL, 'hans@wurst.de', 'Urgh.');
 
