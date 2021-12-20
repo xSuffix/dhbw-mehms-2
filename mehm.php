@@ -48,13 +48,12 @@
     global $db;
     try {
       return $db->database->query($query)->fetchAll();
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
       return [];
     }
   }
 
   $id = isset($_GET["id"]) ? $_GET["id"] : "";
-  $search = isset($_GET["search"]) ? $_GET["search"] : "";
 
   // Redirect to index.php if no id parameter to specify mehm is available
   if ($id == "") {
@@ -76,13 +75,7 @@
   <main class="container">
 
     <form id="query" name="query" action="." method="GET" class="toolbar-wrapper">
-      <div class="searchbar">
-        <svg xmlns="http://www.w3.org/2000/svg" class="i-search" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-        </svg>
-        <input name="search" type="text" spellcheck="false" autocomplete="off" placeholder="Search Mehms" value="<?php echo $search ?>">
-
-      </div>
+      <?php include("includes/toolbar/searchbar.php"); ?>
     </form>
 
     <div class="content">

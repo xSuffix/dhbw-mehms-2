@@ -39,7 +39,7 @@
   ?>
   <?php
 
-  $search = isset($_GET["search"]) ? $_GET["search"] : "";
+
   $new = isset($_GET["new"]) ? $_GET["new"] : false;
   $desc = isset($_GET["desc"]) ? $_GET["desc"] : false;
   ?>
@@ -47,13 +47,8 @@
   <main class="container">
 
     <form id="query" name="query" method="GET" class="toolbar-wrapper">
-      <div class="searchbar">
-        <svg xmlns="http://www.w3.org/2000/svg" class="i-search" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-        </svg>
-        <input name="search" type="text" spellcheck="false" autocomplete="off" placeholder="Search Mehms" value="<?php echo $search ?>">
+      <?php include("includes/toolbar/searchbar.php"); ?>
 
-      </div>
       <div class="sortbar">
         <label for="new" class="<?php echo $new ? 'new' : 'all' ?>">
           <svg xmlns="http://www.w3.org/2000/svg" class="box new" viewBox="0 0 20 20" fill="currentColor">
