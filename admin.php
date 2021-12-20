@@ -5,6 +5,7 @@
   <title>Admin - DHBW Mehms</title>
   <link rel="stylesheet" href="./styles/index.css">
   <link rel="stylesheet" href="./styles/admin.css">
+  <link rel="stylesheet" href="./styles/toolbar.css">
   <?php include("includes/meta.php"); ?>
   <style>
     :root {

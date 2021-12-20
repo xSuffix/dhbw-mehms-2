@@ -4,6 +4,7 @@
 <head>
   <title>Home - DHBW Mehms</title>
   <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/toolbar.css">
   <?php include("includes/meta.php"); ?>
   <style>
     :root {
@@ -43,9 +44,9 @@
     array("value" => "comments", "name" => "Comments"),
   );
 
-  $search = isset($_GET['search']) ? $_GET["search"] : "";
-  $sort = isset($_GET['sort']) ? $_GET["sort"] : "date";
-  $desc = isset($_GET['desc']) ? $_GET["desc"] : false;
+  $search = isset($_GET["search"]) ? $_GET["search"] : "";
+  $sort = isset($_GET["sort"]) ? $_GET["sort"] : "date";
+  $desc = isset($_GET["desc"]) ? $_GET["desc"] : false;
   ?>
 
   <main class="container">
