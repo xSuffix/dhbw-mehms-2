@@ -1,0 +1,12 @@
+.content {
+  display: flex;
+  gap: 1rem;
+}
+
+.content > div {
+  flex: 1 0;
+}
+
+.content > aside {
+  flex: 0 1 256px;
+}

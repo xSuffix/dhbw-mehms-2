@@ -4,7 +4,7 @@
 <head>
   <title>Mehm - DHBW Mehms</title>
   <link rel="stylesheet" href="./styles/toolbar.css">
-  <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/mehm.css">
   <?php include("includes/meta.php"); ?>
   <style>
     :root {
@@ -33,22 +33,45 @@
 
 <body>
   <?php
-  $mehm = isset($_GET["id"]) ? $_GET["id"] : "";
-  $search = isset($_GET["search"]) ? $_GET["search"] : "";
-
-  // Redirect to index.php if no id parameter to specify mehm is available
-  if ($mehm == "") {
-    header('Location: .');
-    exit;
-  }
-  ?>
-
-  <?php include("includes/header.php"); ?>
-  <?php
   require_once 'scripts/Database.php';
   require_once 'scripts/Utils.php';
   $db = new Database();
+
+  // Get specific Mehms from Database by ID.
+  function getMehm($id, $admin): array {
+    $query = 'SELECT * FROM mehms WHERE ID = ' . $id;
+
+    if (!$admin) {
+      $query .= ' WHERE Visible = TRUE';
+    }
+
+    global $db;
+    try {
+      return $db->database->query($query)->fetchAll();
+    } catch(PDOException $e) {
+      return [];
+    }
+  }
+
+  $id = isset($_GET["id"]) ? $_GET["id"] : "";
+  $search = isset($_GET["search"]) ? $_GET["search"] : "";
+
+  // Redirect to index.php if no id parameter to specify mehm is available
+  if ($id == "") {
+    header('Location: .');
+    exit;
+  }
+
+  $mehms = getMehm($id, true);
+  print_r($mehms);
+  if (count($mehms) == 0) {
+    header('Location: .');
+    exit;
+  }
+
   ?>
+
+  <?php include("includes/header.php"); ?>
 
   <main class="container">
 
@@ -63,8 +86,8 @@
     </form>
 
     <div class="content">
-    <div class="paper">test</div>
-    <div class="paper"></div>
+      <div class="paper">test</div>
+      <aside class="paper"></aside>
     </div>
 
   </main>

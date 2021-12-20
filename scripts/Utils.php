@@ -7,6 +7,7 @@
             $dirname = "./assets/mehms/";
 
             foreach ($images as $image) {
+                $imageID = $image["ID"];
                 $imageName = $image["Path"];
                 $imageFile = $dirname . $imageName;
                 if ($imageFile != "./assets/mehms/rick.gif") {
@@ -14,10 +15,13 @@
                     try {
                         if ($admin) {
                             $infix = Utils::adminInfix($image["ID"]);
+                            $href = "";
                         } else {
                             $infix = "";
+                            $href = 'href="./mehm?id=' . $imageID . '" ';
                         }
-                        echo '<a class="mehm-card" style="width:' . $sizes[0] * 300 / $sizes[1] .
+
+                        echo '<a class="mehm-card" ' . $href . 'style="width:' . $sizes[0] * 300 / $sizes[1] .
                         'px; flex-grow: ' . $sizes[0] * 300 / $sizes[1] . '"><div style="padding-top: ' .
                         $sizes[1] / $sizes[0] * 100 . '%"></div><img src="' . $imageFile . '" loading="lazy" name="' . $imageName . '" alt="'. $imageName .'" />' . $infix . '</a>';
                     } catch (DivisionByZeroError $e) {
@@ -26,6 +30,7 @@
                 }
             }
         }
+        
         public static function adminInfix($index) : String {
             return '<div class="admin-overlay">' .
             '<div><div class="box" onclick="approveMehm(' . $index . ')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div> Approve </div>' .
@@ -34,4 +39,3 @@
         }
 
     }
-?>

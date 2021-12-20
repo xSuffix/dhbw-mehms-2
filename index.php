@@ -5,6 +5,7 @@
   <title>Home - DHBW Mehms</title>
   <link rel="stylesheet" href="./styles/index.css">
   <link rel="stylesheet" href="./styles/toolbar.css">
+  <script type="text/javascript" src="./scripts/rick-roll.js"></script>
   <?php include("includes/meta.php"); ?>
   <style>
     :root {
@@ -101,7 +102,7 @@
       #   [6] => 2021-12-20 11:23:44
       # )
       Utils::getMehmCards($db, $sort, $desc, false)
-      
+
       ?>
       <div id="theater"></div>
     </div>

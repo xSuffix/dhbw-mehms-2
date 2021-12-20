@@ -1,8 +1,6 @@
 <meta charset="UTF-8">
-<script type="text/javascript" src="./scripts/select-mehms.js"></script>
 <script type="text/javascript" src="./scripts/dark-mode.js"></script>
 <script type="text/javascript" src="./scripts/header-scroll.js"></script>
-<script type="text/javascript" src="./scripts/rick-roll.js"></script>
 <link rel="stylesheet" href="./styles/global.css">
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">

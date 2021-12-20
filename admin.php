@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="./styles/index.css">
   <link rel="stylesheet" href="./styles/admin.css">
   <link rel="stylesheet" href="./styles/toolbar.css">
+  <script type="text/javascript" src="./scripts/select-mehms.js"></script>
   <?php include("includes/meta.php"); ?>
   <style>
     :root {
@@ -28,14 +29,14 @@
 
 
 <body>
-  <?php 
-      include("includes/header.php");
-      require_once 'scripts/Database.php';
-      require_once 'scripts/Utils.php';
-      $db = new Database();
+  <?php
+  include("includes/header.php");
+  require_once 'scripts/Database.php';
+  require_once 'scripts/Utils.php';
+  $db = new Database();
 
 
-      ?>
+  ?>
   <?php
 
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
