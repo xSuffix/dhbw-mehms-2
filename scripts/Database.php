@@ -40,15 +40,24 @@ class Database
             echo "<script>console.log('Failed to create database!');</script>";
     }
 
-    // Get Array of Mehms from Database sorted after the parameters $sort and $desc
-    public function getMehms($sort, $desc): Array {
-        $query = 'SELECT * FROM mehms ';
+    // Get Array of Mehms from Database sorted after the parameters $sort and $desc.
+    // If admin gets all Mehms, otherwise only Approved
+    public function getMehms($sort, $desc, $admin): Array {
+        $query = 'SELECT * FROM mehms';
+
+        if (!$admin) {
+            $query .= ' WHERE Visible = TRUE';
+        }
+
         switch ($sort) {
-            case 'date': $query .= 'ORDER BY VisibleOn';
+            case 'date': $query .= ' ORDER BY VisibleOn';
                 break;
-            case 'likes': $query .= 'ORDER BY Likes';
+            case 'likes': $query .= ' ORDER BY Likes';
                 break;
-            case 'comments': $query .= 'LEFT JOIN comments c ON mehms.ID = c.MehmID GROUP BY mehms.ID ORDER BY count(c.MehmID)';
+            case 'comments': $query .= ' LEFT JOIN comments c ON mehms.ID = c.MehmID GROUP BY mehms.ID ORDER BY count(c.MehmID)';
+                break;
+            default: 
+                return $this->database->query($query)->fetchAll();
         }
 
         if ($desc) {

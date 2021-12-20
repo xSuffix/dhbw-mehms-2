@@ -34,6 +34,7 @@
   <?php include("includes/header.php"); ?>
   <?php
   require_once 'scripts/Database.php';
+  require_once 'scripts/Utils.php';
   $db = new Database();
 
   $sortOptions = array(
@@ -81,20 +82,6 @@
     <div id="mehm-gallery">
       <?php
 
-      # TODO: Add comment
-      function ignoreCase($str)
-      {
-        $res = "";
-        $len = strlen($str);
-        for ($i = 0; $i < $len; $i++) {
-          $res = $res . "[" . strtolower($str[$i]) . strtoupper($str[$i]) . "]";
-        }
-        return $res;
-      }
-
-      $dirname = "./assets/mehms/";
-      $images = glob($dirname . "*" . ignoreCase($search) . "*");
-
       # Array ( 
       # [0] => Array ( 
       #   [ID] => 1 
@@ -112,22 +99,9 @@
       #   [VisibleOn] => 2021-12-20 11:23:44 
       #   [6] => 2021-12-20 11:23:44
       # )
+      Utils::getMehmCards($db, $sort, $desc, false)
       
-      $images = $db->getMehms($sort, $desc);
-
-      foreach ($images as $image) {
-        $imageName = $image["Path"];
-        $imageFile = $dirname . $imageName;
-        if ($imageFile != "./assets/mehms/rick.gif") {
-          $sizes = getimagesize($imageFile);
-          try {
-            echo '<a class="mehm-card" style="width:' . $sizes[0] * 300 / $sizes[1] .
-              'px; flex-grow: ' . $sizes[0] * 300 / $sizes[1] . '"><div style="padding-top: ' .
-              $sizes[1] / $sizes[0] * 100 . '%"></div><img src="' . $imageFile . '" loading="lazy" name="' . $imageName . '" alt="'. $imageName .'" /></a>';
-          } catch (DivisionByZeroError $e) {
-          }
-        }
-      } ?>
+      ?>
       <div id="theater"></div>
     </div>
   </main>
