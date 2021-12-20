@@ -1,4 +1,4 @@
-.toolbar-wrapper {
+.toolbar {
   position: sticky;
   top: 0;
   z-index: 8;
@@ -6,11 +6,11 @@
   margin-bottom: 1rem;
   transition: top 0.2s;
   display: flex;
-  flex: 2 1 300px;
-  gap: 1rem;
+  flex: 1 1 300px;
+  gap: 0.75rem;
 }
 
-.searchbar {
+.search-box {
   background: var(--color-bg2);
   border: 1px solid var(--color-border);
   padding: 4px 8px;
@@ -20,16 +20,16 @@
   flex: inherit;
 }
 
-.searchbar .i-search {
+.search-box .i-search {
   height: 24px;
   color: var(--color-primary);
 }
 
-.searchbar input {
+.search-box input {
   width: 100%;
 }
 
-.searchbar input {
+.search-box input {
   outline: 0;
   border: 0;
   color: var(--color-p);
@@ -39,33 +39,41 @@
   padding: 4px;
 }
 
-.searchbar input::placeholder {
+.search-box input::placeholder {
   color: var(--color-p-a);
 }
 
-.sortbar {
-  display: flex;
-  flex: 0 0 auto;
-  gap: 0.5rem;
-}
-
-.sortbar label {
+.toolbar label {
   display: flex;
   align-items: center;
 }
 
-.sortbar label > .box {
+.toolbar label > .box {
   width: 24px;
 }
 
-.sortbar label.desc > .box.asc {
+
+/* index.php, admin.php */
+
+.toolbar label.desc > .box.asc {
   display: none;
 }
 
-.sortbar label.asc > .box.desc {
+.toolbar label.asc > .box.desc {
   display: none;
 }
 
-.sortbar input[type="checkbox"] {
+.toolbar input[type="checkbox"] {
+  display: none;
+}
+
+
+/* admin.php */
+
+.toolbar label.new > .box.all {
+  display: none;
+}
+
+.toolbar label.all > .box.new {
   display: none;
 }

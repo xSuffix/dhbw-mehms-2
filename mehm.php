@@ -17,13 +17,13 @@
       animation: 0.2s color-p-primary forwards;
     }
 
-    .scrolled .toolbar-wrapper {
+    .scrolled .toolbar {
       background: #9054f0;
       background: linear-gradient(0deg, #8662f2 0%, #7A5FF1 100%);
     }
 
     @media (min-width: 640px) {
-      .scrolled.scroll-up .toolbar-wrapper {
+      .scrolled.scroll-up .toolbar {
         background: linear-gradient(0deg, #7874f4 0%, #8167f2 100%);
       }
     }
@@ -74,8 +74,8 @@
 
   <main class="container">
 
-    <form id="query" name="query" action="." method="GET" class="toolbar-wrapper">
-      <?php include("includes/toolbar/searchbar.php"); ?>
+    <form id="query" name="query" action="." method="GET" class="toolbar">
+      <?php include("includes/toolbar/search-box.php"); ?>
     </form>
 
     <div class="content">

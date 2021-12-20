@@ -84,12 +84,12 @@ body.scrolled:not(.scroll-up) header {
 }
 
 @media (min-width: 640px) {
-  .toolbar-wrapper {
+  .toolbar {
     top: 8px;
     padding: 0 0 8px 0;
   }
 
-  .scroll-up .toolbar-wrapper {
+  .scroll-up .toolbar {
     top: 80px;
   }
 }
