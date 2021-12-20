@@ -23,22 +23,18 @@
       }
     }
   </style>
-  <script>
-    function approveMehm() {
-      console.log("Approving not implemented")
-      return false
-    }
-
-    function declineMehm() {
-      console.log("Declining not implemented")
-      return false
-    }
-  </script>
 </head>
 
 
 <body>
-  <?php include("includes/header.php"); ?>
+  <?php 
+      include("includes/header.php");
+      require_once 'scripts/Database.php';
+      require_once 'scripts/Utils.php';
+      $db = new Database();
+
+
+      ?>
   <?php
 
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
@@ -84,36 +80,19 @@
     <div id="mehm-gallery">
       <?php
 
-      function ignoreCase($str)
-      {
-        $res = "";
-        $len = strlen($str);
-        for ($i = 0; $i < $len; $i++) {
-          $res = $res . "[" . strtolower($str[$i]) . strtoupper($str[$i]) . "]";
-        }
-        return $res;
+      function approveMehm($index) {
+        global $db;
+        $db->database->query("UPDATE mehms SET Visible = TRUE, VisibleOn = now() WHERE ID=" . $index);
       }
 
-      $dirname = "./assets/mehms/";
-      $images = glob($dirname . "*" . ignoreCase($search) . "*");
+      function declineMehm($index) {
+        global $db;
+        $db->database->query("UPDATE mehms SET Visible = FALSE, VisibleOn = NULL WHERE ID=" . $index);
+      }
 
-      foreach ($images as $image) {
-        $imageName = explode("/", $image);
-        $imageName = end($imageName);
-        if ($image != "./assets/mehms/rick.gif") {
-          $sizes = getimagesize($image);
-          try {
-            echo '<a class="mehm-card" style="width:' . $sizes[0] * 300 / $sizes[1] .
-              'px; flex-grow: ' . $sizes[0] * 300 / $sizes[1] . '"><div style="padding-top: ' .
-              $sizes[1] / $sizes[0] * 100 . '%"></div><img src="' . $image . '" loading="lazy" name="' .
-              $imageName . '" alt="" /><div class="admin-overlay">' .
-              '<div><div class="box" onclick="approveMehm()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div> Approve </div>' .
-              '<div><div class="box" onclick="declineMehm()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd" /></svg></div> Decline </div>' .
-              '</div></a>';
-          } catch (DivisionByZeroError $e) {
-          }
-        }
-      } ?>
+      Utils::getMehmCards($db, "", $desc, true);
+
+      ?>
       <div id="theater"></div>
     </div>
   </main>
