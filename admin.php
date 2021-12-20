@@ -40,8 +40,10 @@
 <body>
   <?php include("includes/header.php"); ?>
   <?php
-  $search = isset($_GET['search']) ? $_GET["search"] : "";
-  $desc = isset($_GET['desc']) ? $_GET["desc"] : false;
+
+  $search = isset($_GET["search"]) ? $_GET["search"] : "";
+  $new = isset($_GET["new"]) ? $_GET["new"] : false;
+  $desc = isset($_GET["desc"]) ? $_GET["desc"] : false;
   ?>
 
   <main class="container">
@@ -55,6 +57,17 @@
 
       </div>
       <div class="sortbar">
+        <label for="new" class="<?php echo $new ? 'new' : 'all' ?>">
+          <svg xmlns="http://www.w3.org/2000/svg" class="box new" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h10v7h-2l-1 2H8l-1-2H5V5z" clip-rule="evenodd" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="box all" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
+            <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd" />
+          </svg>
+        </label>
+        <input type="checkbox" id="new" name="new" <?php echo ' value="' . ($new ? 'true" checked' : 'false"'); ?> onchange="document.getElementById('query').submit()">
+
         <label for="desc" class="<?php echo $desc ? 'asc' : 'desc' ?>">
           <svg xmlns="http://www.w3.org/2000/svg" class="box desc" viewBox="0 0 20 20" fill="currentColor">
             <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />

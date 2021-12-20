@@ -37,3 +37,11 @@
 .admin-overlay > div:last-child .box {
   background: #a11414;
 }
+
+.sortbar label.new > .box.all {
+  display: none;
+}
+
+.sortbar label.all > .box.new {
+  display: none;
+}
