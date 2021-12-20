@@ -90,7 +90,11 @@
         $db->database->query("UPDATE mehms SET Visible = FALSE, VisibleOn = NULL WHERE ID=" . $index);
       }
 
-      Utils::getMehmCards($db, "", $desc, true);
+      if ($new) {
+        Utils::getMehmCards($db, "none", $desc, true);
+      } else {
+        Utils::getMehmCards($db, "notVisibleOnly", $desc, true);
+      }
 
       ?>
       <div id="theater"></div>

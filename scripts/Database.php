@@ -23,16 +23,18 @@ class Database
         {
             # Database is not initialized yet
             $this->setupDatabase(new PDO("mysql:host=$mysql_host;dbname=", $mysql_user, $mysql_password));
+            $this->database = new PDO("mysql:host=$mysql_host;dbname=$mysql_database", $mysql_user, $mysql_password);
+
         }
     }
 
     // Setups the database
     // Executes init.sql on the $database
-    private function setupDatabase() {
+    private function setupDatabase($emptyDB) {
 
         $query = file_get_contents("scripts/init.sql");
 
-        $stmt = $this->database->prepare($query);
+        $stmt = $emptyDB->prepare($query);
 
         if ($stmt->execute())
             echo "<script>console.log('Database successfully created!');</script>";
@@ -43,10 +45,10 @@ class Database
     // Get Array of Mehms from Database sorted after the parameters $sort and $desc.
     // If admin gets all Mehms, otherwise only Approved
     public function getMehms($sort, $desc, $admin): Array {
-        $query = 'SELECT * FROM mehms';
+        $query = 'SELECT * FROM mehms ';
 
-        if (!$admin) {
-            $query .= ' WHERE Visible = TRUE';
+        if (!$admin && $sort != 'comments') {
+            $query .= 'WHERE Visible = TRUE';
         }
 
         switch ($sort) {
@@ -54,16 +56,21 @@ class Database
                 break;
             case 'likes': $query .= ' ORDER BY Likes';
                 break;
-            case 'comments': $query .= ' LEFT JOIN comments c ON mehms.ID = c.MehmID GROUP BY mehms.ID ORDER BY count(c.MehmID)';
+            case 'comments': $query .= 
+                $admin
+                    ? ' LEFT JOIN comments c ON mehms.ID = c.MehmID GROUP BY mehms.ID ORDER BY count(c.MehmID)' 
+                    : ' LEFT JOIN comments c ON mehms.ID = c.MehmID WHERE Visible = TRUE GROUP BY mehms.ID ORDER BY count(c.MehmID)';
                 break;
-            default: 
+            case 'notVisibleOnly': $query .= ' WHERE Visible = FALSE';
+                return $this->database->query($query)->fetchAll();
+            default:
                 return $this->database->query($query)->fetchAll();
         }
 
         if ($desc) {
             $query .= ' DESC';
         }
-
+     
         return $this->database->query($query)->fetchAll();
     }
 

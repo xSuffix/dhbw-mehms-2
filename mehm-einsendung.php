@@ -11,10 +11,7 @@
 			--banner-bottom: #fdea04;
 		}
 
-		.kontakt {
-			animation: 0.2s color-p-primary forwards;
-		}
-	</style>
+    </style>
 </head>
 
 <body>
@@ -30,7 +27,7 @@
 
 			<form action="mehm-formular" method="post" enctype="multipart/form-data">
 				<label for="datei" class="required">Datei</label><input type="file" name="mDatei" id="datei" required>
-				<b> Achtung! Es sind nur die Dateiformate .png .jpg .jepg .gif .webp erlaubt! </b>
+				<b> Achtung! Es sind nur die Dateiformate .png .jpg .jpeg .gif .webp erlaubt! </b>
 				<br>
 				<br>
 				<label for="kategorie" class="required">Kategorie</label>
@@ -38,11 +35,11 @@
 					<option value="">Kategorie...</option>
 					<option value="Programmieren">Programmieren</option>
 					<option value="DHBW">DHBW</option>
-					<option value="Aandere">Andere</option>
+					<option value="Andere">Andere</option>
 				</select>
 				<label for="autor">Autor</label><input id="autor" type="text" placeholder="Autor des Mehms" name="mAutor"> <!-- Autor ist einfach der Eingeloggte User; evtl hier anzeigen?-->
 				<br>
-				<label for="bildbeschreibung">Bildbeschreibung</label><textarea id="bildbeschreibung" placeholder="Bildbeschreibung" name="mbildbeschreibung"></textarea>
+				<label for="bildbeschreibung">Bildbeschreibung</label><textarea id="bildbeschreibung" placeholder="Bildbeschreibung" name="mBildbeschreibung"></textarea>
 
 				<button>Absenden</button>
 			</form>
