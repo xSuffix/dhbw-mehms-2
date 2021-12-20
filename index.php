@@ -35,7 +35,6 @@
   <?php
   require_once 'scripts/Database.php';
   $db = new Database();
-  $db = $db->connectToDatabase();
 
   $sortOptions = array(
     array("value" => "date", "name" => "Date"),
@@ -82,23 +81,6 @@
     <div id="mehm-gallery">
       <?php
 
-      function getQuery($sort, $desc): string {
-          $query = 'SELECT * FROM mehms ';
-          switch ($sort) {
-              case 'date': $query .= 'ORDER BY VisibleOn';
-                  break;
-              case 'likes': $query .= 'ORDER BY Likes';
-                  break;
-              case 'comments': $query .= 'JOIN comments c ON mehms.ID = c.MehmID GROUP BY c.MehmID ORDER BY count(c.MehmID)';
-          }
-
-          if ($desc) {
-              $query .= ' DESC';
-          }
-
-          return $query;
-      }
-
       # TODO: Add comment
       function ignoreCase($str)
       {
@@ -112,26 +94,36 @@
 
       $dirname = "./assets/mehms/";
       $images = glob($dirname . "*" . ignoreCase($search) . "*");
-      if ($sort == "likes") {
-          $images = $db->query("SELECT Path FROM mehms ORDER BY Likes ASC")->fetchAll();
-#          $images = call_user_func_array('array_merge', $images);
-          print_r($images);
-          return;
-      }
 
-      $images = $db->query("SELECT * FROM mehms")->fetchAll();
-      print_r($images);
+      # Array ( 
+      # [0] => Array ( 
+      #   [ID] => 1 
+      #   [0] => 1 
+      #   [Path] => Algorithm_Parrot.jpg 
+      #   [1] => Algorithm_Parrot.jpg 
+      #   [Likes] => 20 
+      #   [2] => 20 
+      #   [Type] => PROGRAMMING 
+      #   [3] => PROGRAMMING 
+      #   [Description] => 
+      #   [4] => 
+      #   [Visible] => 1 
+      #   [5] => 1 
+      #   [VisibleOn] => 2021-12-20 11:23:44 
+      #   [6] => 2021-12-20 11:23:44
+      # )
+      
+      $images = $db->getMehms($sort, $desc);
 
       foreach ($images as $image) {
-
-        $imageName = explode("/", $image);
-        $imageName = end($imageName);
-        if ($image != "./assets/mehms/rick.gif") {
-          $sizes = getimagesize($image);
+        $imageName = $image["Path"];
+        $imageFile = $dirname . $imageName;
+        if ($imageFile != "./assets/mehms/rick.gif") {
+          $sizes = getimagesize($imageFile);
           try {
             echo '<a class="mehm-card" style="width:' . $sizes[0] * 300 / $sizes[1] .
               'px; flex-grow: ' . $sizes[0] * 300 / $sizes[1] . '"><div style="padding-top: ' .
-              $sizes[1] / $sizes[0] * 100 . '%"></div><img src="' . $image . '" loading="lazy" name="' . $imageName . '" alt="" /></a>';
+              $sizes[1] / $sizes[0] * 100 . '%"></div><img src="' . $imageFile . '" loading="lazy" name="' . $imageName . '" alt="'. $imageName .'" /></a>';
           } catch (DivisionByZeroError $e) {
           }
         }
