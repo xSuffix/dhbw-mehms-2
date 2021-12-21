@@ -43,27 +43,32 @@
 	
 	//Registrieren
 	if(isset($_POST["mRegistrieren"])){
-		if($_POST["mPasswort1"] == $_POST["mPasswort2"]){
-			$sql = "SELECT * FROM users where Name Like '".$_POST["mBenutzerNeu"]."'";
-			$benutzer = $db->database->query($sql)->fetchAll();
-			
-			if(empty($benutzer)){
-				try{
-					$sql = "INSERT INTO users (Name, Password, Type) VALUES ('".$_POST["mBenutzerNeu"]."','".$_POST["mPasswort1"]."', 'USER')";
-					$db->database->query($sql);
-					echo "Registrierung erfolgreich!";
+		if (count(explode(' ',$_POST["mBenutzerNeu"])) == 1 && $_POST["mBenutzerNeu"] != '') {
+			if($_POST["mPasswort1"] == $_POST["mPasswort2"]){
+				$sql = "SELECT * FROM users where Name Like '".$_POST["mBenutzerNeu"]."'";
+				$benutzer = $db->database->query($sql)->fetchAll();
+				
+				if(empty($benutzer)){
+					try{
+						$sql = "INSERT INTO users (Name, Password, Type) VALUES ('".$_POST["mBenutzerNeu"]."','".$_POST["mPasswort1"]."', 'USER')";
+						$db->database->query($sql);
+						echo "Registrierung erfolgreich!";
+					}
+					catch(Exception $e){
+						echo $e;
+					}
 				}
-				catch(Exception $e){
-					echo $e;
+				else{
+					echo "Benutzer bereits vergeben";
 				}
 			}
 			else{
-				echo "Benutzer bereits vergeben";
+				echo "die Passwörter stimmen nicht überein!";
 			}
+		} else {
+			echo "Invalider Benutzername: der Benutzername darf weder leer sein noch Leerzeichen enthalten!";
 		}
-		else{
-			echo "die Passwörter stimmen nicht überein!";
-		}
+		
 	}
 	
 	//Abmelden
