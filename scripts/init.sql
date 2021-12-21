@@ -29,11 +29,11 @@ CREATE TABLE mehms (
 );
 
 -- Here we should insert some sample data
-INSERT INTO mehms VALUES (1, 1, 'Algorithm_Parrot.jpg', 20, 'PROGRAMMING', NULL,true, now());
-INSERT INTO mehms VALUES (2, 2, 'Binary_tree_pants.jpg', 5, 'PROGRAMMING', 'Lollllllllz',false, NULL);
-INSERT INTO mehms VALUES (3, 3,  'C++_Python_Timmy.jpeg', 0, 'PROGRAMMING', 'Brüh',true, now());
-INSERT INTO mehms VALUES (4, 5, 'Daniel_Baguecki_Baguette_Wierbicki.jpg', 99999, 'PEOPLE', 'DER BESTE!!!!!!!11!!', true, now());
-INSERT INTO mehms VALUES (5, 5, 'Pizza_Pineapple.jpeg', 0, 'FOOD', NULL, true, now());
+INSERT INTO mehms VALUES (1, 1, 'Algorithm_Parrot.jpg', 20, 'Programmieren', NULL,true, now());
+INSERT INTO mehms VALUES (2, 2, 'Binary_tree_pants.jpg', 5, 'Programmieren', 'Lollllllllz',false, NULL);
+INSERT INTO mehms VALUES (3, 3,  'C++_Python_Timmy.jpeg', 0, 'Programmieren', 'Brüh',true, now());
+INSERT INTO mehms VALUES (4, 5, 'Daniel_Baguecki_Baguette_Wierbicki.jpg', 99999, 'DHBW', 'DER BESTE!!!!!!!11!!', true, now());
+INSERT INTO mehms VALUES (5, 5, 'Pizza_Pineapple.jpeg', 0, 'Andere', NULL, true, now());
 
 CREATE TABLE comments (
                           ID integer PRIMARY KEY AUTO_INCREMENT,
