@@ -12,9 +12,9 @@ CREATE TABLE users (
 
 INSERT INTO users VALUES (1, 'admin', 'admin', 'ADMIN');
 INSERT INTO users VALUES (2, 'Bier', 'user', 'USER');
-INSERT INTO users VALUES (3, 'Cooler Typ', 'user', 'USER');
+INSERT INTO users VALUES (3, 'Cooler_Typ', 'user', 'USER');
 INSERT INTO users VALUES (4, 'Pfandsucher', 'user', 'USER');
-INSERT INTO users VALUES (5, 'Kapitän zur See', 'user', 'USER');
+INSERT INTO users VALUES (5, 'Kapitän_zur_See', 'user', 'USER');
 
 
 CREATE TABLE mehms (
