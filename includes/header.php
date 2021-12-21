@@ -19,10 +19,17 @@
             echo "<img src='./assets/logo.png' alt='Dogo the Logo' height='62'>";
           }
         ?>
+       <div>
         <div>
-          <div>DHBW</div>
-          <div>Mehms</div>
-        </div>
+		<?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){	
+			echo $_SESSION["username"];
+		}
+		else{
+			echo "DHBW </div><div> Mehms";
+		}
+		?>
+		</div>
+      </div>
       </a>
       <nav>
         <a href="vines">Vines</a>
