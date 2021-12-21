@@ -22,9 +22,9 @@ class Utils
     }
 
     // Gets the Mehms, transforms them into cards and shows them. Possibility to add additional features to the cards (like for the admin)
-    public static function getMehmCards($db, $filter, $sort, $desc, $admin, $myMehms)
+    public static function getMehmCards($db, $filter, $category, $sort, $desc, $admin, $myMehms)
     {
-        $images = $db->getMehms($filter, $sort, $desc, $admin);
+        $images = $db->getMehms($filter, $category, $sort, $desc, $admin);
 
         if ($myMehms) {
             $count = count($images);

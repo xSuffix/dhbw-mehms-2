@@ -1,13 +1,15 @@
 <?php $filterOptions = array(
-    array("value" => "name", "name" => "Name"),
-    array("value" => "user", "name" => "User")
+    array("value" => "", "name" => "Alle"),
+    array("value" => "programmieren", "name" => "Programmieren"),
+    array("value" => "dhbw", "name" => "DHBW"),
+    array("value" => "andere", "name" => "Andere")
 );
-$filter = $_GET["filter"] ?? "name";
+$category = $_GET["filter"] ?? "";
 
 ?>
 
 <label for="filter"></label><select name="filter" id="filter" class="box" onchange="document.getElementById('query').submit()">
     <?php for ($i = 0; $i < count($filterOptions); $i++) {
-        echo '<option value="' . $filterOptions[$i]["value"] . '" ' . ($filterOptions[$i]["value"] == $filter ? 'selected ' : '') . '>' . $filterOptions[$i]["name"] . '</option>';
+        echo '<option value="' . $filterOptions[$i]["value"] . '" ' . ($filterOptions[$i]["value"] == $category ? 'selected ' : '') . '>' . $filterOptions[$i]["name"] . '</option>';
     } ?>
 </select>

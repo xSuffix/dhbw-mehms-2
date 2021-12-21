@@ -46,7 +46,7 @@ class Database
     // Get Array of Mehms from database sorted after the parameters $sort and $desc.
     // $filter and $input filter the data from the database
     // Admin can see all Mehms or only NotApproved if he wants
-    public function getMehms($filter, $sort, $desc, $admin): array
+    public function getMehms($filter, $category, $sort, $desc, $admin): array
     {
         $query = 'SELECT *, mehms.UserID as UserID, mehms.ID as ID FROM mehms';
 
@@ -83,6 +83,26 @@ class Database
             $query .= " Path LIKE '%$search%' AND Name LIKE '%$user%'";
         }
 
+        if ($category != '') {
+            if ($hasConcatenatedFilter) {
+                $query .= ' AND';
+            } else {
+                $query .= ' WHERE';
+            }
+            switch ($category) {
+                case "programmieren":
+                    $query .= " mehms.Type = 'PROGRAMMING'";
+                    break;
+                case "dhbw":  
+                    $query .= " mehms.Type = 'DHBW'";
+                    break; 
+                case "andere":
+                    $query .= " mehms.Type = 'ANDERE'";
+                    break; 
+                default:    
+            }
+        }
+
         switch ($sort) {
             case 'date':
                 $query .= ' ORDER BY VisibleOn';
@@ -101,7 +121,6 @@ class Database
         if ($desc) {
             $query .= ' DESC';
         }
-
         return $this->database->query($query)->fetchAll();
     }
 

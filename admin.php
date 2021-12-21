@@ -71,8 +71,8 @@ $db = new Database();
 <main class="container">
 
     <form id="query" name="query" method="GET" class="toolbar">
-        <?php include("includes/toolbar/filter-box.php"); ?>
         <?php include("includes/toolbar/search-box.php"); ?>
+        <?php include("includes/toolbar/filter-box.php"); ?>
         <?php include("includes/toolbar/new-box.php"); ?>
         <?php include("includes/toolbar/order-box.php"); ?>
     </form>
@@ -81,12 +81,10 @@ $db = new Database();
     <div id="mehm-gallery">
         <?php
         $filter = Utils::extractUser($search);
-        print_r($filter);
-        print_r($new);
         if ($new) {
-            Utils::getMehmCards($db, $filter, 'none', $desc, true, false);
+            Utils::getMehmCards($db, $filter, $category, 'none', $desc, true, false);
         } else {
-            Utils::getMehmCards($db, $filter, 'notVisibleOnly', $desc, true, false);
+            Utils::getMehmCards($db, $filter, $category, 'notVisibleOnly', $desc, true, false);
         }
 
         ?>

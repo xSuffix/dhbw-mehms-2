@@ -50,8 +50,8 @@ $db = new Database();
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
             include("includes/toolbar/mymehms.php");
         }
-        include("includes/toolbar/filter-box.php");
         include("includes/toolbar/search-box.php");
+        include("includes/toolbar/filter-box.php");
         include("includes/toolbar/sort-box.php");
         include("includes/toolbar/order-box.php");
         ?>
@@ -79,9 +79,9 @@ $db = new Database();
         # )
         $filter = Utils::extractUser($search);
         if (!$myMehms) {
-            Utils::getMehmCards($db, $filter, $sort, $desc, false, false);
+            Utils::getMehmCards($db, $filter, $category, $sort, $desc, false, false);
         } else {
-            Utils::getMehmCards($db, $filter, $sort, $desc, false, true);
+            Utils::getMehmCards($db, $filter, $category, $sort, $desc, false, true);
         }
 
         ?>
