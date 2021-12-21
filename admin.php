@@ -51,6 +51,7 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSIO
             var ajaxurl = 'scripts/jury.php',
                 data = {'action': btnType, 'id': mehmId};
             $.post(ajaxurl, data, function (response) {
+              window.location.reload();
             });
         });
     });
