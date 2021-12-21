@@ -1,3 +1,15 @@
+<?php
+	session_start(); 
+	
+	//überprüfung ob Admin eingeloggt
+	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["usertype"] == 1){	
+	}
+	else{
+		header("location: index.php");
+		exit;
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 

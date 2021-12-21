@@ -1,3 +1,56 @@
+<?php
+	session_start(); 
+	
+	//überprüfung ob schon eingeloggt
+	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+		header("location: index.php");
+		exit;
+	}
+	
+	if(isset($_POST["mAnmelden"])){
+		
+		require_once 'scripts/Database.php';
+		$db = new Database();
+		
+		//Abgleich Nutzerdaten mit der Datenbank
+		$sql = "SELECT * FROM users where Name Like '".$_POST["mBenutzer"]."'";
+		$benutzer = $db->database->query($sql)->fetchAll();
+		
+		if(!empty($benutzer)){
+			if($benutzer[0]["Password"] == $_POST["mPasswort"]){
+				echo "richtiiiigg";
+				
+				//Einloggen in Session
+				$_SESSION['valid'] = true;
+                $_SESSION['timeout'] = time();
+                $_SESSION['username'] = $_POST["mBenutzer"];
+				$_SESSION["loggedin"] = true;
+				
+				//Check ob user Admin
+				if($benutzer[0]["Type"]== "ADMIN"){
+				$_SESSION["usertype"] = 1;
+				}
+				else{
+				$_SESSION["usertype"] = 2;	
+				}
+				
+				//Nach einloggen zurück zur Startseite
+				header("location: index");
+				
+				
+			}
+			else{
+				echo "Passwort falsch";
+			}
+		}
+		else{
+			echo "Login fehlgeschlagen";
+		}
+	 }		
+	
+	
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 	<head>
@@ -15,27 +68,7 @@
 	
 	<body>
 	<?php include("includes/header.php"); 
-	 global $db;
-	 if(isset($_POST["mAnmelden"])){
-		
-		require_once 'scripts/Database.php';
-		$db = new Database();
-		
-		
-		$sql = "SELECT * FROM users where Name Like '".$_POST["mBenutzer"]."'";
-		$benutzer = $db->database->query($sql)->fetchAll();
-		//print_r($benutzer);
-		
-		if(!empty($benutzer)){
-			if($benutzer[0]["Password"] == $_POST["mPasswort"]){
-				echo "richtiiiigg";
-				//hier nun irgendwie einloggen!!!
-			}
-			else{
-				echo "Passwort Falsch";
-			}
-		}
-	 }		
+		global $db;
 	?>
 	<main class="container">
 		<div class="heading">
