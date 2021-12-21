@@ -5,7 +5,7 @@ USE main;
 
 CREATE TABLE users (
                        ID integer PRIMARY KEY AUTO_INCREMENT,
-                       Name text NOT NULL,
+                       Name text UNIQUE NOT NULL,
                        Password text NOT NULL,
                        Type text NOT NULL
 );
