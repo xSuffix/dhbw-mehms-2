@@ -46,7 +46,8 @@ $db = new Database();
 
     <form id="query" name="query" method="GET" class="toolbar">
         <?php
-        if (isset($_SESSION) && $_SESSION['loggedin']) {
+        $myMehms = false;
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
             include("includes/toolbar/mymehms.php");
         }
         include("includes/toolbar/filter-box.php");

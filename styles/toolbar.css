@@ -67,13 +67,10 @@
   display: none;
 }
 
-
-/* admin.php */
-
-.toolbar label.new > .box.all {
+.toolbar label.active > .box.inactive {
   display: none;
 }
 
-.toolbar label.all > .box.new {
+.toolbar label.inactive > .box.active {
   display: none;
 }

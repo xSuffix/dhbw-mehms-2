@@ -48,7 +48,7 @@ class Database
     // Admin can see all Mehms or only NotApproved if he wants
     public function getMehms($filter, $input, $sort, $desc, $admin): array
     {
-        $query = 'SELECT *, mehms.UserID as UserMehmRef FROM mehms';
+        $query = 'SELECT *, mehms.UserID as UserID, mehms.ID as ID FROM mehms';
 
         $hasConcatenatedFilter = false;
 

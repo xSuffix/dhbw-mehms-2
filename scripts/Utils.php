@@ -11,7 +11,7 @@ class Utils
         if ($myMehms) {
             $count = count($images);
             for ($i = 0; $i < $count; $i++)  {
-                if ($images[$i]['UserMehmRef'] != $_SESSION['id']) {
+                if ($images[$i]['UserID'] != $_SESSION['id']) {
                     unset($images[$i]);
 
                 }
