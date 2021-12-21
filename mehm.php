@@ -47,7 +47,7 @@
    */
 
   function getMehm($id, $admin): array {
-    $query = 'SELECT * FROM mehms LEFT JOIN Users u ON mehms.UserID = u.ID WHERE mehms.ID = ' . $id;
+    $query = 'SELECT *, mehms.Type as Type FROM mehms LEFT JOIN Users u ON mehms.UserID = u.ID WHERE mehms.ID = ' . $id;
 
     if (!$admin) {
       $query .= ' WHERE Visible = TRUE';

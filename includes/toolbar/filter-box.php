@@ -1,8 +1,8 @@
 <?php $filterOptions = array(
     array("value" => "", "name" => "Alle"),
-    array("value" => "programmieren", "name" => "Programmieren"),
-    array("value" => "dhbw", "name" => "DHBW"),
-    array("value" => "andere", "name" => "Andere")
+    array("value" => "PROGRAMMING", "name" => "Programmieren"),
+    array("value" => "DHBW", "name" => "DHBW"),
+    array("value" => "OTHER", "name" => "Andere")
 );
 $category = $_GET["filter"] ?? "";
 

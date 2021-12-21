@@ -91,16 +91,16 @@ class Database
                 $appendix .= ' WHERE';
             }
             switch ($category) {
-                case "programmieren":
+                case "PROGRAMMING":
                     $appendix .= " Type = 'PROGRAMMING'";
                     $query .= $appendix;
                     break;
-                case "dhbw":  
+                case "DHBW":  
                     $appendix .= " Type = 'DHBW'";
                     $query .= $appendix;
                     break; 
-                case "andere":
-                    $appendix .= " Type = 'ANDERE'";
+                case "OTHER":
+                    $appendix .= " Type = 'OTHER'";
                     $query .= $appendix;
                     break; 
                 default:    
