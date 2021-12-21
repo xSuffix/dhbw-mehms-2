@@ -33,6 +33,6 @@
 	}
 	?>
 	<form action="test" method="post" enctype="multipart/form-data">				<!--//wohin geht der login aufruf??? -->
-				<button name="mAbmelden">Abmelden</button>
-			</form>
+			<button name="mAbmelden">Abmelden</button>
+	</form>
 </body>
