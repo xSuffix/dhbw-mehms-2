@@ -57,7 +57,7 @@ class Database
         }
 
         if ($filter == 'user') {
-            $query .= ' LEFT JOIN Users u ON mehms.ID = UserID';
+            $query .= ' LEFT JOIN Users u ON mehms.ID = u.ID';
         }
 
         if (!$admin) {
