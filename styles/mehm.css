@@ -1,42 +1,52 @@
-.content {
+main .content {
   display: flex;
   flex-direction: column-reverse;
   gap: 1rem;
+  background: var(--color-bg2-a);
+  border: 1px solid var(--color-p-a);
+  border-radius: 4px;
+  padding: 1rem;
 }
 
-.mehm {
+main .paperlike {
+  border-radius: 4px;
+}
+
+main .mehm {
   flex: 1 1 60%;
   display: flex;
   justify-content: center;
 }
 
-.mehm > img {
+main .mehm img {
   padding: 0;
   overflow: hidden;
-  max-height: 512px;
-}
-
-.mehm img {
-  display: block;
+  width: 100%;
+  object-fit: contain;
   max-width: 100%;
+  max-height: 768px;
+  border-radius: 4px;
+  display: block;
 }
 
-.meta {
-  flex: 0 1 448px;
+main .meta {
+  flex: 0 1 40%;
+  padding: 1rem;
+
 }
 
-.posted {
+main .posted {
   display: flex;
   min-
 }
 
-.posted-text {
+main .posted-text {
   display: flex;
   align-items: center;
   /* min-width: 192px; */
 }
 
-.profile-picture {
+main .profile-picture {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,4 +67,18 @@ main p {
 
 main h1 {
   word-break: break-all;
+}
+
+@media (min-width: 960px) {
+  main .content {
+    flex-direction: row;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  main .paperlike {
+    background: var(--color-bg2-a);
+    border: 1px solid var(--color-p-a);
+  }
 }

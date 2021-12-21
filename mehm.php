@@ -126,8 +126,8 @@
     </form>
 
     <div class="content">
-      <div class="paper mehm">
-        <img class="paper" src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
+      <div class="paperlike mehm">
+        <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
       </div>
 
       <!-- <div class="paper mehm">
@@ -135,7 +135,7 @@
           <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
         </div>
       </div> -->
-      <aside class="paper meta">
+      <aside class="paperlike meta">
         <div class="posted">
           <div class="profile-picture">
             <svg height="32" data-jdenticon-value="<?php echo $mehm["Name"] ?>"></svg>
