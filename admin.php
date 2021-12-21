@@ -80,11 +80,13 @@ $db = new Database();
 
     <div id="mehm-gallery">
         <?php
-
+        $filter = Utils::extractUser($search);
+        print_r($filter);
+        print_r($new);
         if ($new) {
-            Utils::getMehmCards($db, $filter, $search, 'none', $desc, true, false);
+            Utils::getMehmCards($db, $filter, 'none', $desc, true, false);
         } else {
-            Utils::getMehmCards($db, $filter, $search, 'notVisibleOnly', $desc, true, false);
+            Utils::getMehmCards($db, $filter, 'notVisibleOnly', $desc, true, false);
         }
 
         ?>

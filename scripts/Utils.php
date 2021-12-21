@@ -2,11 +2,29 @@
 
 class Utils
 {
+    public static function extractUser($input) : Array {
+        $words = explode(' ', $input);
+        $user = "";
+        switch (count($words)) {
+            case 0:
+                return ["user" => '',"search" => ''];
+            case 1:
+                if (substr($words[0],0,2) == "u/") {
+                    return ["user" => substr($words[0],2),"search" => ''];
+                } else {
+                    return ["user" => '',"search" => $words[0]];
+                }
+        }
+        if (substr($words[0],0,2) == "u/") {
+            $user = substr($words[0],2);
+        }
+        return ["user" => $user,"search" => $words[1]];
+    }
 
     // Gets the Mehms, transforms them into cards and shows them. Possibility to add additional features to the cards (like for the admin)
-    public static function getMehmCards($db, $filter, $input, $sort, $desc, $admin, $myMehms)
+    public static function getMehmCards($db, $filter, $sort, $desc, $admin, $myMehms)
     {
-        $images = $db->getMehms($filter, $input, $sort, $desc, $admin);
+        $images = $db->getMehms($filter, $sort, $desc, $admin);
 
         if ($myMehms) {
             $count = count($images);

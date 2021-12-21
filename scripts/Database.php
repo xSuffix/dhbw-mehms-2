@@ -46,7 +46,7 @@ class Database
     // Get Array of Mehms from database sorted after the parameters $sort and $desc.
     // $filter and $input filter the data from the database
     // Admin can see all Mehms or only NotApproved if he wants
-    public function getMehms($filter, $input, $sort, $desc, $admin): array
+    public function getMehms($filter, $sort, $desc, $admin): array
     {
         $query = 'SELECT *, mehms.UserID as UserID, mehms.ID as ID FROM mehms';
 
@@ -56,7 +56,7 @@ class Database
             $query .= ' LEFT JOIN comments c ON mehms.ID = c.MehmID';
         }
 
-        if ($filter == 'user') {
+        if ($filter['user'] != '' || $filter['search'] != '') {
             $query .= ' LEFT JOIN Users u ON mehms.UserID = u.ID';
         }
 
@@ -69,22 +69,18 @@ class Database
             $hasConcatenatedFilter = true;
         } else if ($sort == 'notVisibleOnly') {
             $query .= ' WHERE Visible = FALSE';
+            $hasConcatenatedFilter = true;
         }
 
-        if ($input != '') {
+        if ($filter['user'] != '' || $filter['search'] != '') {
             if ($hasConcatenatedFilter) {
                 $query .= ' AND';
             } else {
                 $query .= ' WHERE';
             }
-
-            switch ($filter) {
-                case 'name':
-                    $query .= " Path LIKE '%$input%'";
-                    break;
-                case 'user':
-                    $query .= " Name LIKE '%$input%'";
-            }
+            $user = $filter['user'];
+            $search = $filter['search'];
+            $query .= " Path LIKE '%$search%' AND Name LIKE '%$user%'";
         }
 
         switch ($sort) {
@@ -98,6 +94,7 @@ class Database
                 $query .= ' GROUP BY mehms.ID ORDER BY count(c.MehmID)';
                 break;
             default:
+                print_r($query);
                 return $this->database->query($query)->fetchAll();
         }
 

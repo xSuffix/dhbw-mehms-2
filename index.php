@@ -77,10 +77,11 @@ $db = new Database();
         #   [VisibleOn] => 2021-12-20 11:23:44
         #   [6] => 2021-12-20 11:23:44
         # )
+        $filter = Utils::extractUser($search);
         if (!$myMehms) {
-            Utils::getMehmCards($db, $filter, $search, $sort, $desc, false, false);
+            Utils::getMehmCards($db, $filter, $sort, $desc, false, false);
         } else {
-            Utils::getMehmCards($db, $filter, $search, $sort, $desc, false, true);
+            Utils::getMehmCards($db, $filter, $sort, $desc, false, true);
         }
 
         ?>

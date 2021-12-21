@@ -141,7 +141,7 @@
             <svg height="32" data-jdenticon-value="<?php echo $mehm["Name"] ?>"></svg>
           </div>
           <div class="posted-text">
-            <p>Gepostet von <?php echo '<a class="underline" href="./?filter=user&search=' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
+            <p>Gepostet von <?php echo '<a class="underline" href="./?filter=name&search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
           </div>
         </div>
         <h1><?php echo $mehm["Path"] ?></h1>
