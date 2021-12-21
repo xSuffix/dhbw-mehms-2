@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./styles/admin.css">
   <link rel="stylesheet" href="./styles/toolbar.css">
   <script type="text/javascript" src="./scripts/select-mehms.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <?php include("includes/meta.php"); ?>
   <style>
     :root {
@@ -29,6 +30,21 @@
 
 
 <body>
+  <script>
+    $(document).ready(function(){
+      $('.button').click(function(){
+        var clickBtnValue = $(this).attr('id');
+        console.log(clickBtnValue);
+        var btnType = clickBtnValue[0];
+        var mehmId = clickBtnValue.substring(1);
+        console.log(btnType, mehmId);
+        var ajaxurl = 'scripts/jury.php',
+        data =  {'action': btnType, 'id': mehmId};
+        $.post(ajaxurl, data, function (response) {
+        });
+      });
+    });
+  </script>
   <?php
   include("includes/header.php");
   require_once 'scripts/Database.php';
@@ -52,16 +68,6 @@
 
     <div id="mehm-gallery">
       <?php
-
-      function approveMehm($index) {
-        global $db;
-        $db->database->query("UPDATE mehms SET Visible = TRUE, VisibleOn = now() WHERE ID=" . $index);
-      }
-
-      function declineMehm($index) {
-        global $db;
-        $db->database->query("UPDATE mehms SET Visible = FALSE, VisibleOn = NULL WHERE ID=" . $index);
-      }
 
       if ($new) {
         Utils::getMehmCards($db, "none", $desc, true);
