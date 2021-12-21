@@ -50,10 +50,14 @@ class Database
     {
         $query = 'SELECT * FROM mehms';
 
-        $hasConcetantedFilter = false;
+        $hasConcatenatedFilter = false;
 
         if ($sort == 'comments') {
             $query .= ' LEFT JOIN comments c ON mehms.ID = c.MehmID';
+        }
+
+        if ($filter == 'user') {
+            $query .= ' LEFT JOIN Users u ON mehms.ID = UserID';
         }
 
         if (!$admin) {
@@ -62,11 +66,11 @@ class Database
             } else {
                 $query .= ' WHERE Visible = TRUE';
             }
-            $hasConcetantedFilter = true;
+            $hasConcatenatedFilter = true;
         }
 
         if ($input != '') {
-            if ($hasConcetantedFilter) {
+            if ($hasConcatenatedFilter) {
                 $query .= ' AND';
             } else {
                 $query .= ' WHERE';
@@ -77,7 +81,7 @@ class Database
                     $query .= " Path LIKE '%$input%'";
                     break;
                 case 'user':
-                    $query .= " Autor LIKE '%$input%'";
+                    $query .= " Name LIKE '%$input%'";
             }
         }
 

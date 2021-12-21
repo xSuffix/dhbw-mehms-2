@@ -24,7 +24,8 @@
 				$_SESSION['valid'] = true;
                 $_SESSION['timeout'] = time();
                 $_SESSION['username'] = $_POST["mBenutzer"];
-				$_SESSION["loggedin"] = true;
+				$_SESSION['id'] = $benutzer[0]['ID'];
+				$_SESSION['loggedin'] = true;
 				
 				//Check ob user Admin
 				if($benutzer[0]["Type"]== "ADMIN"){

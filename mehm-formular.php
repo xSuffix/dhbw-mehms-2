@@ -31,7 +31,7 @@
                 $desc = $_POST["mBildbeschreibung"] ?? NULL;
                 $filename = $_FILES["mDatei"]["name"];
                 $kategorie = $_POST["mKategorie"];
-                $autor = $_POST["mAutor"];
+                $autor = $db->database->query($_SESSION["id"]);
                 $result = $db->database->query("INSERT INTO mehms (Path, Type, Autor, Description) VALUES (
                     '$filename',
                     '$kategorie',
