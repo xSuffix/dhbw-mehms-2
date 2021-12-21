@@ -31,8 +31,6 @@ main .mehm img {
 
 main .meta {
   flex: 0 1 40%;
-  padding: 1rem;
-
 }
 
 main .posted {
@@ -43,7 +41,6 @@ main .posted {
 main .posted-text {
   display: flex;
   align-items: center;
-  /* min-width: 192px; */
 }
 
 main .profile-picture {
@@ -80,5 +77,9 @@ main h1 {
   main .paperlike {
     background: var(--color-bg2-a);
     border: 1px solid var(--color-p-a);
+  }
+
+  main .meta {
+    padding: 1rem;
   }
 }

@@ -130,11 +130,6 @@
         <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
       </div>
 
-      <!-- <div class="paper mehm">
-        <div>
-          <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
-        </div>
-      </div> -->
       <aside class="paperlike meta">
         <div class="posted">
           <div class="profile-picture">
@@ -145,9 +140,9 @@
           </div>
         </div>
         <h1><?php echo $mehm["Path"] ?></h1>
+        <p><?php echo $mehm["Description"] ?></p>
       </aside>
     </div>
-
 
   </main>
 
