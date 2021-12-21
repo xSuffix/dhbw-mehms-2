@@ -45,14 +45,14 @@ $db = new Database();
 <main class="container">
 
     <form id="query" name="query" method="GET" class="toolbar">
-        <?php 
+        <?php
         if (isset($_SESSION) && $_SESSION['loggedin']) {
             include("includes/toolbar/mymehms.php");
         }
         include("includes/toolbar/filter-box.php");
         include("includes/toolbar/search-box.php");
         include("includes/toolbar/sort-box.php");
-        include("includes/toolbar/order-box.php"); 
+        include("includes/toolbar/order-box.php");
         ?>
     </form>
 
@@ -77,9 +77,9 @@ $db = new Database();
         #   [6] => 2021-12-20 11:23:44
         # )
         if (!$myMehms) {
-            Utils::getMehmCards($db, 'user', $_SESSION['username'], $sort, $desc, false);
+            Utils::getMehmCards($db, $filter, $search, $sort, $desc, false, false);
         } else {
-            Utils::getMehmCards($db, $filter, $search, $sort, $desc, false);
+            Utils::getMehmCards($db, $filter, $search, $sort, $desc, false, true);
         }
 
         ?>
