@@ -48,7 +48,7 @@ class Database
     // Admin can see all Mehms or only NotApproved if he wants
     public function getMehms($filter, $category, $sort, $desc, $admin): array
     {
-        $query = 'SELECT *, mehms.UserID as UserID, mehms.ID as ID FROM mehms';
+        $query = 'SELECT *, mehms.UserID as UserID, mehms.ID as ID, mehms.Type as Type FROM mehms';
 
         $hasConcatenatedFilter = false;
 
@@ -84,20 +84,24 @@ class Database
         }
 
         if ($category != '') {
+            $appendix = '';
             if ($hasConcatenatedFilter) {
-                $query .= ' AND';
+                $appendix .= ' AND';
             } else {
-                $query .= ' WHERE';
+                $appendix .= ' WHERE';
             }
             switch ($category) {
                 case "programmieren":
-                    $query .= " mehms.Type = 'PROGRAMMING'";
+                    $appendix .= " Type = 'PROGRAMMING'";
+                    $query .= $appendix;
                     break;
                 case "dhbw":  
-                    $query .= " mehms.Type = 'DHBW'";
+                    $appendix .= " Type = 'DHBW'";
+                    $query .= $appendix;
                     break; 
                 case "andere":
-                    $query .= " mehms.Type = 'ANDERE'";
+                    $appendix .= " Type = 'ANDERE'";
+                    $query .= $appendix;
                     break; 
                 default:    
             }
