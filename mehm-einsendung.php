@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	
+	//Überprüfe ob ein User eingeloggt ist
+	if(isset($_SESSION["loggedin"])&& $_SESSION["loggedin"] === true){}
+	else{
+		
+		header("location: index.php");
+		exit;
+	}
+?>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -37,7 +48,7 @@
 					<option value="DHBW">DHBW</option>
 					<option value="Andere">Andere</option>
 				</select>
-				<label for="autor">Autor</label><input id="autor" type="text" placeholder="Autor des Mehms" name="mAutor"> <!-- Autor ist einfach der Eingeloggte User; evtl hier anzeigen?-->
+				<label for="autor">Autor</label><input id="autor" type="text" placeholder="Autor des Mehms" name="mAutor" disabled value="<?php echo $_SESSION["username"];?>"> 
 				<br>
 				<label for="bildbeschreibung">Bildbeschreibung</label><textarea id="bildbeschreibung" placeholder="Bildbeschreibung" name="mBildbeschreibung"></textarea>
 
