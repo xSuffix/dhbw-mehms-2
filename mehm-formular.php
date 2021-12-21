@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+//überprüfung ob Admin eingeloggt
+if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
+    header("location: index.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -31,11 +40,11 @@
                 $desc = $_POST["mBildbeschreibung"] ?? NULL;
                 $filename = $_FILES["mDatei"]["name"];
                 $kategorie = $_POST["mKategorie"];
-                $autor = $db->database->query($_SESSION["id"]);
-                $result = $db->database->query("INSERT INTO mehms (Path, Type, Autor, Description) VALUES (
+                $userID = $_SESSION['id'];
+                $result = $db->database->query("INSERT INTO mehms (Path, UserID, Type, Description) VALUES (
                     '$filename',
+                    '$userID',
                     '$kategorie',
-                    '$autor',
                     '$desc');");
 				
                 echo "<h1> Viele Dank für deine Einsendung der Kategorie ". $_POST["mKategorie"]. "!</h1> <br><p class=\"response\"> Die Datei ". htmlspecialchars( basename( $_FILES["mDatei"]["name"])). " wurde erfolgreich hochgeladen. </p>";
