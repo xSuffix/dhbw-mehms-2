@@ -21,7 +21,13 @@
     }
 
     function declineMehm($index) {
+        # if Visible = false: drop item
         global $db;
-        $db->database->query("UPDATE mehms SET Visible = FALSE, VisibleOn = NULL WHERE ID=" . $index);
+        $visible = $db->database->query("SELECT Visible FROM mehms WHERE ID=" . $index)->fetch();
+        if ($visible['Visible']) {
+            $db->database->query("UPDATE mehms SET Visible = FALSE, VisibleOn = NULL WHERE ID=" . $index);
+        } else {
+            $db->database->query("DELETE FROM mehms WHERE ID=" . $index);
+        }
     }
 ?>
