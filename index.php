@@ -42,6 +42,7 @@
   <main class="container">
 
     <form id="query" name="query" method="GET" class="toolbar">
+    <?php include("includes/toolbar/filter-box.php"); ?>
       <?php include("includes/toolbar/search-box.php"); ?>
       <?php include("includes/toolbar/sort-box.php"); ?>
       <?php include("includes/toolbar/order-box.php"); ?>
@@ -67,7 +68,7 @@
       #   [VisibleOn] => 2021-12-20 11:23:44 
       #   [6] => 2021-12-20 11:23:44
       # )
-      Utils::getMehmCards($db, $sort, $desc, false)
+      Utils::getMehmCards($db, $filter, $search, $sort, $desc, false);
 
       ?>
       <div id="theater"></div>

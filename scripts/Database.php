@@ -4,7 +4,8 @@ class Database
 {
     public PDO $database;
 
-    function __construct() {
+    function __construct()
+    {
         $this->connectToDatabase();
     }
 
@@ -19,8 +20,7 @@ class Database
         # MySQL with PDO_MYSQL
         try {
             $this->database = new PDO("mysql:host=$mysql_host;dbname=$mysql_database", $mysql_user, $mysql_password);
-        } catch (PDOException $exception)
-        {
+        } catch (PDOException $exception) {
             # Database is not initialized yet
             $this->setupDatabase(new PDO("mysql:host=$mysql_host;dbname=", $mysql_user, $mysql_password));
             $this->database = new PDO("mysql:host=$mysql_host;dbname=$mysql_database", $mysql_user, $mysql_password);
@@ -29,8 +29,9 @@ class Database
     }
 
     // Setups the database
-    // Executes init.sql on the $database
-    private function setupDatabase($emptyDB) {
+    // Executes init.sql on the $emptyDB
+    private function setupDatabase($emptyDB)
+    {
 
         $query = file_get_contents("scripts/init.sql");
 
@@ -42,27 +43,54 @@ class Database
             echo "<script>console.log('Failed to create database!');</script>";
     }
 
-    // Get Array of Mehms from Database sorted after the parameters $sort and $desc.
+    // Get Array of Mehms from database sorted after the parameters $sort and $desc.
+    // $filter and $input filter the data from the database
     // Admin can see all Mehms or only NotApproved if he wants
-    public function getMehms($sort, $desc, $admin): Array {
-        $query = 'SELECT * FROM mehms ';
+    public function getMehms($filter, $input, $sort, $desc, $admin): array
+    {
+        $query = 'SELECT * FROM mehms';
 
-        if (!$admin && $sort != 'comments') {
-            $query .= 'WHERE Visible = TRUE';
+        $hasConcetantedFilter = false;
+
+        if ($sort == 'comments') {
+            $query .= ' LEFT JOIN comments c ON mehms.ID = c.MehmID';
+        }
+
+        if (!$admin) {
+            if ($sort == 'notVisibleOnly') {
+                $query .= ' WHERE Visible = FALSE';
+            } else {
+                $query .= ' WHERE Visible = TRUE';
+            }
+            $hasConcetantedFilter = true;
+        }
+
+        if ($input != '') {
+            if ($hasConcetantedFilter) {
+                $query .= ' AND';
+            } else {
+                $query .= ' WHERE';
+            }
+
+            switch ($filter) {
+                case 'name':
+                    $query .= " Path LIKE '%$input%'";
+                    break;
+                case 'user':
+                    $query .= " Autor LIKE '%$input%'";
+            }
         }
 
         switch ($sort) {
-            case 'date': $query .= ' ORDER BY VisibleOn';
+            case 'date':
+                $query .= ' ORDER BY VisibleOn';
                 break;
-            case 'likes': $query .= ' ORDER BY Likes';
+            case 'likes':
+                $query .= ' ORDER BY Likes';
                 break;
-            case 'comments': $query .= 
-                $admin
-                    ? ' LEFT JOIN comments c ON mehms.ID = c.MehmID GROUP BY mehms.ID ORDER BY count(c.MehmID)' 
-                    : ' LEFT JOIN comments c ON mehms.ID = c.MehmID WHERE Visible = TRUE GROUP BY mehms.ID ORDER BY count(c.MehmID)';
+            case 'comments':
+                $query .= ' GROUP BY mehms.ID ORDER BY count(c.MehmID)';
                 break;
-            case 'notVisibleOnly': $query .= ' WHERE Visible = FALSE';
-                return $this->database->query($query)->fetchAll();
             default:
                 return $this->database->query($query)->fetchAll();
         }
@@ -70,7 +98,7 @@ class Database
         if ($desc) {
             $query .= ' DESC';
         }
-     
+
         return $this->database->query($query)->fetchAll();
     }
 
