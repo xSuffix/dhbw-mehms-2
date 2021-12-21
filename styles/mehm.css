@@ -9,4 +9,27 @@
 
 .content > aside {
   flex: 0 1 256px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.content > aside p {
+  text-align: center;
+}
+
+.content > aside a {
+  text-decoration: underline;
 }

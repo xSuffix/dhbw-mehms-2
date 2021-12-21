@@ -5,6 +5,7 @@
   <title>Mehm - DHBW Mehms</title>
   <link rel="stylesheet" href="./styles/toolbar.css">
   <link rel="stylesheet" href="./styles/mehm.css">
+  <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js" integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx" crossorigin="anonymous"></script>
   <?php include("includes/meta.php"); ?>
   <style>
     :root {
@@ -32,12 +33,19 @@
 
 
 <body>
-  <?php
+  <?php  
   require_once 'scripts/Database.php';
   require_once 'scripts/Utils.php';
   $db = new Database();
 
   // Get specific Mehms from Database by ID.
+  /**
+   * Return specific Mehm from database by ID inside array
+   * 
+   * @param integer $id ID of Mehm
+   * @param boolean $admin if hidden Mehms should be found
+   */
+
   function getMehm($id, $admin): array {
     $query = 'SELECT * FROM mehms WHERE ID = ' . $id;
 
@@ -53,24 +61,63 @@
     }
   }
 
+  /** 
+   * Convert formatted DateTime to a formatted string containing those values 
+   * 
+   * @param string $datetime Formatted DateTime
+   * @param integer $level 7: all values (y,m,w,...); 1: only largest value
+   * @return string 
+   */
+
+  function timeElapsedString($datetime, $level = 1) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+      'y' => ["Jahr", "Jahren"],
+      'm' => ["Monat", "Monaten"],
+      'w' => ["Woche", "Wochen"],
+      'd' => ["Tag", "Tagen"],
+      'h' => ["Stunde", "Stunden"],
+      'i' => ["Minute", "Minuten"],
+      's' => ["Sekunde", "Sekunden"],
+    );
+
+    foreach ($string as $k => &$v) {
+      if ($diff->$k) {
+        $v = $diff->$k . ' ' . ($diff->$k > 1 ? $v[1] : $v[0]);
+      } else {
+        unset($string[$k]);
+      }
+    }
+
+    $string = array_slice($string, 0, $level);
+    return $string ? 'vor ' . implode(', ', $string) : 'gerade eben';
+  }
+
   $id = isset($_GET["id"]) ? $_GET["id"] : "";
 
-  // Redirect to index.php if no id parameter to specify mehm is available
+  // Redirect to index.php if id parameter to specify mehm is not available
   if ($id == "") {
     header('Location: .');
     exit;
   }
 
+  // Redirect to index.php if id parameter to specify mehm is not valid
   $mehms = getMehm($id, true);
-  print_r($mehms);
   if (count($mehms) == 0) {
     header('Location: .');
     exit;
   }
 
-  ?>
+  $mehm = $mehms[0];
 
-  <?php include("includes/header.php"); ?>
+  include("includes/header.php");
+  ?>
 
   <main class="container">
 
@@ -79,8 +126,15 @@
     </form>
 
     <div class="content">
-      <div class="paper">test</div>
-      <aside class="paper"></aside>
+      <div class="paper">
+
+      </div>
+      <aside class="paper">
+        <div class="profile-picture">
+          <svg height="64" data-jdenticon-value="<?php echo $mehm["Autor"] ?>"></svg>
+        </div>
+        <p>Gepostet von <?php echo '<a href="./?search=' . $mehm["Autor"] . '">' . $mehm["Autor"] . "</a><br>" . timeElapsedString($mehm["VisibleOn"]) ?></p>
+      </aside>
     </div>
 
   </main>
