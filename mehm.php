@@ -133,10 +133,10 @@
       <aside class="paperlike meta">
         <div class="posted">
           <div class="profile-picture">
-            <svg height="32" data-jdenticon-value="<?php echo $mehm["Name"] ?>"></svg>
+            <svg height="36" data-jdenticon-value="<?php echo $mehm["Name"] ?>"></svg>
           </div>
           <div class="posted-text">
-            <p>Gepostet von <?php echo '<a class="underline" href="./?filter=name&search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
+            <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?></a> <br> Gepostet von <?php echo '<a class="underline" href="./?filter=name&search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
           </div>
         </div>
         <h1><?php echo $mehm["Path"] ?></h1>
