@@ -4,7 +4,6 @@ class Utils
 {
     public static function extractUser($input) : Array {
         $words = explode(' ', $input);
-        $user = "";
         switch (count($words)) {
             case 0:
                 return ["user" => '',"search" => ''];
@@ -17,8 +16,9 @@ class Utils
         }
         if (substr($words[0],0,2) == "u/") {
             $user = substr($words[0],2);
+            return ["user" => $user,"search" => implode(' ',array_slice($words,1))];
         }
-        return ["user" => $user,"search" => $words[1]];
+        return ["user" => '',"search" => $input];
     }
 
     // Gets the Mehms, transforms them into cards and shows them. Possibility to add additional features to the cards (like for the admin)

@@ -114,7 +114,6 @@ class Database
                 $query .= ' GROUP BY mehms.ID ORDER BY count(c.MehmID)';
                 break;
             default:
-                print_r($query);
                 return $this->database->query($query)->fetchAll();
         }
 
