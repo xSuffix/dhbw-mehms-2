@@ -81,9 +81,9 @@ $db = new Database();
         <?php
 
         if ($new) {
-            Utils::getMehmCards($db, $filter, $search, 'none', $desc, false);
+            Utils::getMehmCards($db, $filter, $search, 'none', $desc, true);
         } else {
-            Utils::getMehmCards($db, $filter, $search, 'notVisibleOnly', $desc, false);
+            Utils::getMehmCards($db, $filter, $search, 'notVisibleOnly', $desc, true);
         }
 
         ?>

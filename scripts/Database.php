@@ -67,6 +67,8 @@ class Database
                 $query .= ' WHERE Visible = TRUE';
             }
             $hasConcatenatedFilter = true;
+        } else if ($sort == 'notVisibleOnly') {
+            $query .= ' WHERE Visible = FALSE';
         }
 
         if ($input != '') {

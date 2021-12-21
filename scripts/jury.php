@@ -1,10 +1,7 @@
-<script>
-    console.log("we there");
-</script>
 <?php
     require_once 'Database.php';
     $db = new Database();
-    
+
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'a':
