@@ -19,27 +19,33 @@
             echo "<img src='./assets/logo.png' alt='Dogo the Logo' height='62'>";
           }
         ?>
-       <div>
         <div>
-		<?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){	
-			echo $_SESSION["username"];
-		}
-		else{
-			echo "DHBW </div><div> Mehms";
-		}
-		?>
-		</div>
-      </div>
+          <div>
+            <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) {	
+              echo $_SESSION["username"];
+            } else {
+              echo "DHBW </div><div> Mehms";
+            }
+            ?>
+          </div>
+        </div>
       </a>
-      <nav>
-        <a href="vines">Vines</a>
-        <a href="zahlen">Zahlen</a>
-        <a href="kontakt">Kontakt</a>
-      </nav>
+      <div class="flex">
+        <nav>
+          <a href="vines">Vines</a>
+          <a href="zahlen">Zahlen</a>
+          <a href="kontakt">Kontakt</a>
+        </nav>
+        <a class="box" href="login">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
     </div>
     <div>
       <div>blah1</div>
-      <div>blah2</div>
+      <!-- <div><a href="login">Login</a></div> -->
     </div>
   </header>
 </div>

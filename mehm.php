@@ -126,17 +126,28 @@
     </form>
 
     <div class="content">
-      <div class="paper">
-        <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
-
+      <div class="paper mehm">
+        <img class="paper" src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
       </div>
-      <aside class="paper">
-        <div class="profile-picture">
-          <svg height="64" data-jdenticon-value="<?php echo $mehm["Name"] ?>"></svg>
+
+      <!-- <div class="paper mehm">
+        <div>
+          <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
         </div>
-        <p>Gepostet von <?php echo '<a href="./?filter=user&search=' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a><br>" . timeElapsedString($mehm["VisibleOn"]) ?></p>
+      </div> -->
+      <aside class="paper meta">
+        <div class="posted">
+          <div class="profile-picture">
+            <svg height="32" data-jdenticon-value="<?php echo $mehm["Name"] ?>"></svg>
+          </div>
+          <div class="posted-text">
+            <p>Gepostet von <?php echo '<a class="underline" href="./?filter=user&search=' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
+          </div>
+        </div>
+        <h1><?php echo $mehm["Path"] ?></h1>
       </aside>
     </div>
+
 
   </main>
 

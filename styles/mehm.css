@@ -1,17 +1,39 @@
 .content {
   display: flex;
+  flex-direction: column-reverse;
   gap: 1rem;
 }
 
-.content > div {
-  flex: 1 0;
+.mehm {
+  flex: 1 1 60%;
+  display: flex;
+  justify-content: center;
 }
 
-.content > aside {
-  flex: 0 1 256px;
+.mehm > img {
+  padding: 0;
+  overflow: hidden;
+  max-height: 512px;
+}
+
+.mehm img {
+  display: block;
+  max-width: 100%;
+}
+
+.meta {
+  flex: 0 1 448px;
+}
+
+.posted {
+  display: flex;
+  min-
+}
+
+.posted-text {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  /* min-width: 192px; */
 }
 
 .profile-picture {
@@ -19,17 +41,20 @@
   justify-content: center;
   align-items: center;
   background: #fff;
-  width: 64px;
-  height: 64px;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
   border: 1px solid var(--color-border);
   border-radius: 4px;
   overflow: hidden;
+  margin-right: 8px;
 }
 
-.content > aside p {
-  text-align: center;
+main p {
+  margin: 0;
+  word-wrap: break-word;
 }
 
-.content > aside a:hover {
-  text-decoration: underline;
+main h1 {
+  word-break: break-all;
 }
