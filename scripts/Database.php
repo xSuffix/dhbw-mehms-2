@@ -43,7 +43,7 @@ class Database
     }
 
     // Get Array of Mehms from Database sorted after the parameters $sort and $desc.
-    // If admin gets all Mehms, otherwise only Approved
+    // Admin can see all Mehms or only NotApproved if he wants
     public function getMehms($sort, $desc, $admin): Array {
         $query = 'SELECT * FROM mehms ';
 
