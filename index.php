@@ -43,7 +43,7 @@ session_start();
   ?>
 
   <main class="container">
-    <?php if (isset($_SESSION["loggedin"]) && $_SESSION["usertype"] == 1) {
+    <?php if (isset($_SESSION["loggedin"]) && $_SESSION['loggedin'] === true && $_SESSION["usertype"] == 1) {
       echo '
       <div class="admin">
         <a href="./admin" class="box">
@@ -59,7 +59,7 @@ session_start();
     <form id="query" name="query" method="GET" class="toolbar">
       <?php
       $myMehms = false;
-      if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
+      if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         include("includes/toolbar/mymehms.php");
       }
       include("includes/toolbar/search-box.php");

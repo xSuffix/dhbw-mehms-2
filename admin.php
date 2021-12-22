@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-//überprüfung ob Admin eingeloggt
+// Überprüfung, ob Admin eingeloggt ist
 if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["usertype"] == 1)) {
     header("location: index.php");
     exit;
@@ -41,13 +41,14 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSIO
 
 <body>
 <script>
+  // jQuery-Funktion, die bei Knopfdruck auf approve-/decline-Button das jury.php-Skript ausführt,
+  // in dem die Änderung an der Datenbank vollführt werden.
+  // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
     $(document).ready(function () {
         $('.button').click(function () {
             var clickBtnValue = $(this).attr('id');
-            console.log(clickBtnValue);
             var btnType = clickBtnValue[0];
             var mehmId = clickBtnValue.substring(1);
-            console.log(btnType, mehmId);
             var ajaxurl = 'scripts/jury.php',
                 data = {'action': btnType, 'id': mehmId};
             $.post(ajaxurl, data, function (response) {
