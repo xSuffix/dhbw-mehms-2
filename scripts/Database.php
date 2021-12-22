@@ -158,4 +158,8 @@ class Database
         $this->database->query("UPDATE users SET Name = '$name', Password = '$password', Type = '$type' WHERE ID = '$id'");
     }
 
+    public function deleteUser(int $id) {
+        $this->database->query("DELETE FROM users WHERE ID = '$id'");
+    }
+
 }

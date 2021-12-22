@@ -97,12 +97,7 @@ if (isset($_POST["mDelete"])) {
     $benutzer = $db->database->query($sql)->fetchAll();
     // Passwort ist korrekt
     if ($_POST['mPasswort'] == $benutzer[0]['Password']) {
-        $query = "DELETE FROM mehms WHERE UserID = " . $benutzer[0]['ID'];
-        $db->database->query($query);
-		$query = "DELETE FROM likes WHERE UserID = " . $benutzer[0]['ID'];
-        $db->database->query($query);
-        $query = "DELETE FROM users WHERE ID = " . $benutzer[0]['ID'];
-        $db->database->query($query);
+        $db->deleteUser($benutzer[0]['ID']);
         $text = "Benutzer wurde erfolgreich gelöscht";
         $_SESSION = array();
         session_destroy();
