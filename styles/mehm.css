@@ -36,6 +36,7 @@ main .main img {
   max-height: 768px;
   border-radius: 4px;
   display: block;
+  user-select: none;
 }
 
 main .comments {
@@ -145,6 +146,8 @@ main .meta-icon {
   padding: 8px;
   gap: 4px;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 main button.meta-icon {
@@ -153,13 +156,17 @@ main button.meta-icon {
   color: var(--color-p);
 }
 
-main .i-heart, main .i-comment {
+main .icon-md {
   height: 24px;
   width: 24px;
 }
 
-main .i-heart.beat {
+main .beat {
   color: var(--color-secondary);
+}
+
+main .pressed {
+  color: var(--color-primary);
 }
 
 @media (min-width: 960px) {
