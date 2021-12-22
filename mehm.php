@@ -35,7 +35,7 @@
 
 <body>
   <script>
-    // jQuery-Funktion, die bei Knopfdruck auf approve-/decline-Button das jury.php-Skript ausführt,
+    // jQuery-Funktion, die bei Knopfdruck auf den Like-Button das like.php-Skript ausführt,
     // in dem die Änderung an der Datenbank vollführt werden.
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
     $(document).ready(function() {
