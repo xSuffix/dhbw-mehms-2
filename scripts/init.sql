@@ -39,12 +39,13 @@ CREATE TABLE comments (
                           ID integer PRIMARY KEY AUTO_INCREMENT,
                           MehmID integer NOT NULL REFERENCES Mehms(ID),
                           UserID integer REFERENCES Users(ID),
-                          Comment text
+                          Comment text,
+                          Timestamp timestamp DEFAULT now()
 );
 
-INSERT INTO comments VALUES (1, 4, 1, 'ECHT GEIL!!!!!!');
-INSERT INTO comments VALUES (2, 4, 1, 'NOICE!!!');
-INSERT INTO comments VALUES (3, 5, 2, 'Urgh.');
+INSERT INTO comments VALUES (1, 4, 1, 'ECHT GEIL!!!!!!', now());
+INSERT INTO comments VALUES (2, 4, 1, 'NOICE!!!', now());
+INSERT INTO comments VALUES (3, 5, 2, 'Urgh.', now());
 
 CREATE TABLE likes (
                        MehmID integer REFERENCES mehms(ID),

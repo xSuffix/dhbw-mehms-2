@@ -172,7 +172,6 @@ if (isset($_POST["mUnAendern"])) {
 <html lang="de">
 <head>
     <link href="styles/formular.css" rel="stylesheet">
-    <meta charset="UTF-8">
     <title> Login - DHBW Mehms </title>
     <?php include("includes/meta.php"); ?>
     <style>
