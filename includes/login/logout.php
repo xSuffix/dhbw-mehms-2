@@ -56,7 +56,7 @@
 			<label for="passwort" class="required">Passwort:</label>
 				<input id="passwort" type="password" placeholder="Passwort" name="mPasswort">
 			<br>
-			<button name="mDelete">Benutzer löschen</button>
+			<button name="mDelete" class="secondary">Benutzer löschen</button>
 		</form>
 	</section>
 </main>

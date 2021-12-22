@@ -51,7 +51,15 @@ main button {
 }
 
 main button:hover {
-	background: linear-gradient(180deg, rgba(103,135,245,1) 0%, rgba(103,103,245,1) 100%);
+	background: linear-gradient(180deg, var(--color-primary) 0%, #6767f5 100%);
+}
+
+main button.secondary {
+	background: var(--color-secondary);
+}
+
+main button.secondary:hover {
+	background: linear-gradient(180deg, var(--color-secondary) 0%, #AF355E 100%);
 }
 
 main button, main input[type="file"], main summary {
