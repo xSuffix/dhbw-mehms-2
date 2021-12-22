@@ -126,8 +126,13 @@
     </form>
 
     <div class="content">
-      <div class="paperlike mehm">
-        <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
+      <div class="main">
+        <div class="paperlike mehm">
+          <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
+        </div>
+        <div class="paperlike comments">
+          Commentsection
+        </div>
       </div>
 
       <aside class="paperlike meta">

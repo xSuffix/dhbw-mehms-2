@@ -12,13 +12,17 @@ main .paperlike {
   border-radius: 4px;
 }
 
-main .mehm {
+main .main {
   flex: 1 1 60%;
+}
+
+main .main .paperlike {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
-main .mehm img {
+main .main img {
   padding: 0;
   overflow: hidden;
   width: 100%;
@@ -27,6 +31,11 @@ main .mehm img {
   max-height: 768px;
   border-radius: 4px;
   display: block;
+}
+
+main .comments {
+  margin-top: 1rem;
+  padding: 0.5rem;
 }
 
 main .meta {
