@@ -121,28 +121,32 @@ main h1 {
   word-break: break-all;
 }
 
-main .like {
-  display: flex;
-  align-items: center;
-}
-
-main .like>button {
-  border-radius: 4px;
-  line-height: 0;
-  box-sizing: content-box;
-  display: block;
-  background: transparent;
-  border: none;
-  color: var(--color-p-a);
+main .meta .flex {
+  gap: 0 0.5rem;
+  flex-wrap: wrap;
   margin-left: -0.5rem;
 }
 
-main .heart {
+main .meta-icon {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  gap: 4px;
+  cursor: pointer;
+}
+
+main button.meta-icon {
+  background: transparent;
+  border: none;
+  color: var(--color-p);
+}
+
+main .i-heart, main .i-comment {
   height: 24px;
   width: 24px;
 }
 
-main .heart.beat {
+main .i-heart.beat {
   color: var(--color-secondary);
 }
 

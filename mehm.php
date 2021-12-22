@@ -35,21 +35,26 @@
 
 <body>
   <script>
-  // jQuery-Funktion, die bei Knopfdruck auf approve-/decline-Button das jury.php-Skript ausführt,
-  // in dem die Änderung an der Datenbank vollführt werden.
-  // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
-    $(document).ready(function () {
-        $('button').click(function () {
-            const child = $(this).children('svg')[0];
-            const ids = $(child).attr('id').split(" ");
-            const mehmId = ids[0];
-            const uId = ids[1];
-            const status = $(child).hasClass('beat');
-            const ajaxurl = 'scripts/like.php', data = {'status': status, 'id': mehmId, 'user': uId};
-            $.post(ajaxurl, data, function () {
-              window.location.reload();
-            });
+    // jQuery-Funktion, die bei Knopfdruck auf approve-/decline-Button das jury.php-Skript ausführt,
+    // in dem die Änderung an der Datenbank vollführt werden.
+    // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
+    $(document).ready(function() {
+      $('button').click(function() {
+        const child = $(this).children('svg')[0];
+        const ids = $(child).attr('id').split(" ");
+        const mehmId = ids[0];
+        const uId = ids[1];
+        const status = $(child).hasClass('beat');
+        const ajaxurl = 'scripts/like.php',
+          data = {
+            'status': status,
+            'id': mehmId,
+            'user': uId
+          };
+        $.post(ajaxurl, data, function() {
+          window.location.reload();
         });
+      });
     });
   </script>
   <?php
@@ -155,7 +160,7 @@
         <div class="paperlike comments">
           <?php if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
             echo '<form class="write-comment">
-            <label for="message">Kommentiere als <a class="underline" href="./?search=u/' . $_SESSION["username"] . '">u/' . $_SESSION["username"] . '</a></p>
+            <label for="message">Kommentiere als <a class="underline" href="./?search=u/' . $_SESSION["username"] . '">' . $_SESSION["username"] . '</a></p>
             <textarea id="message" placeholder="LOL!"></textarea>
             <button>Kommentieren</button>
             </form>';
@@ -176,25 +181,30 @@
           </div>
         </div>
         <h1><?php echo $mehm["Title"] ?></h1>
-        <?php echo $mehm["Description"] ?>
-        <div class="like">
-          <button>
-            <?php 
+        <p><?php echo $mehm["Description"] ?></p>
+        <div class="flex">
+
+          <button class="meta-icon">
+            <?php
             $beat = '';
             $sess = '';
             if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
               $sess = $_SESSION['id'];
               $query = "SELECT * FROM likes WHERE MehmID = " . $mehm['ID'] . " AND UserID = " . $_SESSION['id'];
               $liked = $db->database->query($query)->fetchall();
-              if (!empty($liked)) {
-                $beat = ' beat';
-              }
+              if (!empty($liked)) $beat = ' beat';
             }
-            echo '<svg xmlns="http://www.w3.org/2000/svg" class="heart' . $beat . '" id="' . $mehm['ID'] . ' ' . $sess .'" viewBox="0 0 20 20" fill="currentColor">
+            echo '<svg xmlns="http://www.w3.org/2000/svg" class="i-heart' . $beat . '" id="' . $mehm['ID'] . ' ' . $sess . '" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-            </svg>' ?>
+              </svg>' ?>
+            <?php echo $mehm['likeCount'] ?> Like<?php if ($mehm['likeCount'] != 1) echo "s"; ?>
           </button>
-          <?php echo $mehm['likeCount'] ?> Like<?php if ($mehm['likeCount'] != 1) { echo "s";} ?>
+          <a class="meta-icon" href="#comments">
+            <svg xmlns="http://www.w3.org/2000/svg" class="i-comment" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+            </svg>
+            x Kommentare
+          </a>
         </div>
       </aside>
     </div>
