@@ -112,15 +112,15 @@ class Database
                     $appendix .= " Type = 'Programmieren'";
                     $query .= $appendix;
                     break;
-                case "DHBW":  
+                case "DHBW":
                     $appendix .= " Type = 'DHBW'";
                     $query .= $appendix;
-                    break; 
+                    break;
                 case "Andere":
                     $appendix .= " Type = 'Andere'";
                     $query .= $appendix;
-                    break; 
-                default:    
+                    break;
+                default:
             }
         }
 
@@ -142,6 +142,20 @@ class Database
             $query .= ' DESC';
         }
         return $this->database->query($query)->fetchAll();
+    }
+
+    public function getUser(int $id): array
+    {
+        if ($id == 0) {
+            return $this->database->query("SELECT * FROM users")->fetchAll();
+        }
+        {
+            return $this->database->query("SELECT * FROM users WHERE ID = '$id'")->fetchAll();
+        }
+    }
+
+    public function updateUser(int $id, string $name, string $password, string $type) {
+        $this->database->query("UPDATE users SET Name = '$name', Password = '$password', Type = '$type' WHERE ID = '$id'");
     }
 
 }

@@ -20,7 +20,20 @@ Utils::checkLogin(true);
 </head>
 
 <body>
-	<?php include("includes/header.php"); ?>
+	<?php include("includes/header.php");
+    require_once 'scripts/Database.php';
+    $db = new Database();
+
+    if (isset($_POST["mBenutzer"]) && isset($_POST["mPasswort"]) && isset($_POST["mType"])) {
+        updateUser();
+    }
+
+    // Diese Funktion updated einen User, nachdem er von einem Admin bearbeitet wurde.
+    function updateUser() {
+        global $db;
+        $db->updateUser($_POST["mId"], $_POST["mBenutzer"], $_POST["mPasswort"], $_POST["mType"]);
+    }
+    ?>
 
 	<main class="container">
 		<div class="heading">
@@ -36,23 +49,21 @@ Utils::checkLogin(true);
 			<th id="user">Benutzer</th>
 			<th id="id">ID</th>
 			<th id="type">Typ</th>
+              <th id="edit">Bearbeiten</th>
 		  </tr>
 		  </thead>
 		  <tbody>
 			<?php
-				require_once 'scripts/Database.php';
-				$db = new Database();
-		
-				$sql = "SELECT * FROM users";
-				$benutzer = $db->database->query($sql)->fetchAll();
+				$benutzer = $db->getUser(0);
 				
 				// Tabelleneintrag für jeden User erstellen
 				if(!empty($benutzer)){
-					for($i =0; $i <count($benutzer); $i++){
+					for($i = 0; $i < count($benutzer); $i++){
 						echo "<tr>
 								<td>".$benutzer[$i]["Name"]."</td>
 								<td>".$benutzer[$i]["ID"]."</td>
 								<td>".$benutzer[$i]["Type"]."</td>
+								<td><a href=benutzerbearbeiten.php?id=".$benutzer[$i]["ID"]." class='button'>Bearbeiten</a></td>
 							  </tr>";
 					}
 				}
