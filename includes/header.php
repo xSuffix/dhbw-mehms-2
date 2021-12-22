@@ -22,8 +22,8 @@
           <a href="zahlen">Zahlen</a>
           <a href="kontakt">Kontakt</a>
         </nav>
-        <a class="box user <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) echo 'logedin' ?>" href="login">
-          <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) {
+        <a class="box user <?php if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) echo 'loggedIn' ?>" href="login">
+          <?php if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
             echo '<script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js" integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx" crossorigin="anonymous"></script>
             <svg height="36" data-jdenticon-value='.$_SESSION["username"].'></svg>';
           } else {

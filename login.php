@@ -187,7 +187,7 @@
 	
 	
 	// Überprüfung, ob man schon eingeloggt ist
-	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+	if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true){
 		include("includes/login/logout.php");
 	}
 	else{

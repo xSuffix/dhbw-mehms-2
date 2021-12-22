@@ -20,7 +20,7 @@
 
 <body>
 	<?php
-	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+	if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true){
 		echo "Hi user was geht. Ich kenn deinen Namen: ".$_SESSION["username"]." 
 		<br> Dein Type ist: ".$_SESSION["usertype"];
 			
