@@ -28,7 +28,7 @@ Utils::checkLogin(true);
         $db->updateUser($_POST["mId"], $_POST["mBenutzer"], $_POST["mPasswort"], $_POST["mType"]);
     }
 
-    if ($_POST["delete"]) {
+    if (isset($_GET["delete"])) {
         $db->deleteUser($_GET["id"]);
     }
     ?>
