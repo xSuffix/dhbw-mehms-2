@@ -28,7 +28,7 @@ Utils::checkLogin(true);
         $db->updateUser($_POST["mId"], $_POST["mBenutzer"], $_POST["mPasswort"], $_POST["mType"]);
     }
 
-    if ($_POST["delete"]) {
+    if (isset($_GET["delete"])) {
         $db->deleteUser($_GET["id"]);
     }
     ?>
@@ -63,7 +63,7 @@ Utils::checkLogin(true);
 								<td>".$benutzer[$i]["ID"]."</td>
 								<td>".$benutzer[$i]["Type"]."</td>
 								<td><a href=benutzerbearbeiten.php?id=".$benutzer[$i]["ID"]." class='button'>Bearbeiten</a></td>
-								<td><a href=benutzerbearbeiten.php?id=".$benutzer[$i]["ID"]."&delete=true class='button'>Löschen</a></td>
+								<td><a href=benutzeruebersicht.php?id=".$benutzer[$i]["ID"]."&delete=true class='button'>Löschen</a></td>
 							  </tr>";
 					}
 				}

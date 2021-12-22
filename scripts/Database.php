@@ -203,7 +203,7 @@ class Database
             return [];
         }
     }
-    
+
     public function deleteUser(int $id) {
         $this->database->query("DELETE FROM users WHERE ID = '$id'");
     }
