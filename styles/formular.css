@@ -35,8 +35,7 @@ main input, main textarea, main label {
 
 main textarea {
 	height: 10rem;
-	max-width: 100%;
-	min-width: 100%;
+	resize: vertical;
 	min-height: 39px;
 }
 
@@ -68,7 +67,7 @@ main input,
 main textarea,
 main select,
 main article, 
-.response{
+.response {
 	background: var(--color-bg-a);
 	padding: 0.5rem;
 	border-radius: 4px;
