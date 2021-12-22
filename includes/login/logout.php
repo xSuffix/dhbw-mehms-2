@@ -4,12 +4,19 @@
 		<h2>Benutzerverwaltung</h2>
 	</div>
 
+    <?php
+    if (isset($text) && $text != '') {
+        $type = $error ? 'error' : '';
+        echo "<section class='paper ".$type."'>".$text."</section><br>";
+    }
+    ?>
+
 	<!-- Benutzername ändern -->
 	<section class="paper">
 	<h1> Benutzername ändern: </h1>
 	 <form action="login" method="post" enctype="multipart/form-data">				
 			<label for="user" class="required">Neuer Benutzername</label>
-			<input id="user" type="password" placeholder="Neuer Benutzername" name="mUser">
+			<input id="user" type="text" placeholder="Neuer Benutzername" name="mUser">
 			<label for="passwort" class="required">Passwort:</label>
 			<input id="passwort" type="password" placeholder="Passwort" name="mPasswort">
 		<br>
