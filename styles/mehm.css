@@ -204,6 +204,7 @@ main .icon-text {
   align-items: center;
   gap: 4px;
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 main .meta-icon {  
