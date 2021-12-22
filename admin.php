@@ -1,11 +1,6 @@
 <?php
-session_start();
-
-// Überprüfung, ob Admin eingeloggt ist
-if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["usertype"] == 1)) {
-    header("location: index.php");
-    exit;
-}
+    require_once 'scripts/Utils.php';
+    Utils::checkLogin(true);
 ?>
 
 <!DOCTYPE html>
@@ -46,12 +41,12 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSIO
   // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
     $(document).ready(function () {
         $('.button').click(function () {
-            var clickBtnValue = $(this).attr('id');
-            var btnType = clickBtnValue[0];
-            var mehmId = clickBtnValue.substring(1);
-            var ajaxurl = 'scripts/jury.php',
+            const clickBtnValue = $(this).attr('id');
+            const btnType = clickBtnValue[0];
+            const mehmId = clickBtnValue.substring(1);
+            const ajaxurl = 'scripts/jury.php',
                 data = {'action': btnType, 'id': mehmId};
-            $.post(ajaxurl, data, function (response) {
+            $.post(ajaxurl, data, function () {
               window.location.reload();
             });
         });
@@ -60,13 +55,7 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSIO
 <?php
 include("includes/header.php");
 require_once 'scripts/Database.php';
-require_once 'scripts/Utils.php';
 $db = new Database();
-
-
-?>
-<?php
-
 ?>
 
 <main class="container">

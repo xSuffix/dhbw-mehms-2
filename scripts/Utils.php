@@ -96,4 +96,16 @@ class Utils
             '</div>';
     }
 
+    // Diese Funktion prüft, ob man angemeldet ist und über die nötigen Rechte verfügt.
+    // Andernfalls wird der User auf die Startseite zurückgebracht.
+    public static function checkLogin(bool $requireAdmin)
+    {
+        session_start();
+
+        if (!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true && $_SESSION["usertype"] == $requireAdmin)) {
+            header("location: index.php");
+            exit;
+        }
+    }
+
 }

@@ -1,12 +1,8 @@
 <?php
-session_start();
-
-//überprüfung ob Admin eingeloggt
-if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
-    header("location: index.php");
-    exit;
-}
+require_once 'scripts/Utils.php';
+Utils::checkLogin(true);
 ?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>

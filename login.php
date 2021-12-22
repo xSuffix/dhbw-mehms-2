@@ -21,9 +21,9 @@
                 $_SESSION['timeout'] = time();
                 $_SESSION['username'] = $_POST["mBenutzer"];
 				$_SESSION['id'] = $benutzer[0]['ID'];
-				$_SESSION['loggedin'] = true;
+				$_SESSION['loggedIn'] = true;
 				
-				// Check, ob user Adminrechte hat und Vermerkung dessen in Session
+				// Check, ob user Adminrechte hat und vermerke das in Session
 				if($benutzer[0]["Type"]== "ADMIN"){
 				$_SESSION["usertype"] = 1;
 				}
