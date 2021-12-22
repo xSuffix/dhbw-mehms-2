@@ -64,7 +64,7 @@
    * @param boolean $admin if hidden Mehms should be found
    */
   function getMehm(int $id, bool $admin): array {
-    $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type
+    $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type, mehms.ID AS ID
       FROM mehms
       LEFT JOIN Users u ON mehms.UserID = u.ID
       LEFT JOIN likes l on mehms.ID = l.MehmID
