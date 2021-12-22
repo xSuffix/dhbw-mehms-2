@@ -148,6 +148,11 @@ summary {
   padding: 1rem;
 }
 
+.error {
+  border: 8px solid var(--color-secondary);
+  border-radius: 4px;
+}
+
 .paper hr {
   margin: 2rem 0;
   border-color: var(--color-primary);

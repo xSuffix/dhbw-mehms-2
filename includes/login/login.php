@@ -4,6 +4,13 @@
 		<h2>Anmeldung</h2>
 	</div>
 
+    <?php
+    if (isset($text) && $text != '') {
+        $type = $error ? 'error' : '';
+        echo "<section class='paper ".$type."'>".$text."</section><br>";
+    }
+    ?>
+
 	<!-- Login -->
 	<section class="paper">
 	 	<form action="login" method="post" enctype="multipart/form-data">				

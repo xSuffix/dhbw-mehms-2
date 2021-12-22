@@ -4,6 +4,13 @@
 		<h2>Benutzerverwaltung</h2>
 	</div>
 
+    <?php
+    if (isset($text) && $text != '') {
+        $type = $error ? 'error' : '';
+        echo "<section class='paper ".$type."'>".$text."</section><br>";
+    }
+    ?>
+
 	<!-- Benutzername ändern -->
 	<section class="paper">
 	<h1> Benutzername ändern: </h1>
