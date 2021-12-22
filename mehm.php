@@ -56,25 +56,25 @@
         });
       });
 
-        $("#comment").submit(function(e) {
-            e.preventDefault();
+      $("#comment").submit(function(e) {
+        e.preventDefault();
 
-            let child = $(this).children('button')[0];
-            const ids = $(child).attr('id').split(" ");
-            const mehmId = ids[0];
-            const uId = ids[1];
-            child = $(this).children('textarea')[0];
-            const text = $(child).val();
-            const ajaxurl = 'scripts/comment.php',
-                data = {
-                    'text': text,
-                    'id': mehmId,
-                    'user': uId
-                };
-            $.post(ajaxurl, data, function() {
-                window.location.reload();
-            });
+        let child = $(this).children('button')[0];
+        const ids = $(child).attr('id').split(" ");
+        const mehmId = ids[0];
+        const uId = ids[1];
+        child = $(this).children('textarea')[0];
+        const text = $(child).val();
+        const ajaxurl = 'scripts/comment.php',
+          data = {
+            'text': text,
+            'id': mehmId,
+            'user': uId
+          };
+        $.post(ajaxurl, data, function() {
+          window.location.reload();
         });
+      });
     });
 
     // Kopiert die aktuelle Mehm-URL in den Zwischenspeicher
@@ -87,7 +87,7 @@
       document.execCommand("copy");
       document.body.removeChild(copy);
       document.getElementById("share-button").classList.add("pressed");
-      }
+    }
   </script>
   <?php
   require_once 'scripts/Database.php';
@@ -113,6 +113,22 @@
     }
 
     global $db;
+    try {
+      return $db->database->query($query)->fetchAll();
+    } catch (PDOException $e) {
+      return [];
+    }
+  }
+
+  function getComments(int $id): array {
+    $query = 'SELECT u.Name AS Name, Comment, Timestamp
+    FROM comments
+    LEFT JOIN users u ON comments.UserID = u.ID
+    WHERE MehmID = ' . $id;
+    
+    
+    global $db;
+    return $db->database->query($query)->fetchAll();
     try {
       return $db->database->query($query)->fetchAll();
     } catch (PDOException $e) {
@@ -170,11 +186,12 @@
   // Redirect auf index.php, wenn id-Parameter nicht valide ist
   $mehms = getMehm($id, true);
   if (empty($mehms)) {
-    // header('Location: .');
-    // exit;
+    header('Location: .');
+    exit;
   }
 
   $mehm = $mehms[0];
+  $comments = getComments($id);
 
   include("includes/header.php");
   ?>
@@ -213,35 +230,22 @@
           ?>
           <div class="comment-list">
 
-            <div class="flex">
-              <a class="user" href="./?search=u/<?php echo 'username'; ?>">
-                <svg class="box" height="32" data-jdenticon-value="<?php echo 'username'; ?>"></svg>
-              </a>
-              <div>
+            <?php foreach ($comments as $comment) {
+              echo '<div class="flex">
+                <a class="user" href="./?search=u/'.$comment["Name"].'">
+                  <svg class="box" height="32" data-jdenticon-value="'.$comment["Name"].'"></svg>
+                </a>
                 <div>
-                  <a class="user underline" href="./?search=u/<?php echo 'username'; ?>">
-                    <?php echo "username"; ?>
-                  </a>
-                  <span class="p-a">· <?php echo timeElapsedString($mehm["VisibleOn"]) ?></span>
+                  <div>
+                    <a class="user underline" href="./?search=u/'.$comment["Name"].'">
+                      '.$comment["Name"].'
+                    </a>
+                    <span class="p-a">· '.timeElapsedString($comment["Timestamp"]).'</span>
+                  </div>
+                  <p>'.$comment["Comment"].'</p>
                 </div>
-                <p>test</p>
-              </div>
-            </div>
-
-            <div class="flex">
-              <a class="user" href="./?search=u/<?php echo 'username'; ?>">
-                <svg class="box" height="32" data-jdenticon-value="<?php echo 'username'; ?>"></svg>
-              </a>
-              <div>
-                <div>
-                  <a class="user underline" href="./?search=u/<?php echo 'username'; ?>">
-                    <?php echo "username"; ?>
-                  </a>
-                  <span class="p-a">· <?php echo timeElapsedString($mehm["VisibleOn"]) ?></span>
-                </div>
-                <p>test</p>
-              </div>
-            </div>
+              </div>';
+            } ?>
 
           </div>
         </div>
