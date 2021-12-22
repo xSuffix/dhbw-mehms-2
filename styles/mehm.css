@@ -39,7 +39,7 @@ main .comments {
   padding: 0.5rem;
 }
 
-main .write-comment p {
+main .write-comment label {
   margin: 0 0 8px 0;
 }
 
@@ -61,7 +61,23 @@ main .write-comment textarea {
 }
 
 main .write-comment textarea::placeholder {
+	color: var(--color-p-a);
+}
 
+main .write-comment button {
+  background: var(--color-primary);
+	color: #fff;
+	font-weight: 500;
+	border-radius: 4px;
+	padding: 0.5rem;
+	border: none;
+  margin-left: auto;
+  display: block;
+	cursor: pointer;
+}
+
+main .write-comment button:hover {
+	background: linear-gradient(180deg, rgba(103,135,245,1) 0%, rgba(103,103,245,1) 100%);
 }
 
 main .meta {

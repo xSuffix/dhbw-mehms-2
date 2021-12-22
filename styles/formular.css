@@ -91,7 +91,7 @@ main button,
 main label,
 main select {
 	font-family: var(--font-sans);
-	font-size: 1rem;	
+	font-size: 1rem;
 }
 
 main form {

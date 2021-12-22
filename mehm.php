@@ -155,8 +155,8 @@
         <div class="paperlike comments">
           <?php if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
             echo '<form class="write-comment">
-            <p>Kommentiere als <a class="underline" href="./?search=u/' . $_SESSION["username"] . '">u/' . $_SESSION["username"] . '</a></p>
-            <textarea></textarea>
+            <label for="message">Kommentiere als <a class="underline" href="./?search=u/' . $_SESSION["username"] . '">u/' . $_SESSION["username"] . '</a></p>
+            <textarea id="message" placeholder="LOL!"></textarea>
             <button>Kommentieren</button>
             </form>';
           } else {
