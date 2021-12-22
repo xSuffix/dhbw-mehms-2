@@ -15,7 +15,7 @@
 
 <head>
 	<title>Benutzerübersicht - DHBW Admin</title>
-	<link href="styles/formular.css" rel="stylesheet">
+	<link href="styles/numbers.css" rel="stylesheet">
 	<?php include("includes/meta.php"); ?>
 	<style>
 		:root {
@@ -38,28 +38,34 @@
 		<section class="paper">
 		
 		<table>
+		<thead>
 		  <tr>
 			<th>Benutzer</th>
 			<th>ID</th>
 			<th>Typ</th>
 		  </tr>
+		  </thead>
+		  <tbody>
 			<?php
 				require_once 'scripts/Database.php';
 				$db = new Database();
 		
 				$sql = "SELECT * FROM users";
 				$benutzer = $db->database->query($sql)->fetchAll();
+				
+				//Tabelleneintrag für jeden user erstellen
 				if(!empty($benutzer)){
 					
 				}
 				for($i =0; $i <count($benutzer); $i++){
 					echo "<tr>
-							<th>".$benutzer[$i]["Name"]."</th>
-							<th>".$benutzer[$i]["ID"]."</th>
-							<th>".$benutzer[$i]["Type"]."<th>
+							<td>".$benutzer[$i]["Name"]."</td>
+							<td>".$benutzer[$i]["ID"]."</td>
+							<td>".$benutzer[$i]["Type"]."</td>
 						  </tr>";
 				}
 			?>
+		</tbody>
 		</table>
 		</section>
 	
