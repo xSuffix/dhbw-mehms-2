@@ -4,32 +4,35 @@ class Database
 {
     public PDO $database;
 
+    // Konstruktor der Klasse Database
+    // Startet Verbindungsaufbau bei Instanziierung
     function __construct()
     {
         $this->connectToDatabase();
     }
 
-    # This function connects to the database specified by host, database name, user and password and returns a PDO.
-    # If the database is not initialized yet, it calls setupDatabase
+    // connectToDatabase verbindet die hier spezifizierte Datenbank und speichert sie als PDO
+    // Ist die Datenbank noch nicht initialisiert, wird setupDatabase() aufgerufen
     public function connectToDatabase()
     {
         $mysql_host = "localhost";
         $mysql_database = "main";
         $mysql_user = "root";
         $mysql_password = "";
-        # MySQL with PDO_MYSQL
+        // MySQL mit PDO_MYSQL
         try {
             $this->database = new PDO("mysql:host=$mysql_host;dbname=$mysql_database", $mysql_user, $mysql_password);
         } catch (PDOException $exception) {
-            # Database is not initialized yet
+            // Datenbank ist noch nicht initialisiert worden.
             $this->setupDatabase(new PDO("mysql:host=$mysql_host;dbname=", $mysql_user, $mysql_password));
             $this->database = new PDO("mysql:host=$mysql_host;dbname=$mysql_database", $mysql_user, $mysql_password);
 
         }
     }
 
-    // Setups the database
-    // Executes init.sql on the $emptyDB
+    // Datenbanksetup und Ausführen der init.sql in der $emptyDB
+    // Parameter:
+    // $emptyDB (database) -> Datenbank, die Setup benötigt
     private function setupDatabase($emptyDB)
     {
 
@@ -43,9 +46,17 @@ class Database
             echo "<script>console.log('Failed to create database!');</script>";
     }
 
-    // Get Array of Mehms from database sorted after the parameters $sort and $desc.
-    // $filter and $input filter the data from the database
-    // Admin can see all Mehms or only NotApproved if he wants
+    // getMehms holt ein Array aus Mehms aus der Datenbank, sortiert nach den Parametern $sort and $desc sowie
+    // gefiltert nach $filter und $category.
+    // Ein Admin kann alle Mehms oder nur solche, die (noch) nicht approved sind, sehen
+    // Parameter:
+    // $filter (Array) -> ein Array der Struktur ['user' => (string), 'search' => (string)], notwendig wegen der Suchleiste
+    // $category (string) -> die gewünschte Mehm-Kategorie ("Programmieren", "DHBW", "Andere")
+    // $sort (string) -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
+    // $desc (boolean) -> Reihenfolge: descending (true), oder ascending (false)
+    // $admin (boolean) -> Adminansicht (true) oder normale Useransicht (false)
+    // Rückgabewert:
+    // (Array) -> alle Mehms, die von der Query erfasst wurden
     public function getMehms($filter, $category, $sort, $desc, $admin): array
     {
         $query = 'SELECT *, mehms.UserID as UserID, mehms.ID as ID, mehms.Type as Type FROM mehms';
