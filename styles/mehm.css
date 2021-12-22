@@ -55,7 +55,7 @@ main .write-comment label svg {
   height: 20px;
 }
 
-main .write-comment textarea {
+main textarea {
   display: block;
   height: 8rem;
 	resize: vertical;
@@ -72,7 +72,7 @@ main .write-comment textarea {
 	font-size: 1rem;
 }
 
-main .write-comment textarea::placeholder {
+main textarea::placeholder {
 	color: var(--color-p-a);
 }
 

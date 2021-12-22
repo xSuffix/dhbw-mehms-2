@@ -270,8 +270,11 @@
             <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?> <br> Gepostet von <?php echo '<a class="underline" href="./?search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
           </div>
         </div>
-        <h1 <?php if ($_SESSION['id'] == $mehm['UID']) echo 'class="editable" contenteditable="true" onchange="console.log(update)"' ?>><?php echo $mehm["Title"] ?></h1>
-        <p><?php echo $mehm["Description"] ?></p>
+        <h1 <?php if ($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) echo 'class="editable" contenteditable="true"' ?>><?php echo $mehm["Title"] ?></h1>
+        <p <?php if (($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) && $mehm["Description"] != "") echo 'class="editable" contenteditable="true"' ?>><?php echo $mehm["Description"] ?></p>
+        <?php if (($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) && $mehm["Description"] == "") {
+          echo '<textarea placeholder="Beschreibe was du siehst"></textarea>';
+        } ?>
         <div class="flex">
 
           <button class="meta-icon icon-text" id="like" <?php echo (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) ? '' : ' style="cursor: not-allowed;"' ?>>
