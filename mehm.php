@@ -64,7 +64,7 @@
    * @param boolean $admin if hidden Mehms should be found
    */
   function getMehm(int $id, bool $admin): array {
-    $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type
+    $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type, mehms.ID AS ID
       FROM mehms
       LEFT JOIN Users u ON mehms.UserID = u.ID
       LEFT JOIN likes l on mehms.ID = l.MehmID
@@ -91,8 +91,7 @@
    * @throws Exception
    */
 
-  function timeElapsedString(string $datetime, int $level = 1): string
-  {
+  function timeElapsedString(string $datetime, int $level = 1): string {
     $now = new DateTime;
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);
@@ -133,8 +132,8 @@
   // Redirect auf index.php, wenn id-Parameter nicht valide ist
   $mehms = getMehm($id, true);
   if (empty($mehms)) {
-    header('Location: .');
-    exit;
+    // header('Location: .');
+    // exit;
   }
 
   $mehm = $mehms[0];
@@ -154,7 +153,16 @@
           <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
         </div>
         <div class="paperlike comments">
-          Commentsection
+          <?php if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
+            echo '<form class="write-comment">
+            <label for="message">Kommentiere als <a class="underline" href="./?search=u/' . $_SESSION["username"] . '">u/' . $_SESSION["username"] . '</a></p>
+            <textarea id="message" placeholder="LOL!"></textarea>
+            <button>Kommentieren</button>
+            </form>';
+          } else {
+            echo "Melde dich an, um zu kommentieren.";
+          }
+          ?>
         </div>
       </div>
 
@@ -164,7 +172,7 @@
             <svg height="36" data-jdenticon-value="<?php echo $mehm["Name"] ?>"></svg>
           </div>
           <div class="posted-text">
-            <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?> <br> Gepostet von <?php echo '<a class="underline" href="./?filter=name&search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
+            <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?> <br> Gepostet von <?php echo '<a class="underline" href="./?search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
           </div>
         </div>
         <h1><?php echo $mehm["Title"] ?></h1>

@@ -97,14 +97,3 @@ body.scrolled:not(.scroll-up) header {
   background: rgba(0, 0, 0, 0.65);
   pointer-events: all;
 }
-
-@media (min-width: 720px) {
-  .toolbar {
-    top: 8px;
-    padding: 0 0 8px 0;
-  }
-
-  .scroll-up .toolbar {
-    top: 80px;
-  }
-}
