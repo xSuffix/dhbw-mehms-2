@@ -13,7 +13,8 @@ body.scrolled:not(.scroll-up) header {
   align-items: center;
   gap: 0.5rem;
   line-height: 24px;
-  background: hsl(226, 72%, 39%);
+  background: var(--color-b);
+  color: var(--color-p);
 }
 
 .admin svg {
