@@ -79,7 +79,8 @@
 
     // Kopiert die aktuelle Mehm-URL in den Zwischenspeicher
     function copyURL() {
-      const copy = document.createElement("input"), url = window.location.href;
+      const copy = document.createElement("input"),
+        url = window.location.href;
       document.body.appendChild(copy);
       copy.value = url.split("#")[0];
       copy.select();
@@ -210,6 +211,39 @@
             </a>';
           }
           ?>
+          <div class="comment-list">
+
+            <div class="flex">
+              <a class="user" href="./?search=u/<?php echo 'username'; ?>">
+                <svg class="box" height="32" data-jdenticon-value="<?php echo 'username'; ?>"></svg>
+              </a>
+              <div>
+                <div>
+                  <a class="user underline" href="./?search=u/<?php echo 'username'; ?>">
+                    <?php echo "username"; ?>
+                  </a>
+                  <span class="p-a">· <?php echo timeElapsedString($mehm["VisibleOn"]) ?></span>
+                </div>
+                <p>test</p>
+              </div>
+            </div>
+
+            <div class="flex">
+              <a class="user" href="./?search=u/<?php echo 'username'; ?>">
+                <svg class="box" height="32" data-jdenticon-value="<?php echo 'username'; ?>"></svg>
+              </a>
+              <div>
+                <div>
+                  <a class="user underline" href="./?search=u/<?php echo 'username'; ?>">
+                    <?php echo "username"; ?>
+                  </a>
+                  <span class="p-a">· <?php echo timeElapsedString($mehm["VisibleOn"]) ?></span>
+                </div>
+                <p>test</p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
@@ -245,7 +279,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="icon-md" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
             </svg>
-              <?php echo $mehm['commentCount'] ?> Kommentar<?php if ($mehm['commentCount'] != 1) echo "e"; ?>
+            <?php echo $mehm['commentCount'] ?> Kommentar<?php if ($mehm['commentCount'] != 1) echo "e"; ?>
           </a>
           <span class="meta-icon icon-text" onclick="copyURL()">
             <svg xmlns="http://www.w3.org/2000/svg" id="share-button" class="icon-md" viewBox="0 0 20 20" fill="currentColor">
