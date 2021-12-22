@@ -44,7 +44,19 @@ main .comments {
 }
 
 main .write-comment label {
+  display: flex;
+  align-items: center;
   margin: 0 0 8px 0;
+  gap: 4px;
+}
+
+main .write-comment label p {
+  margin: 0;
+  line-height: 20px;
+}
+
+main .write-comment label svg {
+  height: 20px;
 }
 
 main .write-comment textarea {
