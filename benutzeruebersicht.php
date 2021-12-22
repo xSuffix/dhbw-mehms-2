@@ -35,8 +35,8 @@
 			<h2>Benutzerübersicht</h2>
 		</div>
 		
-		<section class="paper">
-		
+		<div class="paper">
+		<br>
 		<table>
 		<thead>
 		  <tr>
@@ -67,8 +67,10 @@
 			?>
 		</tbody>
 		</table>
-		</section>
-	
+		<br>
+		</div>	
 	</main>
+	<?php include("includes/footer.php"); ?>
+	<?php include("includes/bottom-navigation.php"); ?>
 </body>
 </html>
