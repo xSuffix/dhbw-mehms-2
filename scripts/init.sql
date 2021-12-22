@@ -21,6 +21,7 @@ CREATE TABLE mehms (
                        ID integer PRIMARY KEY AUTO_INCREMENT,
                        UserID integer NOT NULL REFERENCES Users(ID),
                        Path text NOT NULL UNIQUE,
+                       Title text NOT NULL,
                        Type text,
                        Description text,
                        Visible boolean DEFAULT FALSE,
@@ -28,11 +29,11 @@ CREATE TABLE mehms (
 );
 
 -- Beispieldaten
-INSERT INTO mehms VALUES (1, 1, 'Algorithm_Parrot.jpg',  'Programmieren', NULL,true, now());
-INSERT INTO mehms VALUES (2, 2, 'Binary_tree_pants.jpg',  'Programmieren', 'Lollllllllz',false, NULL);
-INSERT INTO mehms VALUES (3, 3,  'C++_Python_Timmy.jpeg', 'Programmieren', 'Brüh',true, now());
-INSERT INTO mehms VALUES (4, 5, 'Daniel_Baguecki_Baguette_Wierbicki.jpg', 'DHBW', 'DER BESTE!!!!!!!11!!', true, now());
-INSERT INTO mehms VALUES (5, 5, 'Pizza_Pineapple.jpeg', 'Andere', NULL, true, now());
+INSERT INTO mehms VALUES (1, 1, 'Algorithm_Parrot.jpg', 'Birb','Programmieren', NULL,true, now());
+INSERT INTO mehms VALUES (2, 2, 'Binary_tree_pants.jpg', 'Binary Tree has pants','Programmieren', 'Lollllllllz',false, NULL);
+INSERT INTO mehms VALUES (3, 3,  'C++_Python_Timmy.jpeg', 'Timmy lernt C++','Programmieren', 'PROGRAMMING',true, now());
+INSERT INTO mehms VALUES (4, 5, 'Daniel_Baguecki_Baguette_Wierbicki.jpg', 'Daniel der Baguette-Meister','DHBW', 'DER BESTE!!!!!!!11!!', true, now());
+INSERT INTO mehms VALUES (5, 5, 'Pizza_Pineapple.jpeg', 'Pizza Pineapple', 'Andere',NULL, true, now());
 
 CREATE TABLE comments (
                           ID integer PRIMARY KEY AUTO_INCREMENT,

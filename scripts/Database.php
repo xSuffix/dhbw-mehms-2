@@ -97,7 +97,7 @@ class Database
             }
             $user = $filter['user'];
             $search = $filter['search'];
-            $query .= " Path LIKE '%$search%' AND Name LIKE '%$user%'";
+            $query .= " Title LIKE '%$search%' AND Name LIKE '%$user%'";
         }
 
         if ($category != '') {

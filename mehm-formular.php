@@ -33,12 +33,14 @@ Utils::checkLogin(true);
         if($imageFileType == 'png' || $imageFileType == 'jpg' || $imageFileType == 'jpeg' || $imageFileType == 'gif'|| $imageFileType == 'webp'){
 
             if (move_uploaded_file($_FILES["mDatei"]["tmp_name"], $target_file)) {
-                $desc = $_POST["mBildbeschreibung"] ?? NULL;
+                $desc = $_POST["mBildbeschreibung"] == '' ? NULL : $_POST["mBildbeschreibung"];
                 $filename = $_FILES["mDatei"]["name"];
                 $kategorie = $_POST["mKategorie"];
+                $title = $_POST["mTitel"];
                 $userID = $_SESSION['id'];
-                $result = $db->database->query("INSERT INTO mehms (Path, UserID, Type, Description) VALUES (
+                $result = $db->database->query("INSERT INTO mehms (Path, Title, UserID, Type, Description) VALUES (
                     '$filename',
+                    '$title',
                     '$userID',
                     '$kategorie',
                     '$desc');");
