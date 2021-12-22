@@ -43,7 +43,7 @@ session_start();
   ?>
 
   <main class="container">
-    <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) echo '
+    <?php if (isset($_SESSION["loggedin"]) && $_SESSION["usertype"] == 1) echo '
       <div class="admin">
         <a href="./admin" class="box">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
