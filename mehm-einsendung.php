@@ -42,8 +42,9 @@ Utils::checkLogin(false);
 					<option value="DHBW">DHBW</option>
 					<option value="Andere">Andere</option>
 				</select>
-				<label for="autor">Autor</label><input id="autor" type="text" placeholder="Autor des Mehms" name="mAutor" disabled value="<?php echo $_SESSION["username"];?>"> 
-				<br>
+                <label for="title" class="required">Titel</label><input id="title" type="text" placeholder="Titel des Mehms" name="mTitel" required>
+                <label for="autor">Autor</label><input id="autor" type="text" placeholder="Autor des Mehms" name="mAutor" disabled value="<?php echo $_SESSION["username"];?>">
+                <br>
 				<label for="bildbeschreibung">Bildbeschreibung</label><textarea id="bildbeschreibung" placeholder="Bildbeschreibung" name="mBildbeschreibung"></textarea>
 
 				<button>Absenden</button>

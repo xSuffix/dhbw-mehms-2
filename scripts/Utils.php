@@ -60,8 +60,8 @@ class Utils
 
         foreach ($images as $image) {
             $imageID = $image["ID"];
-            $imageName = $image["Path"];
-            $imageFile = $dirname . $imageName;
+            $imageName = $image["Title"];
+            $imageFile = $dirname . $image["Path"];
             if ($imageFile != "./assets/mehms/rick.gif") {
                 $sizes = getimagesize($imageFile);
                 try {
@@ -75,7 +75,7 @@ class Utils
 
                     echo '<a class="mehm-card" ' . $href . 'style="width:' . $sizes[0] * 300 / $sizes[1] .
                         'px; flex-grow: ' . $sizes[0] * 300 / $sizes[1] . '"><div style="padding-top: ' .
-                        $sizes[1] / $sizes[0] * 100 . '%"></div><img src="' . $imageFile . '" loading="lazy" name="' . $imageName . '" alt="' . $imageName . '" />' . $infix . '</a>';
+                        $sizes[1] / $sizes[0] * 100 . '%"></div><img src="' . $imageFile . '" loading="lazy" alt="' . $imageName . '" />' . $infix . '</a>';
                 } catch (DivisionByZeroError $e) {
                     echo '<script>console.log("Invalid Picture");</script>';
                 }

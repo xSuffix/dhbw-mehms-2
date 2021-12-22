@@ -167,7 +167,7 @@
             <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?> <br> Gepostet von <?php echo '<a class="underline" href="./?filter=name&search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
           </div>
         </div>
-        <h1><?php echo $mehm["Path"] ?></h1>
+        <h1><?php echo $mehm["Title"] ?></h1>
         <?php echo $mehm["Description"] ?>
         <div class="like">
           <button>
