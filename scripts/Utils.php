@@ -40,12 +40,12 @@ class Utils
     // $filter (Array) -> ein Array der Struktur ['user' => (string), 'search' => (string)], notwendig für die Suchleiste
     // $category (string) -> die gewünschte Mehm-Kategorie ("Programmieren", "DHBW", "Andere")
     // $sort (string) -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
-    // $desc (boolean) -> Reihenfolge: descending (true), oder ascending (false)
+    // $asc (boolean) -> Reihenfolge: ascending (true), oder descending (false)
     // $admin (boolean) -> Adminansicht (true) oder normale Useransicht (false)
     // $myMehms (boolean) -> nur eigene Mehms anzeigen (true), andere Filter (false)
-    public static function getMehmCards($db, $filter, $category, $sort, $desc, $admin, $myMehms)
+    public static function getMehmCards($db, $filter, $category, $sort, $asc, $admin, $myMehms)
     {
-        $images = $db->getMehms($filter, $category, $sort, $desc, $admin);
+        $images = $db->getMehms($filter, $category, $sort, $asc, $admin);
 
         if ($myMehms) {
             $count = count($images);
