@@ -130,7 +130,6 @@
     WHERE MehmID = ' . $id . '
     ORDER BY Timestamp DESC';
 
-
     global $db;
     global $commentCount;
     $result = $db->database->query($query)->fetchAll();
@@ -305,14 +304,6 @@
         </div>
       </aside>
     </div>
-    <script>
-      const editables = document.getElementsByClassName("editable");
-      for (let editable of editables) {
-        editable.addEventListener("change", function() {
-          console.log("input event fired");
-        }, false);
-      }
-    </script>
   </main>
 
   <?php include("includes/footer.php"); ?>
