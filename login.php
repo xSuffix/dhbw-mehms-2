@@ -3,11 +3,12 @@
 	
 	require_once 'scripts/Database.php';
 	$db = new Database();
+	const BASE_QUERY = "SELECT * FROM users where Name Like '";
 	
 	// Wird bei einer versuchten Anmeldung ausgeführt
 	if(isset($_POST["mAnmelden"])){	
 		// Nutzerdaten werden mit der Datenbank abgeglichen
-		$sql = "SELECT * FROM users where Name Like '".$_POST["mBenutzer"]."'";
+		$sql = BASE_QUERY . $_POST["mBenutzer"]."'";
 		$benutzer = $db->database->query($sql)->fetchAll();
 		
 		// Es gibt den eingetragenen Benutzer
@@ -52,7 +53,7 @@
 		if (count(explode(' ',$_POST["mBenutzerNeu"])) == 1 && $_POST["mBenutzerNeu"] != '') {
 			// Passwort stimmt mit Wiederholung überein
 			if($_POST["mPasswort1"] == $_POST["mPasswort2"]){
-				$sql = "SELECT * FROM users where Name Like '".$_POST["mBenutzerNeu"]."'";
+				$sql = BASE_QUERY .$_POST["mBenutzerNeu"]."'";
 				$benutzer = $db->database->query($sql)->fetchAll();
 				// Es gibt den angefragten Benutzernamen noch nicht
 				if(empty($benutzer)){
@@ -91,7 +92,7 @@
 	// Wird ausgeführt, wenn Benutzer gelöscht werden soll
 	// Bei Löschung eines Benutzers werden auch alle seine Mehms gelöscht
 	if (isset($_POST["mDelete"])){
-		$sql = "SELECT * FROM users where Name Like '".$_SESSION["username"]."'";
+		$sql = BASE_QUERY .$_SESSION["username"]."'";
 		$benutzer = $db->database->query($sql)->fetchAll();
 		// Passwort ist korrekt
 		if ($_POST['mPasswort'] == $benutzer[0]['Password']) {
@@ -113,7 +114,7 @@
 	if (isset($_POST["mPwAendern"])){
 		// Passwörter stimmen überein
 		if($_POST["mPasswort1"] == $_POST["mPasswort2"]){
-			$sql = "SELECT * FROM users where Name Like '".$_SESSION["username"]."'";
+			$sql = BASE_QUERY .$_SESSION["username"]."'";
 			$benutzer = $db->database->query($sql)->fetchAll();
 			if(!empty($benutzer)){
 				$sql = "UPDATE users SET Password = '".$_POST["mPasswort1"]."' WHERE ID=".$benutzer[0]["ID"]."";
@@ -129,13 +130,13 @@
 
 	// Benutzername soll geändert werden
 	if (isset($_POST["mUnAendern"])){
-		$sql = "SELECT * FROM users where Name Like '".$_SESSION['username']."'";
+		$sql = BASE_QUERY .$_SESSION['username']."'";
 		$benutzer = $db->database->query($sql)->fetchAll();
 		// Benutzername entspricht Vorgaben
 		if (count(explode(' ',$_POST["mUser"])) == 1 && $_POST["mUser"] != '') {
 			// Passwort stimmt
 			if($_POST["mPasswort"] == $benutzer[0]['Password']){
-				$sql = "SELECT * FROM users where Name Like '".$_POST["mUser"]."'";
+				$sql = BASE_QUERY .$_POST["mUser"]."'";
 				$benutzer = $db->database->query($sql)->fetchAll();
 				// Benutzername wurde noch nicht vergeben
 				if(empty($benutzer)){
