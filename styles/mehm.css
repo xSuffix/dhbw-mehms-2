@@ -113,7 +113,7 @@ main .comments .comment-left {
 main .comments .v-line {
   width: 1px;
   background: var(--color-p-a);
-  height: calc(100% - 62px);
+  height: calc(100% - 56px);
   margin: 2px 0;
 }
 
