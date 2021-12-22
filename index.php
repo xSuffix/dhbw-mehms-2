@@ -43,7 +43,8 @@ session_start();
   ?>
 
   <main class="container">
-    <?php if (isset($_SESSION["loggedin"]) && $_SESSION["usertype"] == 1) echo '
+    <?php if (isset($_SESSION["loggedin"]) && $_SESSION["usertype"] == 1) {
+      echo '
       <div class="admin">
         <a href="./admin" class="box">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -51,7 +52,8 @@ session_start();
           </svg>
           Admin
         </a>
-      </div>'
+      </div>';
+    }
     ?>
 
     <form id="query" name="query" method="GET" class="toolbar">
@@ -69,31 +71,8 @@ session_start();
 
     <div id="mehm-gallery">
       <?php
-
-      # Array (
-      # [0] => Array (
-      #   [ID] => 1
-      #   [0] => 1
-      #   [Path] => Algorithm_Parrot.jpg
-      #   [1] => Algorithm_Parrot.jpg
-      #   [Likes] => 20
-      #   [2] => 20
-      #   [Type] => PROGRAMMING
-      #   [3] => PROGRAMMING
-      #   [Description] =>
-      #   [4] =>
-      #   [Visible] => 1
-      #   [5] => 1
-      #   [VisibleOn] => 2021-12-20 11:23:44
-      #   [6] => 2021-12-20 11:23:44
-      # )
       $filter = Utils::extractUser($search);
-      if (!$myMehms) {
-        Utils::getMehmCards($db, $filter, $category, $sort, $desc, false, false);
-      } else {
-        Utils::getMehmCards($db, $filter, $category, $sort, $desc, false, true);
-      }
-
+      Utils::getMehmCards($db, $filter, $category, $sort, $desc, false, $myMehms);
       ?>
       <div id="theater"></div>
     </div>

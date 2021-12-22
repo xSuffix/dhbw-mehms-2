@@ -38,7 +38,7 @@
   require_once 'scripts/Utils.php';
   $db = new Database();
 
-  // Get specific Mehms from Database by ID.
+  // Holt per ID spezifiziertes Mehm aus der Datenbank
   /**
    * Return specific Mehm from database by ID inside array
    *
@@ -62,7 +62,7 @@
   }
 
   /**
-   * Convert formatted DateTime to a formatted string containing those values
+   * Konvertiert formatierte DateTime in einen formatted string mit dessen Werten
    *
    * @param string $datetime Formatted DateTime
    * @param integer $level 7: all values (y,m,w,...); 1: only largest value
@@ -101,15 +101,15 @@
 
   $id = isset($_GET["id"]) ? $_GET["id"] : "";
 
-  // Redirect to index.php if id parameter to specify mehm is not available
+  // Redirect auf index.php, wenn id-Parameter zur Mehm-Spezifikation nicht vorhanden ist
   if ($id == "") {
     header('Location: .');
     exit;
   }
 
-  // Redirect to index.php if id parameter to specify mehm is not valid
+  // Redirect auf index.php, wenn id-Parameter nicht valide ist
   $mehms = getMehm($id, true);
-  if (count($mehms) == 0) {
+  if (empty($mehms)) {
     header('Location: .');
     exit;
   }
