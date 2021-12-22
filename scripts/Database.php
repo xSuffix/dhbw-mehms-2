@@ -47,18 +47,18 @@ class Database
         }
     }
 
-    // getMehms holt ein Array aus Mehms aus der Datenbank, sortiert nach den Parametern $sort and $desc sowie
+    // getMehms holt ein Array aus Mehms aus der Datenbank, sortiert nach den Parametern $sort and $asc sowie
     // gefiltert nach $filter und $category.
     // Ein Admin kann alle Mehms oder nur solche, die (noch) nicht approved sind, sehen
     // Parameter:
     // $filter (Array) -> ein Array der Struktur ['user' => (string), 'search' => (string)], notwendig wegen der Suchleiste
     // $category (string) -> die gewünschte Mehm-Kategorie ("Programmieren", "DHBW", "Andere")
     // $sort (string) -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
-    // $desc (boolean) -> Reihenfolge: descending (true), oder ascending (false)
+    // $asc (boolean) -> Reihenfolge: ascending (true), oder descending (false)
     // $admin (boolean) -> Adminansicht (true) oder normale Useransicht (false)
     // Rückgabewert:
     // (Array) -> alle Mehms, die von der Query erfasst wurden
-    public function getMehms($filter, $category, $sort, $desc, $admin): array
+    public function getMehms($filter, $category, $sort, $asc, $admin): array
     {
         $query = 'SELECT *, mehms.UserID as UserID, mehms.ID as ID, mehms.Type as Type FROM mehms';
 
@@ -138,7 +138,7 @@ class Database
                 return $this->database->query($query)->fetchAll();
         }
 
-        if ($desc) {
+        if (!$asc) {
             $query .= ' DESC';
         }
         return $this->database->query($query)->fetchAll();

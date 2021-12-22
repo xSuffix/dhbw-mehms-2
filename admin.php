@@ -72,9 +72,9 @@ $db = new Database();
         <?php
         $filter = Utils::extractUser($search);
         if ($new) {
-            Utils::getMehmCards($db, $filter, $category, 'none', $desc, true, false);
+            Utils::getMehmCards($db, $filter, $category, 'none', $asc, true, false);
         } else {
-            Utils::getMehmCards($db, $filter, $category, 'notVisibleOnly', $desc, true, false);
+            Utils::getMehmCards($db, $filter, $category, 'notVisibleOnly', $asc, true, false);
         }
 
         ?>

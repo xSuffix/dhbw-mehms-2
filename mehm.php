@@ -239,9 +239,12 @@
 
             <?php foreach ($comments as $comment) {
               echo '<div class="flex">
-                <a class="user" href="./?search=u/'.$comment["Name"].'">
-                  <svg class="box" height="32" data-jdenticon-value="'.$comment["Name"].'"></svg>
-                </a>
+                <div class="comment-left">
+                  <a class="user" href="./?search=u/'.$comment["Name"].'">
+                    <svg class="box" height="32" data-jdenticon-value="'.$comment["Name"].'"></svg>
+                  </a>
+                  <div class="v-line"></div>
+                </div>
                 <div>
                   <div>
                     <a class="user underline" href="./?search=u/'.$comment["Name"].'">
