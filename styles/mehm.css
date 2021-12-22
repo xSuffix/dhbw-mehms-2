@@ -36,6 +36,7 @@ main .main img {
   max-height: 768px;
   border-radius: 4px;
   display: block;
+  user-select: none;
 }
 
 main .comments {
@@ -139,12 +140,17 @@ main .meta .flex {
   margin-left: -0.5rem;
 }
 
-main .meta-icon {
+main .icon-text {
   display: flex;
   align-items: center;
-  padding: 8px;
   gap: 4px;
   cursor: pointer;
+}
+
+main .meta-icon {  
+  padding: 8px;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 main button.meta-icon {
@@ -153,13 +159,22 @@ main button.meta-icon {
   color: var(--color-p);
 }
 
-main .i-heart, main .i-comment {
+main .icon-sm {
+  height: 20px;
+  width: 20px;
+}
+
+main .icon-md {
   height: 24px;
   width: 24px;
 }
 
-main .i-heart.beat {
+main .beat {
   color: var(--color-secondary);
+}
+
+main .pressed {
+  color: var(--color-primary);
 }
 
 @media (min-width: 960px) {
