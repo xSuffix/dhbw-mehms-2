@@ -2,8 +2,8 @@
     require_once 'Database.php';
     $db = new Database();
 
+    // Entscheidet anhand eingegangener Action, ob es sich um approve oder decline handelt
     if (isset($_POST['action'])) {
-        print_r("enter");
         switch ($_POST['action']) {
             case 'a':
                 approveMehm($_POST['id']);
