@@ -180,7 +180,12 @@
             <button>Kommentieren</button>
             </form>';
           } else {
-            echo "Melde dich an, um zu kommentieren.";
+            echo '<a class="underline icon-text" href="./login">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z" clip-rule="evenodd" />
+            </svg>
+            Melde dich an, um zu kommentieren.
+            </a>';
           }
           ?>
         </div>
@@ -199,7 +204,7 @@
         <p><?php echo $mehm["Description"] ?></p>
         <div class="flex">
 
-          <button class="meta-icon">
+          <button class="meta-icon icon-text" <?php echo (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) ? '' : ' style="cursor: not-allowed;"' ?>>
             <?php
             $beat = '';
             $sess = '';
@@ -214,13 +219,13 @@
               </svg>' ?>
             <?php echo $mehm['likeCount'] ?> Like<?php if ($mehm['likeCount'] != 1) echo "s"; ?>
           </button>
-          <a class="meta-icon" href="#comments">
+          <a class="meta-icon icon-text" href="#comments">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon-md" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
             </svg>
             x Kommentare
           </a>
-          <span class="meta-icon" onclick="copyURL()">
+          <span class="meta-icon icon-text" onclick="copyURL()">
             <svg xmlns="http://www.w3.org/2000/svg" id="share-button" class="icon-md" viewBox="0 0 20 20" fill="currentColor">
               <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
             </svg>

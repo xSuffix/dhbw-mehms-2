@@ -140,12 +140,15 @@ main .meta .flex {
   margin-left: -0.5rem;
 }
 
-main .meta-icon {
+main .icon-text {
   display: flex;
   align-items: center;
-  padding: 8px;
   gap: 4px;
   cursor: pointer;
+}
+
+main .meta-icon {  
+  padding: 8px;
   font-weight: 600;
   font-size: 1rem;
 }
@@ -154,6 +157,11 @@ main button.meta-icon {
   background: transparent;
   border: none;
   color: var(--color-p);
+}
+
+main .icon-sm {
+  height: 20px;
+  width: 20px;
 }
 
 main .icon-md {
