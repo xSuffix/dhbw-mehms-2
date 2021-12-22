@@ -19,13 +19,14 @@ INSERT INTO users VALUES (5, 'Kapitän_zur_See', 'user', 'USER');
 
 CREATE TABLE mehms (
                        ID integer PRIMARY KEY AUTO_INCREMENT,
-                       UserID integer NOT NULL REFERENCES Users(ID),
+                       UserID integer NOT NULL,
                        Path text NOT NULL UNIQUE,
                        Title text NOT NULL,
                        Type text,
                        Description text,
                        Visible boolean DEFAULT FALSE,
-                       VisibleOn timestamp
+                       VisibleOn timestamp,
+                       FOREIGN KEY (UserID) REFERENCES Users(ID) ON DELETE CASCADE
 );
 
 -- Beispieldaten
@@ -37,10 +38,12 @@ INSERT INTO mehms VALUES (5, 5, 'Pizza_Pineapple.jpeg', 'Pizza Pineapple', 'Ande
 
 CREATE TABLE comments (
                           ID integer PRIMARY KEY AUTO_INCREMENT,
-                          MehmID integer NOT NULL REFERENCES Mehms(ID),
-                          UserID integer REFERENCES Users(ID),
+                          MehmID integer NOT NULL,
+                          UserID integer,
                           Comment text,
-                          Timestamp timestamp DEFAULT now()
+                          Timestamp timestamp DEFAULT now(),
+                          FOREIGN KEY (MehmID) REFERENCES mehms(ID) ON DELETE CASCADE,
+                          FOREIGN KEY (UserID) REFERENCES users(ID) ON DELETE CASCADE
 );
 
 INSERT INTO comments VALUES (1, 4, 1, 'ECHT GEIL!!!!!!', now());
@@ -48,9 +51,11 @@ INSERT INTO comments VALUES (2, 4, 1, 'NOICE!!!', now());
 INSERT INTO comments VALUES (3, 5, 2, 'Urgh.', now());
 
 CREATE TABLE likes (
-                       MehmID integer REFERENCES mehms(ID),
-                       UserID integer REFERENCES users(ID),
-                       PRIMARY KEY (MehmID, UserID)
+                       MehmID integer,
+                       UserID integer,
+                       PRIMARY KEY (MehmID, UserID),
+                       FOREIGN KEY (MehmID) REFERENCES mehms(ID) ON DELETE CASCADE,
+                       FOREIGN KEY (UserID) REFERENCES users(ID) ON DELETE CASCADE
 );
 
 INSERT INTO likes VALUES (1, 1);

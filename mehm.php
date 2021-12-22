@@ -96,51 +96,6 @@
   $db = new Database();
 
   $likeCount = 0;
-  $commentCount = 0;
-
-  /**
-   * Return specific Mehm from database by ID inside array
-   *
-   * @param integer $id ID of Mehm
-   * @param boolean $admin if hidden Mehms should be found
-   */
-  function getMehm(int $id, bool $admin): array { //TODO Query einschränken?
-    $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type, mehms.ID AS ID, mehms.UserID as UID
-      FROM mehms
-      LEFT JOIN users u ON mehms.UserID = u.ID
-      LEFT JOIN likes l ON mehms.ID = l.MehmID
-      WHERE mehms.ID =' . $id;
-
-    if (!$admin) {
-      $query .= ' WHERE Visible = TRUE';
-    }
-
-    global $db;
-    try {
-      return $db->database->query($query)->fetchAll();
-    } catch (PDOException $e) {
-      return [];
-    }
-  }
-
-  function getComments(int $id): array {
-    $query = 'SELECT u.Name AS Name, Comment, Timestamp
-    FROM comments
-    LEFT JOIN users u ON comments.UserID = u.ID
-    WHERE MehmID = ' . $id . '
-    ORDER BY Timestamp DESC';
-
-    global $db;
-    global $commentCount;
-    $result = $db->database->query($query)->fetchAll();
-    $commentCount = count($result);
-    return $result;
-    try {
-      return $db->database->query($query)->fetchAll();
-    } catch (PDOException $e) {
-      return [];
-    }
-  }
 
   /**
    * Konvertiert formatierte DateTime in einen formatted string mit dessen Werten
@@ -190,15 +145,16 @@
   }
 
   // Redirect auf index.php, wenn id-Parameter nicht valide ist
-  $mehms = getMehm($id, true);
-  if (empty($mehms)) {
+  $isAdmin = isset($_SESSION) && $_SESSION["usertype"] == 1;
+  $mehm = $db->getMehm($id, $isAdmin);
+  if ($mehm["Title"] == '') {
     header('Location: .');
     exit;
   }
 
-  $mehm = $mehms[0];
-  $comments = getComments($id);
-
+  $comments = $db->getComments($id);
+  $commentCount = count($comments);
+  
   include("includes/header.php");
   ?>
 
@@ -270,10 +226,10 @@
             <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?> <br> Gepostet von <?php echo '<a class="underline" href="./?search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
           </div>
         </div>
-        <h1 <?php if ($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) echo 'class="editable" contenteditable="true"' ?>><?php echo $mehm["Title"] ?></h1>
-        <p <?php if (($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) && $mehm["Description"] != "") echo 'class="editable" contenteditable="true"' ?>><?php echo $mehm["Description"] ?></p>
+        <h1 id="title" <?php if ($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) echo 'class="editable" contenteditable="true"' ?>><?php echo $mehm["Title"] ?></h1>
+        <p <?php if (($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) && $mehm["Description"] != "") echo 'class="editable" id="descp" contenteditable="true"' ?>><?php echo $mehm["Description"] ?></p>
         <?php if (($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) && $mehm["Description"] == "") {
-          echo '<textarea placeholder="Beschreibe was du siehst"></textarea>';
+          echo '<textarea id="desct" placeholder="Beschreibe was du siehst"></textarea>';
         } ?>
         <div class="flex">
 
@@ -311,6 +267,63 @@
 
   <?php include("includes/footer.php"); ?>
   <?php include("includes/bottom-navigation.php"); ?>
+  <script>
+    document.getElementById("title").oninput = function() {
+      var t =  document.getElementById("title");
+      const url = window.location.href.split("id=");
+      const mehmId = url[1];
+      var edit = t.innerHTML.replace("<br>", " ");
+      if (edit == " " || edit == "") {
+        return;
+      }
+      const ajaxurl = 'scripts/editmehm.php',
+          data = {
+            'changed': 'title',
+            'new': edit,
+            'id': mehmId
+          };
+        $.post(ajaxurl, data, function() {
+        });
+    }
+    if (document.getElementById("descp") != null) {
+      const t = document.getElementById("descp");
+      t.oninput = function() {
+        const url = window.location.href.split("id=");
+        const mehmId = url[1];
+        var edit = t.innerHTML;
+        if (edit == "<br>") {
+          edit = "";
+        }
+        const ajaxurl = 'scripts/editmehm.php',
+          data = {
+            'changed': 'desc',
+            'new': edit,
+            'id': mehmId
+          };
+        $.post(ajaxurl, data, function() {
+        });
+      }
+    }
+    if (document.getElementById("desct") != null) {
+      const t = document.getElementById("desct");
+      t.oninput = function() {
+        const url = window.location.href.split("id=");
+        const mehmId = url[1];
+        var edit = t.value.replace("\n", "<br>");
+        if (edit == "<br>") {
+          edit = "";
+        }
+        const ajaxurl = 'scripts/editmehm.php',
+          data = {
+            'changed': 'desc',
+            'new': edit,
+            'id': mehmId
+          };
+        $.post(ajaxurl, data, function() {
+        });
+      }
+    }
+  </script>  
 </body>
 
 </html>

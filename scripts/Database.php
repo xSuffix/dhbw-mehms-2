@@ -158,4 +158,49 @@ class Database
         $this->database->query("UPDATE users SET Name = '$name', Password = '$password', Type = '$type' WHERE ID = '$id'");
     }
 
+
+    /**
+     * Return specific Mehm from database by ID inside array
+     *
+     * @param integer $id ID of Mehm
+     * @param boolean $admin if hidden Mehms should be found
+     */
+    public function getMehm(int $id, bool $admin): array { //TODO Query einschränken?
+        $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type, mehms.ID AS ID, mehms.UserID as UID
+      FROM mehms
+      LEFT JOIN users u ON mehms.UserID = u.ID
+      LEFT JOIN likes l ON mehms.ID = l.MehmID
+      WHERE mehms.ID =' . $id;
+
+        if (!$admin) {
+            $query .= ' AND Visible = TRUE';
+        }
+
+        try {
+            $result = $this->database->query($query)->fetchAll();
+            if (empty($result[0])) {
+                return [];
+            }
+            return $result[0];
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
+
+    
+    // Holt sich Kommentare anhand der Mehm-ID aus der Datenbank und gibt diese zurück.
+    public function getComments(int $id): array {
+        $query = 'SELECT u.Name AS Name, Comment, Timestamp
+            FROM comments
+            LEFT JOIN users u ON comments.UserID = u.ID
+            WHERE MehmID = ' . $id . '
+            ORDER BY Timestamp DESC';
+
+        try {
+            return $this->database->query($query)->fetchAll();
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
+
 }
