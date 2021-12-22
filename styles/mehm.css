@@ -110,6 +110,22 @@ main .comments .comment-left {
   align-items: center;
 }
 
+main .comments .comment-right > div {
+  position: relative;
+}
+
+main .comments .comment-right button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 4px;
+  padding: 2px;
+  border: none;
+  background: transparent;
+  color: var(--color-p);
+  cursor: pointer;
+}
+
 main .comments .v-line {
   width: 1px;
   background: var(--color-p-a);
