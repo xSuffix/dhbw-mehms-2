@@ -286,6 +286,7 @@ header .user {
   height: 36px;
   padding: 2px !important;
   border-radius: 50%;
+  color: var(--color-p) !important;
   background: var(--color-bg2-a);
 }
 
