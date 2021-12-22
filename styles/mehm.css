@@ -1,3 +1,7 @@
+body.scrolled:not(.scroll-up) header {
+  padding-bottom: 8px;
+}
+
 main .content {
   display: flex;
   flex-direction: column-reverse;
@@ -159,12 +163,11 @@ main .heart.beat {
   main .meta {
     padding: 1rem;
     position: sticky;
-    top: 56px
+    top: 56px;
+    transition: top 0.2s;
   }
 
   .scrolled.scroll-up main .meta {
     top: 128px;
-    transition: all 0.2s;
-
   }
 }
