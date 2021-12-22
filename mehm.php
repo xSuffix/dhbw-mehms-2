@@ -127,7 +127,8 @@
     $query = 'SELECT u.Name AS Name, Comment, Timestamp
     FROM comments
     LEFT JOIN users u ON comments.UserID = u.ID
-    WHERE MehmID = ' . $id;
+    WHERE MehmID = ' . $id .'
+    ORDER BY Timestamp DESC';
     
     
     global $db;
