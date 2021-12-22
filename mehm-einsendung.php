@@ -2,9 +2,7 @@
 	session_start();
 	
 	//Überprüfe ob ein User eingeloggt ist
-	if(isset($_SESSION["loggedin"])&& $_SESSION["loggedin"] === true){}
-	else{
-		
+	if(!(isset($_SESSION["loggedin"])&& $_SESSION["loggedin"] === true)){
 		header("location: index.php");
 		exit;
 	}

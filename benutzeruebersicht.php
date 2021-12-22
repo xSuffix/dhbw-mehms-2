@@ -1,10 +1,8 @@
 <?php
 	session_start(); 
 	
-	//überprüfung ob Admin eingeloggt
-	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["usertype"] == 1){	
-	}
-	else{
+	// Überprüfung ob Admin eingeloggt ist
+	if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["usertype"] == 1)){
 		header("location: index.php");
 		exit;
 	}
@@ -40,9 +38,9 @@
 		<table>
 		<thead>
 		  <tr>
-			<th>Benutzer</th>
-			<th>ID</th>
-			<th>Typ</th>
+			<th id="user">Benutzer</th>
+			<th id="id">ID</th>
+			<th id="type">Typ</th>
 		  </tr>
 		  </thead>
 		  <tbody>
@@ -53,16 +51,15 @@
 				$sql = "SELECT * FROM users";
 				$benutzer = $db->database->query($sql)->fetchAll();
 				
-				//Tabelleneintrag für jeden user erstellen
+				// Tabelleneintrag für jeden User erstellen
 				if(!empty($benutzer)){
-					
-				}
-				for($i =0; $i <count($benutzer); $i++){
-					echo "<tr>
-							<td>".$benutzer[$i]["Name"]."</td>
-							<td>".$benutzer[$i]["ID"]."</td>
-							<td>".$benutzer[$i]["Type"]."</td>
-						  </tr>";
+					for($i =0; $i <count($benutzer); $i++){
+						echo "<tr>
+								<td>".$benutzer[$i]["Name"]."</td>
+								<td>".$benutzer[$i]["ID"]."</td>
+								<td>".$benutzer[$i]["Type"]."</td>
+							  </tr>";
+					}
 				}
 			?>
 		</tbody>

@@ -185,7 +185,7 @@
 	include("includes/header.php"); 
 	
 	
-	// Überprüfung ob, man schon eingeloggt ist
+	// Überprüfung, ob man schon eingeloggt ist
 	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 		include("includes/login/logout.php");
 	}

@@ -50,7 +50,8 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
                 echo "<h1> Viele Dank für deine Einsendung der Kategorie ". $_POST["mKategorie"]. "!</h1> <br><p class=\"response\"> Die Datei ". htmlspecialchars( basename( $_FILES["mDatei"]["name"])). " wurde erfolgreich hochgeladen. </p>";
 
             } else {
-                echo "<h1> Tut uns Leid, es ist ein Fehler aufgetreten. Bitte versuche es erneut!</h1>";}
+                echo "<h1> Tut uns Leid, es ist ein Fehler aufgetreten. Bitte versuche es erneut!</h1>";
+            }
         }
         else {
             echo "Falsches Dateiformat! Bitte benutze nur .png .jpg .jpeg .gif oder .webp</h1>";
