@@ -2,6 +2,13 @@
 
 class Utils
 {
+    // Wandelt $input-String aus Suchleiste in ein $filter-Array um (['user' => (string), 'search' => (string)])
+    // Notwendig, da in Suchleiste durch "u/xyz abc" nach allen Mehms passend zur Suche "abc" von einem User 
+    // passend zu "xyz" gesucht wird.
+    // Parameter:
+    // $input (string) -> die Eingabe über die Suchleiste
+    // Rückgabewert:
+    // (Array) -> die verarbeitete Suche
     public static function extractUser($input) : Array {
         $words = explode(' ', $input);
         switch (count($words)) {
@@ -21,7 +28,16 @@ class Utils
         return ["user" => '',"search" => $input];
     }
 
-    // Gets the Mehms, transforms them into cards and shows them. Possibility to add additional features to the cards (like for the admin)
+    // getMehmCards holt sich die gewollten Mehms aus der Datenbank, wandelt sie in cards um und gibt diese aus. 
+    // Hier wird auch entschieden, ob zusätzliche Features genutzt werden, z.B. für einen Admin.
+    // Parameter: 
+    // $db (database) -> die Datenbank
+    // $filter (Array) -> ein Array der Struktur ['user' => (string), 'search' => (string)], notwendig für die Suchleiste
+    // $category (string) -> die gewünschte Mehm-Kategorie ("Programmieren", "DHBW", "Andere")
+    // $sort (string) -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
+    // $desc (boolean) -> Reihenfolge: descending (true), oder ascending (false)
+    // $admin (boolean) -> Adminansicht (true) oder normale Useransicht (false)
+    // $myMehms (boolean) -> nur eigene Mehms anzeigen (true), andere Filter (false)
     public static function getMehmCards($db, $filter, $category, $sort, $desc, $admin, $myMehms)
     {
         $images = $db->getMehms($filter, $category, $sort, $desc, $admin);
@@ -62,6 +78,11 @@ class Utils
         }
     }
 
+    // adminInfix baut die approve- und decline-Buttons für die Adminansicht eines über den $index referenzierten Mehms
+    // Parameter:
+    // $index (Zahl) -> die ID des Mehms
+    // Rückgabewert:
+    // (string) -> die approve- und decline-Buttons für dieses Mehm in der Adminansicht
     public static function adminInfix($index): string
     {
         return '<div class="admin-overlay">' .
