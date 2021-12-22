@@ -45,7 +45,7 @@ main .write-comment label {
 
 main .write-comment textarea {
   display: block;
-  height: 10rem;
+  height: 8rem;
 	resize: vertical;
 	min-height: 39px;
   color: var(--color-p);
@@ -160,5 +160,11 @@ main .heart.beat {
     padding: 1rem;
     position: sticky;
     top: 56px
+  }
+
+  .scrolled.scroll-up main .meta {
+    top: 128px;
+    transition: all 0.2s;
+
   }
 }
