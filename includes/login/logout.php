@@ -1,7 +1,7 @@
 <main class="container">
 	<div class="heading">
 		<h1>DHBW Mehms</h1>
-		<h2>Abmelden/Passwort ändern</h2>
+		<h2>Benutzerverwaltung</h2>
 	</div>
 
 	<section class="paper">
@@ -34,6 +34,18 @@
 		<h1> Abmelden: </h1>
 		<form action="login" method="post" enctype="multipart/form-data">
 			<button name="mAbmelden">Abmelden</button>
+		</form>
+	</section>
+	<br>
+
+	<section class="paper">
+		<h1> Benutzer löschen: </h1>
+		Das Löschen des Benutzers ist irreversibel. Ist der Benutzer einmal gelöscht, gehen mit ihm auch alle seine Mehms verloren und können nicht mehr wiederhergestellt werden.
+		<form action="login" method="post" enctype="multipart/form-data">
+			<label for="passwort" class="required">Passwort:</label>
+				<input id="passwort" type="password" placeholder="Passwort" name="mPasswort">
+			<br>
+			<button name="mDelete">Benutzer löschen</button>
 		</form>
 	</section>
 </main>

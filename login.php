@@ -76,6 +76,23 @@
 			$_SESSION = array();
 			session_destroy();
 	}
+
+	//Benutzer löschen
+	if (isset($_POST["mDelete"])){
+		$sql = "SELECT * FROM users where Name Like '".$_SESSION["username"]."'";
+		$benutzer = $db->database->query($sql)->fetchAll();
+		if ($_POST['mPasswort'] == $benutzer[0]['Password']) {
+			$query = "DELETE FROM mehms WHERE UserID = " . $benutzer[0]['ID'];
+			$db->database->query($query);
+			$query = "DELETE FROM users WHERE ID = " . $benutzer[0]['ID'];
+			$db->database->query($query);
+			echo "Benutzer wurde erfolgreich gelöscht";
+			$_SESSION = array();
+			session_destroy();
+		} else {
+			echo "Falsches Passwort";
+		}
+	}
 	
 	//Passwort ändern
 	if (isset($_POST["mPwAendern"])){
