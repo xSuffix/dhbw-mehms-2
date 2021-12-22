@@ -8,7 +8,7 @@ Utils::checkLogin(true);
 
 <head>
     <title>Benutzerübersicht - DHBW Admin</title>
-    <link href="styles/numbers.css" rel="stylesheet">
+    <link href="styles/formular.css" rel="stylesheet">
     <?php include("includes/meta.php"); ?>
     <style>
         :root {
@@ -34,11 +34,11 @@ Utils::checkLogin(true);
 <main class="container">
     <div class="heading">
         <h1>Admin</h1>
-        <h2>Benutzerübersicht</h2>
+        <h2>Benutzer bearbeiten</h2>
     </div>
 
-    <div class="paper">
-        <br>
+    <section class="paper">
+		<h1> Gespeicherte Nutzerdaten: </h1>
         <?php
         require_once 'scripts/Database.php';
         $db = new Database();
@@ -48,23 +48,23 @@ Utils::checkLogin(true);
         $isAdmin = $benutzer["Type"] == 'ADMIN';
 
         echo '<form action="benutzeruebersicht.php" method="post" enctype="multipart/form-data">
-            <label for="id" class="required">Nutzer-ID</label>
-            <input id="id" type="text" name="mId" value="' . $benutzer["ID"] . '" readonly>
+            <label for="id">Nutzer-ID</label>
+            <input id="id" required type="text" name="mId" value="' . $benutzer["ID"] . '" readonly>
             <br>
             <label for="benutzer" class="required">Benutzer</label>
-            <input id="benutzer" type="text" placeholder="Benutzer" name="mBenutzer" value="' . $benutzer["Name"] . '">
+            <input id="benutzer" required type="text" placeholder="Benutzer" name="mBenutzer" value="' . $benutzer["Name"] . '">
             <br>
             <label for="passwort" class="required">Passwort</label>
-            <input id="passwort" type="password" placeholder="Passwort" name="mPasswort" value="' . $benutzer["Password"] . '">
+            <input id="passwort" required type="password" placeholder="Passwort" name="mPasswort" value="' . $benutzer["Password"] . '">
             <br>
             <label for="type" class="required">Typ</label>
             <select name="mType" id="type" required>
-                <option value="Admin"';
+                <option value="ADMIN"';
                  echo $isAdmin ? "selected" : "";
                  echo '>Admin</option>
-                <option value="Nutzer"';
+                <option value="USER"';
                  echo !$isAdmin ? "selected" : "";
-                 echo '>Nutzer</option>
+                 echo '>User</option>
             </select>
             <br>
             <button>Bestätigen</button>
@@ -73,7 +73,7 @@ Utils::checkLogin(true);
         ?>
 
         <br>
-    </div>
+    </section>
 </main>
 <?php include("includes/footer.php"); ?>
 <?php include("includes/bottom-navigation.php"); ?>

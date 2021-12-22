@@ -156,6 +156,10 @@
   $commentCount = count($comments);
   
   include("includes/header.php");
+
+  $isLogedin = isset($_SESSION["loggedIn"]) && $_SESSION['loggedIn'] === true;
+  $isPrivileged = $isLogedin && ($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1);
+
   ?>
 
   <main class="container">
@@ -200,14 +204,21 @@
                   </a>
                   <div class="v-line"></div>
                 </div>
-                <div>
+                <div class="comment-right">
                   <div>
                     <a class="user underline" href="./?search=u/' . $comment["Name"] . '">
                       ' . $comment["Name"] . '
                     </a>
-                    <span class="p-a">· ' . timeElapsedString($comment["Timestamp"]) . '</span>
-
-                  </div>
+                    <span class="p-a">· ' . timeElapsedString($comment["Timestamp"]) . '</span>';
+                    
+                    if ($isPrivileged) {
+                    echo '<button>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                      </svg>
+                    </button>';
+                    }
+                  echo '</div>
                   <p>' . $comment["Comment"] . '</p>
                 </div>
               </div>';
@@ -226,18 +237,18 @@
             <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?> <br> Gepostet von <?php echo '<a class="underline" href="./?search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
           </div>
         </div>
-        <h1 id="title" <?php if ($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) echo 'class="editable" contenteditable="true"' ?>><?php echo $mehm["Title"] ?></h1>
-        <p <?php if (($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) && $mehm["Description"] != "") echo 'class="editable" id="descp" contenteditable="true"' ?>><?php echo $mehm["Description"] ?></p>
-        <?php if (($_SESSION['id'] == $mehm['UID'] || $_SESSION["usertype"] == 1) && $mehm["Description"] == "") {
+        <h1 id="title" <?php if ($isPrivileged) echo 'class="editable" contenteditable="true"' ?>><?php echo $mehm["Title"] ?></h1>
+        <p <?php if ($isPrivileged && $mehm["Description"] != "") echo 'class="editable" id="descp" contenteditable="true"' ?>><?php echo $mehm["Description"] ?></p>
+        <?php if ($isPrivileged && $mehm["Description"] == "") {
           echo '<textarea id="desct" placeholder="Beschreibe was du siehst"></textarea>';
         } ?>
         <div class="flex">
 
-          <button class="meta-icon icon-text" id="like" <?php echo (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) ? '' : ' style="cursor: not-allowed;"' ?>>
+          <button class="meta-icon icon-text" id="like" <?php echo ($isLogedin) ? '' : ' style="cursor: not-allowed;"' ?>>
             <?php
             $beat = '';
             $sess = '';
-            if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
+            if ($isLogedin) {
               $sess = $_SESSION['id'];
               $query = "SELECT * FROM likes WHERE MehmID = " . $mehm['ID'] . " AND UserID = " . $_SESSION['id'];
               $liked = $db->database->query($query)->fetchall();
