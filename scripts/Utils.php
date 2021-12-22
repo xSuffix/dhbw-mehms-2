@@ -8,24 +8,29 @@ class Utils
     // Parameter:
     // $input (string) -> die Eingabe über die Suchleiste
     // Rückgabewert:
-    // (Array) -> die verarbeitete Suche
+    // $ret (Array) -> die verarbeitete Suche
     public static function extractUser($input) : Array {
         $words = explode(' ', $input);
+        $ret = ["user" => '',"search" => ''];
         switch (count($words)) {
             case 0:
-                return ["user" => '',"search" => ''];
+                break;
             case 1:
                 if (substr($words[0],0,2) == "u/") {
-                    return ["user" => substr($words[0],2),"search" => ''];
-                } else {
-                    return ["user" => '',"search" => $words[0]];
+                    $ret = ["user" => substr($words[0],2),"search" => ''];
+                    break;
                 }
+                $ret = ["user" => '',"search" => $words[0]];
+                break;
+            default:
+                if (substr($words[0],0,2) == "u/") {
+                    $user = substr($words[0],2);
+                    $ret = ["user" => $user,"search" => implode(' ',array_slice($words,1))];
+                    break;
+                }
+                $ret = ["user" => '',"search" => $input];
         }
-        if (substr($words[0],0,2) == "u/") {
-            $user = substr($words[0],2);
-            return ["user" => $user,"search" => implode(' ',array_slice($words,1))];
-        }
-        return ["user" => '',"search" => $input];
+        return $ret;
     }
 
     // getMehmCards holt sich die gewollten Mehms aus der Datenbank, wandelt sie in cards um und gibt diese aus. 

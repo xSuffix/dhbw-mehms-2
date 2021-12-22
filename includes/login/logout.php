@@ -4,6 +4,7 @@
 		<h2>Benutzerverwaltung</h2>
 	</div>
 
+	<!-- Benutzername ändern -->
 	<section class="paper">
 	<h1> Benutzername ändern: </h1>
 	 <form action="login" method="post" enctype="multipart/form-data">				
@@ -17,6 +18,7 @@
 	</section>
 	<br>
 	
+	<!-- Passwort ändern -->
 	<section class="paper">
 	<h1> Passwort ändern: </h1>
 	 <form action="login" method="post" enctype="multipart/form-data">				
@@ -30,6 +32,7 @@
 	</section>
 	<br>
 	
+	<!-- Logout -->
 	<section class="paper">
 		<h1> Abmelden: </h1>
 		<form action="login" method="post" enctype="multipart/form-data">
@@ -38,6 +41,7 @@
 	</section>
 	<br>
 
+	<!-- Löschung Benutzer -->
 	<section class="paper">
 		<h1> Benutzer löschen: </h1>
 		Das Löschen des Benutzers ist irreversibel. Ist der Benutzer einmal gelöscht, gehen mit ihm auch alle seine Mehms verloren und können nicht mehr wiederhergestellt werden.

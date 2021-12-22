@@ -40,10 +40,11 @@ class Database
 
         $stmt = $emptyDB->prepare($query);
 
-        if ($stmt->execute())
+        if ($stmt->execute()) {
             echo "<script>console.log('Database successfully created!');</script>";
-        else
+        } else {
             echo "<script>console.log('Failed to create database!');</script>";
+        }
     }
 
     // getMehms holt ein Array aus Mehms aus der Datenbank, sortiert nach den Parametern $sort and $desc sowie

@@ -28,7 +28,7 @@ CREATE TABLE mehms (
                        VisibleOn timestamp
 );
 
--- Here we should insert some sample data
+-- Beispieldaten
 INSERT INTO mehms VALUES (1, 1, 'Algorithm_Parrot.jpg', 20, 'Programmieren', NULL,true, now());
 INSERT INTO mehms VALUES (2, 2, 'Binary_tree_pants.jpg', 5, 'Programmieren', 'Lollllllllz',false, NULL);
 INSERT INTO mehms VALUES (3, 3,  'C++_Python_Timmy.jpeg', 0, 'Programmieren', 'Brüh',true, now());
