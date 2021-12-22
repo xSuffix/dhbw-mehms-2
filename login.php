@@ -92,6 +92,36 @@
 			echo "die Passwörter stimmen nicht überein!";
 		}
 	}
+
+	if (isset($_POST["mUnAendern"])){
+		$sql = "SELECT * FROM users where Name Like '".$_SESSION['username']."'";
+		$benutzer = $db->database->query($sql)->fetchAll();
+		if (count(explode(' ',$_POST["mUser"])) == 1 && $_POST["mUser"] != '') {
+			if($_POST["mPasswort"] == $benutzer[0]['Password']){
+				$sql = "SELECT * FROM users where Name Like '".$_POST["mUser"]."'";
+				$benutzer = $db->database->query($sql)->fetchAll();
+				
+				if(empty($benutzer)){
+					try{ // UPDATE mehms SET Visible = TRUE, VisibleOn = now() WHERE ID=" . $index
+						$sql = "UPDATE users SET Name='".$_POST["mUser"]."' WHERE ID=" .$_SESSION['id'];
+						$db->database->query($sql);
+						echo "Erfolgreiche Umbenennung";
+					}
+					catch(Exception $e){
+						echo $e;
+					}
+				}
+				else{
+					echo "Benutzer bereits vergeben";
+				}
+			}
+			else{
+				echo "Falsches Passwort";
+			}
+		} else {
+			echo "Invalider Benutzername: der Benutzername darf weder leer sein noch Leerzeichen enthalten!";
+		}
+	}
 ?>
 
 <!DOCTYPE html>
