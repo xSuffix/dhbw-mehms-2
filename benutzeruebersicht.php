@@ -25,13 +25,11 @@ Utils::checkLogin(true);
     $db = new Database();
 
     if (isset($_POST["mBenutzer"]) && isset($_POST["mPasswort"]) && isset($_POST["mType"])) {
-        updateUser();
+        $db->updateUser($_POST["mId"], $_POST["mBenutzer"], $_POST["mPasswort"], $_POST["mType"]);
     }
 
-    // Diese Funktion updated einen User, nachdem er von einem Admin bearbeitet wurde.
-    function updateUser() {
-        global $db;
-        $db->updateUser($_POST["mId"], $_POST["mBenutzer"], $_POST["mPasswort"], $_POST["mType"]);
+    if ($_POST["delete"]) {
+        $db->deleteUser($_GET["id"]);
     }
     ?>
 
@@ -50,6 +48,7 @@ Utils::checkLogin(true);
 			<th id="id">ID</th>
 			<th id="type">Typ</th>
               <th id="edit">Bearbeiten</th>
+              <th id="delete">Löschen</th>
 		  </tr>
 		  </thead>
 		  <tbody>
@@ -64,6 +63,7 @@ Utils::checkLogin(true);
 								<td>".$benutzer[$i]["ID"]."</td>
 								<td>".$benutzer[$i]["Type"]."</td>
 								<td><a href=benutzerbearbeiten.php?id=".$benutzer[$i]["ID"]." class='button'>Bearbeiten</a></td>
+								<td><a href=benutzerbearbeiten.php?id=".$benutzer[$i]["ID"]."&delete=true class='button'>Löschen</a></td>
 							  </tr>";
 					}
 				}
