@@ -1,12 +1,8 @@
 <?php
-	session_start();
-	
-	//Überprüfe ob ein User eingeloggt ist
-	if(!(isset($_SESSION["loggedin"])&& $_SESSION["loggedin"] === true)){
-		header("location: index.php");
-		exit;
-	}
+require_once 'scripts/Utils.php';
+Utils::checkLogin(false);
 ?>
+
 <!DOCTYPE html>
 <html lang="de">
 

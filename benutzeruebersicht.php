@@ -1,11 +1,6 @@
 <?php
-	session_start(); 
-	
-	// Überprüfung ob Admin eingeloggt ist
-	if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["usertype"] == 1)){
-		header("location: index.php");
-		exit;
-	}
+require_once 'scripts/Utils.php';
+Utils::checkLogin(true);
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +27,7 @@
 			<h1>Admin</h1>
 			<h2>Benutzerübersicht</h2>
 		</div>
-		
+
 		<div class="paper">
 		<br>
 		<table>

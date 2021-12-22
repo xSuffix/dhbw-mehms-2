@@ -38,15 +38,13 @@
   require_once 'scripts/Utils.php';
   $db = new Database();
 
-  // Holt per ID spezifiziertes Mehm aus der Datenbank
   /**
    * Return specific Mehm from database by ID inside array
    *
    * @param integer $id ID of Mehm
    * @param boolean $admin if hidden Mehms should be found
    */
-
-  function getMehm($id, $admin): array {
+  function getMehm(int $id, bool $admin): array {
     $query = 'SELECT *, mehms.Type as Type FROM mehms LEFT JOIN Users u ON mehms.UserID = u.ID WHERE mehms.ID = ' . $id;
 
     if (!$admin) {
@@ -56,7 +54,7 @@
     global $db;
     try {
       return $db->database->query($query)->fetchAll();
-    } catch (PDOException $e) {
+    } catch (PDOException) {
       return [];
     }
   }
@@ -67,9 +65,11 @@
    * @param string $datetime Formatted DateTime
    * @param integer $level 7: all values (y,m,w,...); 1: only largest value
    * @return string
+   * @throws Exception
    */
 
-  function timeElapsedString($datetime, $level = 1) {
+  function timeElapsedString(string $datetime, int $level = 1): string
+  {
     $now = new DateTime;
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);
@@ -99,7 +99,7 @@
     return $string ? 'vor ' . implode(', ', $string) : 'gerade eben';
   }
 
-  $id = isset($_GET["id"]) ? $_GET["id"] : "";
+  $id = $_GET["id"] ?? "";
 
   // Redirect auf index.php, wenn id-Parameter zur Mehm-Spezifikation nicht vorhanden ist
   if ($id == "") {
@@ -136,7 +136,7 @@
             <svg height="36" data-jdenticon-value="<?php echo $mehm["Name"] ?>"></svg>
           </div>
           <div class="posted-text">
-            <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?></a> <br> Gepostet von <?php echo '<a class="underline" href="./?filter=name&search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
+            <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?> <br> Gepostet von <?php echo '<a class="underline" href="./?filter=name&search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
           </div>
         </div>
         <h1><?php echo $mehm["Path"] ?></h1>
