@@ -22,10 +22,10 @@
           <a href="zahlen">Zahlen</a>
           <a href="kontakt">Kontakt</a>
         </nav>
-        <a class="box user" href="login">
+        <a class="box user <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) echo 'logedin' ?>" href="login">
           <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) {
             echo '<script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js" integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx" crossorigin="anonymous"></script>
-            <svg height="32" data-jdenticon-value='.$_SESSION["username"].'></svg>';
+            <svg height="36" data-jdenticon-value='.$_SESSION["username"].'></svg>';
           } else {
             echo '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 20 20" fill="currentColor">' .
             '<path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd" />' .
@@ -34,10 +34,6 @@
           ?>          
         </a>
       </div>
-    </div>
-    <div>
-      <div>blah1</div>
-      <!-- <div><a href="login">Login</a></div> -->
     </div>
   </header>
 </div>

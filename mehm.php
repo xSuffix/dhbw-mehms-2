@@ -23,7 +23,7 @@
       background: linear-gradient(0deg, #8662f2 0%, #7A5FF1 100%);
     }
 
-    @media (min-width: 640px) {
+    @media (min-width: 720px) {
       .scrolled.scroll-up .toolbar {
         background: linear-gradient(0deg, #7874f4 0%, #8167f2 100%);
       }
@@ -147,7 +147,7 @@
               <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
             </svg>
           </button>
-          0 Likes
+          <?php echo $mehm["Likes"] ?> Likes
         </div>
       </aside>
     </div>

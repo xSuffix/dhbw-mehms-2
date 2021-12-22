@@ -1,7 +1,7 @@
 /* 
 Breakpoints
-xs <  640px
-sm <  768px
+xs <  720px
+sm <  896px
 md < 1024px
 lg < 1280px
 xl > 1536px
@@ -18,8 +18,13 @@ xl > 1536px
 }
 
 @keyframes color-p-primary {
-  from {color: var(--color-p)}
-  to {color: var(--color-primary)}
+  from {
+    color: var(--color-p)
+  }
+
+  to {
+    color: var(--color-primary)
+  }
 }
 
 :root {
@@ -65,7 +70,9 @@ body {
   background: var(--color-bg);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--color-h);
 }
 
@@ -87,15 +94,18 @@ select {
   color: var(--color-p);
 }
 
-select > option {
+select>option {
   color: var(--color-p);
   background: var(--color-bg2) !important;
 }
 
-button, select, input, .box {
-	font-weight: 500;
-	border-radius: 4px;
-	padding: 0.5rem;
+button,
+select,
+input,
+.box {
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 0.5rem;
   border: 1px solid var(--color-border);
 }
 
@@ -133,9 +143,9 @@ summary {
 
 .paper {
   background: var(--color-bg2-a);
-	border: 1px solid var(--color-p-a);
-	border-radius: 4px;
-	padding: 1rem;
+  border: 1px solid var(--color-p-a);
+  border-radius: 4px;
+  padding: 1rem;
 }
 
 .paper hr {
@@ -165,11 +175,11 @@ summary {
 }
 
 a.underline {
-	color: var(--color-s);
+  color: var(--color-s);
 }
 
 a.underline:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 #header-wrapper {
@@ -215,13 +225,17 @@ header > div {
 
 header nav {
   display: none;
+  margin-right: 8px;
 }
 
+header .flex a {}
+
 header a:not(.logo) {
+  display: inline-block;
   text-decoration: none;
   font-weight: 500;
   padding: 8px;
-  margin: 0 8px;
+  margin: 0;
   font-family: var(--font-arcade);
   color: #fff;
   text-shadow: var(--stroke-heading);
@@ -229,13 +243,6 @@ header a:not(.logo) {
 
 header a:not(.logo):hover {
   color: var(--color-secondary);
-}
-
-header .box {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: var(--color-bg2-a);
 }
 
 .logo {
@@ -250,23 +257,30 @@ header .box {
   user-select: none;
 }
 
-.logo > img {
+.logo>img {
   image-rendering: pixelated;
   border: 1px solid var(--color-border);
   border-radius: 50%;
 }
 
-.logo > div {
-  margin-left: 16px;  
+.logo>div {
+  margin-left: 16px;
 }
 
 header .user {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   padding: 2px !important;
+  border-radius: 50%;
+  background: var(--color-bg2-a);
+}
+
+header .user.logedin {
+  width: 42px;
+  height: 42px;
 }
 
 .header-spacer {
@@ -280,14 +294,14 @@ footer {
   padding: 0 !important;
 }
 
-footer > .container {
+footer>.container {
   background: var(--color-bg);
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-radius: inherit;
 }
 
-footer > .container > div {
+footer>.container>div {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem 4rem;
@@ -388,36 +402,45 @@ footer a:hover {
   height: 24px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 720px) {
+  main .heading > h1 {
+    font-size: 40px;
+  }
+
+  main .heading > h2 {
+    font-size: x-large;
+  }
+
   #header-wrapper {
     position: absolute;
     top: -80px;
     margin-top: 80px;
   }
-  
+
   .header-sm #header-bg {
     display: block;
   }
-  
+
   .header-sm #header-wrapper {
     position: fixed;
     margin-top: 0;
     transition: top 0.2s;
   }
-  
+
   .header-sm header {
     margin: 0 auto;
     padding-top: 8px;
     padding-bottom: 8px;
   }
-  
+
   header {
     padding: 32px 16px;
   }
-  
+
   header nav {
     display: flex;
     align-items: center;
+    gap: 1rem;
   }
 
   .header-spacer {
@@ -428,7 +451,7 @@ footer a:hover {
   footer {
     border-radius: 4px;
   }
-  
+
   .bottom-navigation {
     display: none;
   }
@@ -440,14 +463,4 @@ footer a:hover {
     height: 22vw;
     top: -2px;
   }
-}
-
-
-@media screen and (max-width: 640px) {	
-	main .heading > h1 {
-		font-size: 40px;
-	}
-	main .heading > h2 {
-		font-size: x-large;
-	}
 }

@@ -6,7 +6,6 @@ main .content {
   border: 1px solid var(--color-p-a);
   border-radius: 4px;
   padding: 1rem;
-  align-items: flex-start;
 }
 
 main .paperlike {
@@ -72,7 +71,7 @@ main .like {
   align-items: center;
 }
 
-main .like > button {
+main .like>button {
   border-radius: 4px;
   line-height: 0;
   box-sizing: content-box;
@@ -98,6 +97,7 @@ main .heart.beat {
     background: none;
     border: none;
     padding: 0;
+    align-items: flex-start;
   }
 
   main .paperlike {

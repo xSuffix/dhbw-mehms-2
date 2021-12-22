@@ -30,7 +30,7 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSIO
             background: linear-gradient(0deg, #6E8ED9 0%, #7293DC 100%);
         }
 
-        @media (min-width: 640px) {
+        @media (min-width: 720px) {
             .scrolled.scroll-up .toolbar {
                 background: linear-gradient(0deg, #769BE0 0%, #7293DC 100%);
             }
