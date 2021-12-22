@@ -25,10 +25,10 @@ xl > 1536px
 :root {
   --color-primary: #6787F5;
   --color-secondary: #FF355E;
-  --color-bg: rgb(247, 247, 248);
+  --color-bg: #f7f7f8;
   --color-bg-a: #f7f7f8e6;
   --color-bg2: #fff;
-  --color-bg2-a: #fff;
+  --color-bg2-a: #fffffff1;
   --color-bg3: #c6d2f1cc;
   --color-bg-aside: #081521;
 
@@ -258,6 +258,15 @@ header .box {
 
 .logo > div {
   margin-left: 16px;  
+}
+
+header .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 2px !important;
 }
 
 .header-spacer {

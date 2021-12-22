@@ -6,6 +6,7 @@ main .content {
   border: 1px solid var(--color-p-a);
   border-radius: 4px;
   padding: 1rem;
+  align-items: flex-start;
 }
 
 main .paperlike {
@@ -44,6 +45,10 @@ main .posted-text {
   font-size: 0.875rem;
 }
 
+main .posted-text p {
+  margin: 0;
+}
+
 main .profile-picture {
   display: flex;
   justify-content: center;
@@ -58,13 +63,33 @@ main .profile-picture {
   margin-right: 8px;
 }
 
-main p {
-  margin: 0;
-  word-wrap: break-word;
-}
-
 main h1 {
   word-break: break-all;
+}
+
+main .like {
+  display: flex;
+  align-items: center;
+}
+
+main .like > button {
+  border-radius: 4px;
+  line-height: 0;
+  box-sizing: content-box;
+  display: block;
+  background: transparent;
+  border: none;
+  color: var(--color-p-a);
+  margin-left: -0.5rem;
+}
+
+main .heart {
+  height: 24px;
+  width: 24px;
+}
+
+main .heart.beat {
+  color: var(--color-secondary);
 }
 
 @media (min-width: 960px) {
@@ -82,5 +107,7 @@ main h1 {
 
   main .meta {
     padding: 1rem;
+    position: sticky;
+    top: 56px
   }
 }
