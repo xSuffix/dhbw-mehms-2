@@ -104,8 +104,8 @@
    * @param integer $id ID of Mehm
    * @param boolean $admin if hidden Mehms should be found
    */
-  function getMehm(int $id, bool $admin): array {
-    $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type, mehms.ID AS ID
+  function getMehm(int $id, bool $admin): array { //TODO Query einschränken?
+    $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type, mehms.ID AS ID, mehms.UserID as UID
       FROM mehms
       LEFT JOIN users u ON mehms.UserID = u.ID
       LEFT JOIN likes l ON mehms.ID = l.MehmID
@@ -127,10 +127,10 @@
     $query = 'SELECT u.Name AS Name, Comment, Timestamp
     FROM comments
     LEFT JOIN users u ON comments.UserID = u.ID
-    WHERE MehmID = ' . $id .'
+    WHERE MehmID = ' . $id . '
     ORDER BY Timestamp DESC';
-    
-    
+
+
     global $db;
     global $commentCount;
     $result = $db->database->query($query)->fetchAll();
@@ -240,19 +240,20 @@
             <?php foreach ($comments as $comment) {
               echo '<div class="flex">
                 <div class="comment-left">
-                  <a class="user" href="./?search=u/'.$comment["Name"].'">
-                    <svg class="box" height="32" data-jdenticon-value="'.$comment["Name"].'"></svg>
+                  <a class="user" href="./?search=u/' . $comment["Name"] . '">
+                    <svg class="box" height="32" data-jdenticon-value="' . $comment["Name"] . '"></svg>
                   </a>
                   <div class="v-line"></div>
                 </div>
                 <div>
                   <div>
-                    <a class="user underline" href="./?search=u/'.$comment["Name"].'">
-                      '.$comment["Name"].'
+                    <a class="user underline" href="./?search=u/' . $comment["Name"] . '">
+                      ' . $comment["Name"] . '
                     </a>
-                    <span class="p-a">· '.timeElapsedString($comment["Timestamp"]).'</span>
+                    <span class="p-a">· ' . timeElapsedString($comment["Timestamp"]) . '</span>
+
                   </div>
-                  <p>'.$comment["Comment"].'</p>
+                  <p>' . $comment["Comment"] . '</p>
                 </div>
               </div>';
             } ?>
@@ -270,7 +271,7 @@
             <p><?php echo '<a class="underline" href="./?filter=' . $mehm["Type"] . '">#' . $mehm["Type"] . '</a>' ?> <br> Gepostet von <?php echo '<a class="underline" href="./?search=u%2F' . $mehm["Name"] . '">u/' . $mehm["Name"] . "</a> " . timeElapsedString($mehm["VisibleOn"]) ?></p>
           </div>
         </div>
-        <h1><?php echo $mehm["Title"] ?></h1>
+        <h1 <?php if ($_SESSION['id'] == $mehm['UID']) echo 'class="editable" contenteditable="true" onchange="console.log(update)"' ?>><?php echo $mehm["Title"] ?></h1>
         <p><?php echo $mehm["Description"] ?></p>
         <div class="flex">
 
@@ -304,7 +305,14 @@
         </div>
       </aside>
     </div>
-
+    <script>
+      const editables = document.getElementsByClassName("editable");
+      for (let editable of editables) {
+        editable.addEventListener("change", function() {
+          console.log("input event fired");
+        }, false);
+      }
+    </script>
   </main>
 
   <?php include("includes/footer.php"); ?>
