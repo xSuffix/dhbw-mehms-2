@@ -191,7 +191,7 @@ class Database
     // Holt sich Kommentare anhand der Mehm-ID aus der Datenbank und gibt diese zurück.
     public function getComments(int $id): array
     {
-        $query = 'SELECT u.Name AS Name, Comment, u.ID as UID, Timestamp
+        $query = 'SELECT u.Name AS Name, Comment, u.ID as UID, Timestamp, comments.ID as ID
             FROM comments
             LEFT JOIN users u ON comments.UserID = u.ID
             WHERE MehmID = ' . $id . '
