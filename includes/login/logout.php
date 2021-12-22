@@ -9,7 +9,7 @@
 	<h1> Benutzername ändern: </h1>
 	 <form action="login" method="post" enctype="multipart/form-data">				
 			<label for="user" class="required">Neuer Benutzername</label>
-			<input id="user" type="password" placeholder="Neuer Benutzername" name="mUser">
+			<input id="user" type="text" placeholder="Neuer Benutzername" name="mUser">
 			<label for="passwort" class="required">Passwort:</label>
 			<input id="passwort" type="password" placeholder="Passwort" name="mPasswort">
 		<br>
@@ -44,7 +44,7 @@
 	<!-- Löschung Benutzer -->
 	<section class="paper">
 		<h1> Benutzer löschen: </h1>
-		Das Löschen des Benutzers ist irreversibel. Ist der Benutzer einmal gelöscht, gehen mit ihm auch alle seine Mehms verloren und können nicht mehr wiederhergestellt werden.
+		Das Löschen des Benutzers ist irreversibel. Ist der Benutzer einmal gelöscht, gehen mit ihm auch alle seine Mehms verloren und können nicht wiederhergestellt werden.
 		<form action="login" method="post" enctype="multipart/form-data">
 			<label for="passwort" class="required">Passwort:</label>
 				<input id="passwort" type="password" placeholder="Passwort" name="mPasswort">

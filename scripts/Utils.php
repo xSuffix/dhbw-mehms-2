@@ -102,9 +102,11 @@ class Utils
     {
         session_start();
 
-        if (!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true && $_SESSION["usertype"] == $requireAdmin)) {
-            header("location: index.php");
-            exit;
+        if (!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true)) {
+            if (!$requireAdmin || (!$_SESSION["type"] == 1)) {
+                header("location: index.php");
+                exit;
+            }
         }
     }
 

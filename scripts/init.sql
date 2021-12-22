@@ -21,7 +21,6 @@ CREATE TABLE mehms (
                        ID integer PRIMARY KEY AUTO_INCREMENT,
                        UserID integer NOT NULL REFERENCES Users(ID),
                        Path text NOT NULL UNIQUE,
-                       Likes integer DEFAULT 0,
                        Type text,
                        Description text,
                        Visible boolean DEFAULT FALSE,
@@ -29,11 +28,11 @@ CREATE TABLE mehms (
 );
 
 -- Beispieldaten
-INSERT INTO mehms VALUES (1, 1, 'Algorithm_Parrot.jpg', 20, 'Programmieren', NULL,true, now());
-INSERT INTO mehms VALUES (2, 2, 'Binary_tree_pants.jpg', 5, 'Programmieren', 'Lollllllllz',false, NULL);
-INSERT INTO mehms VALUES (3, 3,  'C++_Python_Timmy.jpeg', 0, 'Programmieren', 'Brüh',true, now());
-INSERT INTO mehms VALUES (4, 5, 'Daniel_Baguecki_Baguette_Wierbicki.jpg', 99999, 'DHBW', 'DER BESTE!!!!!!!11!!', true, now());
-INSERT INTO mehms VALUES (5, 5, 'Pizza_Pineapple.jpeg', 0, 'Andere', NULL, true, now());
+INSERT INTO mehms VALUES (1, 1, 'Algorithm_Parrot.jpg',  'Programmieren', NULL,true, now());
+INSERT INTO mehms VALUES (2, 2, 'Binary_tree_pants.jpg',  'Programmieren', 'Lollllllllz',false, NULL);
+INSERT INTO mehms VALUES (3, 3,  'C++_Python_Timmy.jpeg', 'Programmieren', 'Brüh',true, now());
+INSERT INTO mehms VALUES (4, 5, 'Daniel_Baguecki_Baguette_Wierbicki.jpg', 'DHBW', 'DER BESTE!!!!!!!11!!', true, now());
+INSERT INTO mehms VALUES (5, 5, 'Pizza_Pineapple.jpeg', 'Andere', NULL, true, now());
 
 CREATE TABLE comments (
                           ID integer PRIMARY KEY AUTO_INCREMENT,
@@ -46,3 +45,21 @@ INSERT INTO comments VALUES (1, 4, 1, 'ECHT GEIL!!!!!!');
 INSERT INTO comments VALUES (2, 4, 1, 'NOICE!!!');
 INSERT INTO comments VALUES (3, 5, 2, 'Urgh.');
 
+CREATE TABLE likes (
+                       MehmID integer REFERENCES mehms(ID),
+                       UserID integer REFERENCES users(ID),
+                       PRIMARY KEY (MehmID, UserID)
+);
+
+INSERT INTO likes VALUES (1, 1);
+INSERT INTO likes VALUES (3, 1);
+INSERT INTO likes VALUES (4, 1);
+INSERT INTO likes VALUES (5, 1);
+INSERT INTO likes VALUES (1, 2);
+INSERT INTO likes VALUES (2, 2);
+INSERT INTO likes VALUES (4, 2);
+INSERT INTO likes VALUES (5, 3);
+INSERT INTO likes VALUES (2, 3);
+INSERT INTO likes VALUES (3, 5);
+INSERT INTO likes VALUES (4, 5);
+INSERT INTO likes VALUES (5, 5);

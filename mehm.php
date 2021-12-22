@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="./styles/toolbar.css">
   <link rel="stylesheet" href="./styles/mehm.css">
   <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js" integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <?php include("includes/meta.php"); ?>
   <style>
     :root {
@@ -33,6 +34,24 @@
 
 
 <body>
+  <script>
+  // jQuery-Funktion, die bei Knopfdruck auf approve-/decline-Button das jury.php-Skript ausführt,
+  // in dem die Änderung an der Datenbank vollführt werden.
+  // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
+    $(document).ready(function () {
+        $('button').click(function () {
+            const child = $(this).children('svg')[0];
+            const ids = $(child).attr('id').split(" ");
+            const mehmId = ids[0];
+            const uId = ids[1];
+            const status = $(child).hasClass('beat');
+            const ajaxurl = 'scripts/like.php', data = {'status': status, 'id': mehmId, 'user': uId};
+            $.post(ajaxurl, data, function () {
+              window.location.reload();
+            });
+        });
+    });
+  </script>
   <?php
   require_once 'scripts/Database.php';
   require_once 'scripts/Utils.php';
@@ -45,7 +64,11 @@
    * @param boolean $admin if hidden Mehms should be found
    */
   function getMehm(int $id, bool $admin): array {
-    $query = 'SELECT *, mehms.Type as Type FROM mehms LEFT JOIN Users u ON mehms.UserID = u.ID WHERE mehms.ID = ' . $id;
+    $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type
+      FROM mehms
+      LEFT JOIN Users u ON mehms.UserID = u.ID
+      LEFT JOIN likes l on mehms.ID = l.MehmID
+      WHERE mehms.ID =' . $id;
 
     if (!$admin) {
       $query .= ' WHERE Visible = TRUE';
@@ -54,7 +77,7 @@
     global $db;
     try {
       return $db->database->query($query)->fetchAll();
-    } catch (PDOException) {
+    } catch (PDOException $e) {
       return [];
     }
   }
@@ -148,11 +171,22 @@
         <?php echo $mehm["Description"] ?>
         <div class="like">
           <button>
-            <svg xmlns="http://www.w3.org/2000/svg" class="heart" viewBox="0 0 20 20" fill="currentColor">
+            <?php 
+            $beat = '';
+            $sess = '';
+            if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
+              $sess = $_SESSION['id'];
+              $query = "SELECT * FROM likes WHERE MehmID = " . $mehm['ID'] . " AND UserID = " . $_SESSION['id'];
+              $liked = $db->database->query($query)->fetchall();
+              if (!empty($liked)) {
+                $beat = ' beat';
+              }
+            }
+            echo '<svg xmlns="http://www.w3.org/2000/svg" class="heart' . $beat . '" id="' . $mehm['ID'] . ' ' . $sess .'" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-            </svg>
+            </svg>' ?>
           </button>
-          <?php echo $mehm["Likes"] ?> Likes
+          <?php echo $mehm['likeCount'] ?> Like<?php if ($mehm['likeCount'] != 1) { echo "s";} ?>
         </div>
       </aside>
     </div>

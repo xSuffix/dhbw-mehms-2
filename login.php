@@ -6,15 +6,15 @@
 	const BASE_QUERY = "SELECT * FROM users where Name Like '";
 	
 	// Wird bei einer versuchten Anmeldung ausgeführt
-	if(isset($_POST["mAnmelden"])){	
+	if(isset($_POST["mAnmelden"])) {	
 		// Nutzerdaten werden mit der Datenbank abgeglichen
 		$sql = BASE_QUERY . $_POST["mBenutzer"]."'";
 		$benutzer = $db->database->query($sql)->fetchAll();
 		
 		// Es gibt den eingetragenen Benutzer
-		if(!empty($benutzer)){
+		if(!empty($benutzer)) {
 			// Das Passwort stimmt überein
-			if($benutzer[0]["Password"] == $_POST["mPasswort"]){
+			if($benutzer[0]["Password"] == $_POST["mPasswort"]) {
 				// Erfolgreicher Login!				
 				// Einloggen in Session
 				$_SESSION['valid'] = true;
@@ -24,7 +24,7 @@
 				$_SESSION['loggedIn'] = true;
 				
 				// Check, ob user Adminrechte hat und vermerke das in Session
-				if($benutzer[0]["Type"]== "ADMIN"){
+				if($benutzer[0]["Type"]== "ADMIN") {
 				$_SESSION["usertype"] = 1;
 				}
 				else{
@@ -37,12 +37,12 @@
 				
 			}
 			// Passwort ist falsch
-			else{
+			else {
 				echo "Passwort falsch";
 			}
 		}
 		// Es gibt den Benutzernamen nicht
-		else{
+		else {
 			echo "Login fehlgeschlagen";
 		}
 	 }		
@@ -52,7 +52,7 @@
 		// Nutzername ist weder leer sein noch enthält er Leerzeichen
 		if (count(explode(' ',$_POST["mBenutzerNeu"])) == 1 && $_POST["mBenutzerNeu"] != '') {
 			// Passwort stimmt mit Wiederholung überein
-			if($_POST["mPasswort1"] == $_POST["mPasswort2"]){
+			if($_POST["mPasswort1"] == $_POST["mPasswort2"]) {
 				$sql = BASE_QUERY .$_POST["mBenutzerNeu"]."'";
 				$benutzer = $db->database->query($sql)->fetchAll();
 				// Es gibt den angefragten Benutzernamen noch nicht
@@ -90,13 +90,15 @@
 	}
 
 	// Wird ausgeführt, wenn Benutzer gelöscht werden soll
-	// Bei Löschung eines Benutzers werden auch alle seine Mehms gelöscht
+	// Bei Löschung eines Benutzers werden auch alle seine Mehms und Likes gelöscht
 	if (isset($_POST["mDelete"])){
 		$sql = BASE_QUERY .$_SESSION["username"]."'";
 		$benutzer = $db->database->query($sql)->fetchAll();
 		// Passwort ist korrekt
 		if ($_POST['mPasswort'] == $benutzer[0]['Password']) {
 			$query = "DELETE FROM mehms WHERE UserID = " . $benutzer[0]['ID'];
+			$db->database->query($query);
+			$query = "DELETE FROM likes WHERE UserID = " . $benutzer[0]['ID'];
 			$db->database->query($query);
 			$query = "DELETE FROM users WHERE ID = " . $benutzer[0]['ID'];
 			$db->database->query($query);
@@ -186,16 +188,13 @@
 	include("includes/header.php"); 
 	
 	
-	// Überprüfung, ob man schon eingeloggt ist
-	if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true){
+	// Überprüfe, ob man schon eingeloggt ist
+	if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true) {
 		include("includes/login/logout.php");
 	}
-	else{
+	else {
 		include("includes/login/login.php");
 	}
-	
-	
-	
 	
 	?>
 	

@@ -64,8 +64,13 @@ class Database
 
         $hasConcatenatedFilter = false;
 
-        if ($sort == 'comments') {
-            $query .= ' LEFT JOIN comments c ON mehms.ID = c.MehmID';
+        switch ($sort) {
+            case 'comments':
+                $query .= ' LEFT JOIN comments c ON mehms.ID = c.MehmID';
+                break;
+            case 'likes':
+                $query .= ' LEFT JOIN likes l ON mehms.ID = l.MehmID';
+                break;
         }
 
         if ($filter['user'] != '' || $filter['search'] != '') {
@@ -124,7 +129,7 @@ class Database
                 $query .= ' ORDER BY VisibleOn';
                 break;
             case 'likes':
-                $query .= ' ORDER BY Likes';
+                $query .= ' GROUP BY mehms.ID ORDER BY count(l.MehmID)';
                 break;
             case 'comments':
                 $query .= ' GROUP BY mehms.ID ORDER BY count(c.MehmID)';
