@@ -153,15 +153,16 @@
           <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
         </div>
         <div class="paperlike comments">
-            <?php if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
-              echo '<div class="write-comment">
-              <p>Kommentiere als <a class="underline" href="./?search=u/' . $_SESSION["username"] . '">u/' . $_SESSION["username"] . '</a></p>';
-              echo '<textarea></textarea>
-              </div>';
-            } else {
-              echo "Melde dich an, um zu kommentieren.";
-            }
-            ?>
+          <?php if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
+            echo '<form class="write-comment">
+            <p>Kommentiere als <a class="underline" href="./?search=u/' . $_SESSION["username"] . '">u/' . $_SESSION["username"] . '</a></p>
+            <textarea></textarea>
+            <button>Kommentieren</button>
+            </form>';
+          } else {
+            echo "Melde dich an, um zu kommentieren.";
+          }
+          ?>
         </div>
       </div>
 
