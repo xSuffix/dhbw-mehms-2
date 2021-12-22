@@ -39,7 +39,7 @@
     // in dem die Änderung an der Datenbank vollführt werden.
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
     $(document).ready(function() {
-      $('button').click(function() {
+      $('#like').click(function() {
         const child = $(this).children('svg')[0];
         const ids = $(child).attr('id').split(" ");
         const mehmId = ids[0];
@@ -55,8 +55,29 @@
           window.location.reload();
         });
       });
+
+        $("#comment").submit(function(e) {
+            e.preventDefault();
+
+            let child = $(this).children('button')[0];
+            const ids = $(child).attr('id').split(" ");
+            const mehmId = ids[0];
+            const uId = ids[1];
+            child = $(this).children('textarea')[0];
+            const text = $(child).val();
+            const ajaxurl = 'scripts/comment.php',
+                data = {
+                    'text': text,
+                    'id': mehmId,
+                    'user': uId
+                };
+            $.post(ajaxurl, data, function() {
+                window.location.reload();
+            });
+        });
     });
 
+    // Kopiert die aktuelle Mehm-URL in den Zwischenspeicher
     function copyURL() {
       const copy = document.createElement("input"), url = window.location.href;
       document.body.appendChild(copy);
@@ -65,7 +86,7 @@
       document.execCommand("copy");
       document.body.removeChild(copy);
       document.getElementById("share-button").classList.add("pressed");
-    }
+      }
   </script>
   <?php
   require_once 'scripts/Database.php';
@@ -170,15 +191,15 @@
         </div>
         <div class="paperlike comments" id="comments">
           <?php if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
-            echo '<form class="write-comment">
+            echo '<form class="write-comment" id="comment">
             <label for="message">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
             </svg>
             <p>Kommentiere als <a class="underline" href="./?search=u/' . $_SESSION["username"] . '">' . $_SESSION["username"] . '</a></p>
             </label>
-            <textarea id="message" placeholder="LOL!"></textarea>
-            <button>Kommentieren</button>
+            <textarea id="message" placeholder="LOL!" required></textarea>
+            <button id="' . $mehm['ID'] . ' ' . $_SESSION['id'] . '">Kommentieren</button>
             </form>';
           } else {
             echo '<a class="underline icon-text" href="./login">
@@ -205,7 +226,7 @@
         <p><?php echo $mehm["Description"] ?></p>
         <div class="flex">
 
-          <button class="meta-icon icon-text" <?php echo (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) ? '' : ' style="cursor: not-allowed;"' ?>>
+          <button class="meta-icon icon-text" id="like" <?php echo (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) ? '' : ' style="cursor: not-allowed;"' ?>>
             <?php
             $beat = '';
             $sess = '';
