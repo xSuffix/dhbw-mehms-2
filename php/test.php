@@ -13,7 +13,7 @@
 
 <head>
   <title>Home - DHBW Mehms</title>
-  <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/mehms.css">
   <link rel="stylesheet" href="./styles/toolbar.css">
   <?php include("includes/meta.php"); ?>
 </head>

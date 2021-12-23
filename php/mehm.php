@@ -136,13 +136,13 @@
 
   $id = $_GET["id"] ?? "";
 
-  // Redirect auf index.php, wenn id-Parameter zur Mehm-Spezifikation nicht vorhanden ist
+  // Redirect auf mehms.php, wenn id-Parameter zur Mehm-Spezifikation nicht vorhanden ist
   if ($id == "") {
     header('Location: .');
     exit;
   }
 
-  // Redirect auf index.php, wenn id-Parameter nicht valide ist
+  // Redirect auf mehms.php, wenn id-Parameter nicht valide ist
   $isAdmin = isset($_SESSION) && $_SESSION["usertype"] == 1;
   $mehm = $db->getMehm($id, $isAdmin);
   if ($mehm["Title"] == '') {

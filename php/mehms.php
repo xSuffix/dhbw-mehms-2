@@ -6,7 +6,7 @@ session_start();
 
 <head>
   <title>Home - DHBW Mehms</title>
-  <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/mehms.css">
   <link rel="stylesheet" href="./styles/toolbar.css">
   <script type="text/javascript" src="./scripts/rick-roll.js"></script>
   <?php include("includes/meta.php"); ?>

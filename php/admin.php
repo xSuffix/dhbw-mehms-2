@@ -8,7 +8,7 @@
 
 <head>
     <title>Admin - DHBW Mehms</title>
-    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/mehms.css">
     <link rel="stylesheet" href="./styles/admin.css">
     <link rel="stylesheet" href="./styles/toolbar.css">
     <script type="text/javascript" src="./scripts/select-mehms.js"></script>
