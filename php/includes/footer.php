@@ -25,16 +25,16 @@
       </section>
       <section class="sitemap">
         <p><strong>Sitemap</strong></p>
-        <p><a href="./">Mehms</a></p>
-        <p><a href="vines">Vines</a></p>
-        <p><a href="zahlen">Zahlen</a></p>
-        <p><a href="kontakt">Kontakt</a></p>
-        <p><a href="mehm-einsendung">Mehm Einsendung</a></p>
+        <p><a href="<?php echo $ROOT ?>mehms">Mehms</a></p>
+        <p><a href="<?php echo $ROOT ?>vines">Vines</a></p>
+        <p><a href="<?php echo $ROOT ?>zahlen">Zahlen</a></p>
+        <p><a href="<?php echo $ROOT ?>kontakt">Kontakt</a></p>
+        <p><a href="<?php echo $ROOT ?>mehm-einsendung">Mehm Einsendung</a></p>
       </section>
       <section class="sitemap">
         <p><strong>Rechtliches</strong></p>
-        <p><a href="impressum">Impressum</a></p>
-        <p><a href="datenschutz">Datenschutz</a></p>
+        <p><a href="<?php echo $ROOT ?>impressum">Impressum</a></p>
+        <p><a href="<?php echo $ROOT ?>datenschutz">Datenschutz</a></p>
       </section>
       <section>
         <p><strong>DHBW Mosbach</strong></p>
