@@ -56,13 +56,10 @@ class Database {
    * @param string $category -> die gewünschte Mehm-Kategorie ("Alle", "Programmieren", "DHBW", "Andere")
    * @param string $sort -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
    * @param boolean $asc -> Reihenfolge: ascending (true), oder descending (false)
-   * @param boolean $admin -> Adminansicht (true) oder normale Useransicht (false)
    * @return array -> alle Mehms, die von der Query erfasst wurden
    */
-  public function getMehms(array $filter, string $category, string $sort, bool $asc, bool $admin): array {
+  public function getMehms(array $filter, string $category, string $sort, bool $asc): array {
     $query = 'SELECT *, mehms.UserID as UserID, mehms.ID as ID, mehms.Type as Type FROM mehms';
-
-    $hasConcatenatedFilter = false;
 
     switch ($sort) {
       case 'comments':
@@ -78,42 +75,29 @@ class Database {
     }
 
     if ($sort == 'notVisibleOnly') {
-      if ($sort == 'notVisibleOnly') {
         $query .= ' WHERE Visible = FALSE';
-      }
-      $hasConcatenatedFilter = true;
+    } else {
+        $query .= ' WHERE Visible = TRUE';
     }
 
     if ($filter['user'] != '' || $filter['search'] != '') {
-      if ($hasConcatenatedFilter) {
-        $query .= ' AND';
-      } else {
-        $query .= ' WHERE';
-      }
       $user = $filter['user'];
       $search = $filter['search'];
-      $query .= " Title LIKE '%$search%' AND Name LIKE '%$user%'";
+      $query .= " AND Title LIKE '%$search%' AND Name LIKE '%$user%'";
     }
 
     if ($category != '') {
-      $appendix = '';
-      if ($hasConcatenatedFilter) {
-        $appendix .= ' AND';
-      } else {
-        $appendix .= ' WHERE';
-      }
+      $query .= ' AND';
+
       switch ($category) {
         case "Programmieren":
-          $appendix .= " Type = 'Programmieren'";
-          $query .= $appendix;
+          $query .= " mehms.Type = 'Programmieren'";
           break;
         case "DHBW":
-          $appendix .= " Type = 'DHBW'";
-          $query .= $appendix;
+          $query .= " mehms.Type = 'DHBW'";
           break;
         case "Andere":
-          $appendix .= " Type = 'Andere'";
-          $query .= $appendix;
+          $query .= " mehms.Type = 'Andere'";
           break;
         default:
       }
@@ -136,6 +120,7 @@ class Database {
     if (!$asc) {
       $query .= ' DESC';
     }
+
     return $this->database->query($query)->fetchAll();
   }
 

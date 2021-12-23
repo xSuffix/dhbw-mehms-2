@@ -44,7 +44,7 @@ class Utils {
    * @return void
    */
   public static function getMehmCards(string $ROOT, Database $db, array $filter, string $category, string $sort, bool $asc, bool $admin, bool $myMehms) {
-    $images = $db->getMehms($filter, $category, $sort, $asc, $admin);
+    $images = $db->getMehms($filter, $category, $sort, $asc);
 
     if ($myMehms) {
       $count = count($images);
