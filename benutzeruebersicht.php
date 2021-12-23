@@ -15,6 +15,10 @@ Utils::checkLogin(true);
 			--banner-top: #67bfeb;
 			--banner-bottom: #fdea04;
 		}
+
+		.paper {
+			padding: 2rem 1rem;
+    }
 	</style>
 </head>
 
@@ -39,7 +43,6 @@ Utils::checkLogin(true);
 		</div>
 
 		<div class="paper">
-			<br>
 			<table>
 				<thead>
 					<tr>
@@ -57,19 +60,18 @@ Utils::checkLogin(true);
 					// Tabelleneintrag für jeden User erstellen
 					if (!empty($benutzer)) {
 						for ($i = 0; $i < count($benutzer); $i++) {
-							echo "<tr>
-								<td>" . $benutzer[$i]["Name"] . "</td>
-								<td>" . $benutzer[$i]["ID"] . "</td>
-								<td>" . $benutzer[$i]["Type"] . "</td>
-								<td><a href=benutzerbearbeiten.php?id=" . $benutzer[$i]["ID"] . " class='button'>Bearbeiten</a></td>
-								<td><a href=benutzeruebersicht.php?id=" . $benutzer[$i]["ID"] . "&delete=true class='button'>Löschen</a></td>
-							  </tr>";
+							echo '<tr>
+								<td>' . $benutzer[$i]["Name"] . '</td>
+								<td>' . $benutzer[$i]["ID"] . '</td>
+								<td>' . $benutzer[$i]["Type"] . '</td>
+								<td><a href="benutzerbearbeiten?id=' . $benutzer[$i]["ID"] . '" class="underline">Bearbeiten</a></td>
+								<td><a href="benutzeruebersicht?id=' . $benutzer[$i]["ID"] . '&delete=true" class="underline">Löschen</a></td>
+							  </tr>';
 						}
 					}
 					?>
 				</tbody>
 			</table>
-			<br>
 		</div>
 	</main>
 	<?php include("includes/footer.php"); ?>

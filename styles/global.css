@@ -152,6 +152,7 @@ summary {
   border: 1px solid var(--color-p-a);
   border-radius: 4px;
   padding: 1rem;
+  overflow: auto;
 }
 
 .error {

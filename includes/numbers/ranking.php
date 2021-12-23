@@ -200,56 +200,56 @@
       <hr>
       <h3>Overview: the numbers</h3>
       <hr>
-      <table>
+      <table style="max-width: 512px;">
         <caption><pre>The Top 10 Numbers (2021/07):</pre></caption>
         <thead>
           <tr>
             <td>Placement</td>
-            <th>Number</th>
+            <td>Number</td>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>10</td>
-            <th>420</th>
+            <td>420</td>
           </tr>
           <tr>
             <td>9</td>
-            <th>0</th>
+            <td>0</td>
           </tr>
           <tr>
             <td>8</td>
-            <th>3</th>
+            <td>3</td>
           </tr>
           <tr>
             <td>7</td>
-            <th>42</th>
+            <td>42</td>
           </tr>
           <tr>
             <td>6</td>
-            <th>9</th>
+            <td>9</td>
           </tr>
           <tr>
             <td>5</td>
-            <th>7</th>
+            <td>7</td>
           </tr>
           <tr>
             <td>4</td>
-            <th>2.147.483.648</th>
+            <td>2.147.483.648</td>
           </tr>
           <tr>
             <td>3</td>
-            <th>1</th>
+            <td>1</td>
           </tr>
           <tr>
             <td>2</td>
-            <th>97379</th>
+            <td>97379</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <td>1</td>
-            <th>404</th>
+            <td>404</td>
           </tr>
         </tfoot>
       </table>

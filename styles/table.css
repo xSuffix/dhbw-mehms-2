@@ -1,22 +1,23 @@
 main table {
-  width: 100%;
   border-collapse: collapse;
   border-radius: 4px;
   margin: 0 auto;
   overflow: hidden;
+  width: 100%;
+  max-width: 896px;
 }
 
 main thead {
-  border-bottom: solid 1px var(--color-p-a);
-  background-color: var(--color-primary);
+  border-bottom: 2px solid var(--color-p-a);
+  background: var(--color-primary);
   font-weight: bold;
 }
 
-main tbody > tr {
+main tbody>tr {
   background-color: var(--color-bg);
 }
 
-main tbody > tr:nth-child(2n+1) {
+main tbody>tr:nth-child(2n+1) {
   background-color: var(--color-bg2);
 }
 
@@ -25,12 +26,14 @@ main tfoot {
 }
 
 main td {
-  padding: 5px 10px;
-  border-right: solid 1px var(--color-p-a); 
+  padding: 8px 10px;
+}
+
+table td+td {
+  border-left: 2px solid var(--color-p-a);
 }
 
 main th {
-  padding: 5px 10px;
-  width: 50%;
+  padding: 10px 10px;
   text-align: left;
 }
