@@ -174,7 +174,7 @@
                       </button>';
               }
 
-              echo '</div><p>' . $comment["Comment"] . '</p>
+              echo '</div><p>' . htmlspecialchars($comment["Comment"]) . '</p>
                 </div>
               </div>';
             }
