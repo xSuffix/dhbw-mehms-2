@@ -144,7 +144,13 @@ class Database {
     return $this->database->query($query)->fetchAll();
   }
 
-  public function getUser(int $id): array {
+    /**
+     * Holt den User anhand seiner ID aus der Datenbank.
+     * Wenn die ID=0 ist, dann gib alle User aus der Datenbank zurück.
+     * @param int $id -> ID des Users
+     * @return array
+     */
+    public function getUser(int $id): array {
     if ($id == 0) {
       return $this->database->query("SELECT * FROM users")->fetchAll();
     } {
@@ -152,7 +158,15 @@ class Database {
     }
   }
 
-  public function updateUser(int $id, string $name, string $password, string $type) {
+    /**
+     * Aktualisiert Parameter des Users in der Datenbank.
+     * @param int $id -> ID des Users. Wird verwendet, um den richtigen User in der Datenbank auszuwählen.
+     * @param string $name -> Neuer Username
+     * @param string $password -> Neues Passwort
+     * @param string $type -> Neuer User-Typ (USER, ADMIN)
+     * @return void
+     */
+    public function updateUser(int $id, string $name, string $password, string $type) {
     $this->database->query("UPDATE users SET Name = '$name', Password = '$password', Type = '$type' WHERE ID = '$id'");
   }
 
@@ -160,7 +174,6 @@ class Database {
   /**
    * Gibt ein spezifisches Mehm anhand seiner ID zurück.
    * Zusätzlich werden weitere Informationen aus User- und Likes-Tabelle geladen.
-   *
    * @param integer $id -> ID des Mehms
    * @param boolean $admin -> Ob nicht sichtbare Mehms erlaubt sind.
    * @return array -> Das Mehm
