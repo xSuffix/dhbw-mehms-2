@@ -106,13 +106,15 @@ class Utils {
   public static function checkLogin(bool $requireAdmin) {
     session_start();
 
+    $dest = $requireAdmin ? '../mehms.php' : 'mehms.php';
+
     if ((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true)) {
-      if ($requireAdmin && (!$_SESSION["usertype"] == 1)) {
-        header("location: ../mehms.php");
+      if ($requireAdmin && !($_SESSION["usertype"] == 1)) {
+        header("location: $dest");
         exit;
       }
     } else {
-      header("location: mehms.php");
+      header("location: $dest");
       exit;
     }
   }
