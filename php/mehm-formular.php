@@ -27,6 +27,11 @@ Utils::checkLogin(true);
       require_once 'scripts/Database.php';
       $db = new Database();
 
+      if (!isset($_FILES["mDatei"])) {
+        echo "<h1> Es wurde keine Datei hochgeladen. Versuche es bitte erneut.</h1>";
+        return;
+      }
+
       // Verschiebe das hochgeladene Mehm in den assets/mehm/ Ordner.
       $target_dir = "../assets/mehms/";
       $target_file = $target_dir . basename($_FILES["mDatei"]["name"]);
@@ -42,12 +47,18 @@ Utils::checkLogin(true);
           $kategorie = $_POST["mKategorie"];
           $title = $_POST["mTitel"];
           $userID = $_SESSION['id'];
-          $result = $db->database->query("INSERT INTO mehms (Path, Title, UserID, Type, Description) VALUES (
+
+          try {
+                $result = $db->database->query("INSERT INTO mehms (Path, Title, UserID, Type, Description) VALUES (
                     '$filename',
                     '$title',
                     '$userID',
                     '$kategorie',
                     '$desc');");
+          } catch (PDOException $e) {
+            echo "<h1> Ein Fehler ist aufgetreten. Möglicherweise existiert das Mehm schon. Versuche es ansonsten mit einem anderen Dateinamen.</h1>";
+            return;
+          }
 
           echo "<h1> Viele Dank für deine Einsendung der Kategorie " . $_POST["mKategorie"] . "!</h1> <br><p class=\"response\"> Die Datei " . htmlspecialchars(basename($_FILES["mDatei"]["name"])) . " wurde erfolgreich hochgeladen. </p>";
         } else {
