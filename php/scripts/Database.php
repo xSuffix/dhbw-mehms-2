@@ -5,6 +5,7 @@ class Database {
 
   // Konstruktor der Klasse Database
   // Startet Verbindungsaufbau bei Instanziierung
+  // $ROOT bezeichnet den relativen Pfad zum Ursprung
   function __construct(string $ROOT = "") {
     $this->connectToDatabase($ROOT);
   }
@@ -13,6 +14,7 @@ class Database {
   /**
    * connectToDatabase verbindet die hier spezifizierte Datenbank und speichert sie als PDO in $database
    * Ist die Datenbank noch nicht initialisiert, wird setupDatabase() aufgerufen
+   * @param string $ROOT -> Relativer Pfad
    * @return void
    */
   public function connectToDatabase(string $ROOT) {
@@ -33,6 +35,7 @@ class Database {
   /**
    * Datenbanksetup und Ausführen der init.sql auf die $emptyDB
    * @param PDO $emptyDB -> Eine leere Datenbank
+   * @param string $ROOT -> Relativer Pfad
    * @return void
    */
   private function setupDatabase(string $ROOT, PDO $emptyDB) {
@@ -184,14 +187,16 @@ class Database {
    * Löscht ein Mehm aus der Datenbank anhand seiner ID.
    * Löscht auch die physische Datei.
    * @param int $id -> ID des Mehms
+   * @param string $ROOT -> Relativer Pfad
    * @return void
    */
-  public function deleteMehm(int $id) {
+  public function deleteMehm(int $id, string $ROOT) {
     $mehm = $this->database->query("SELECT Path FROM mehms WHERE ID = '$id'")->fetchAll();
-    $mehmPath = $ROOT . "assets/mehms/" . $mehm[0]["Path"];
-    unlink($mehmPath);
-
-    $this->database->query("DELETE FROM mehms WHERE ID = '$id'");
+    $mehmPath = $ROOT . "../assets/mehms/" . $mehm[0]["Path"];
+    $result= unlink($mehmPath);
+    if ($result) {
+        $this->database->query("DELETE FROM mehms WHERE ID = '$id'");
+    }
   }
 
   /**

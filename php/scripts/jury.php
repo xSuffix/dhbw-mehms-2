@@ -37,6 +37,6 @@ function approveMehm(int $index)
  */
 function declineMehm(int $index)
 {
-    global $db;
-    $db->deleteMehm($index);
+    global $db, $ROOT;
+    $db->deleteMehm($index, $ROOT);
 }
