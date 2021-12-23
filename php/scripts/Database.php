@@ -5,8 +5,8 @@ class Database {
 
   // Konstruktor der Klasse Database
   // Startet Verbindungsaufbau bei Instanziierung
-  function __construct() {
-    $this->connectToDatabase();
+  function __construct(string $ROOT = "") {
+    $this->connectToDatabase($ROOT);
   }
 
 
@@ -15,7 +15,7 @@ class Database {
    * Ist die Datenbank noch nicht initialisiert, wird setupDatabase() aufgerufen
    * @return void
    */
-  public function connectToDatabase() {
+  public function connectToDatabase(string $ROOT) {
     $mysql_host = "localhost";
     $mysql_database = "main";
     $mysql_user = "root";
@@ -25,7 +25,7 @@ class Database {
       $this->database = new PDO("mysql:host=$mysql_host;dbname=$mysql_database", $mysql_user, $mysql_password);
     } catch (PDOException $exception) {
       // Datenbank ist noch nicht initialisiert worden.
-      $this->setupDatabase(new PDO("mysql:host=$mysql_host;dbname=", $mysql_user, $mysql_password));
+      $this->setupDatabase($ROOT, new PDO("mysql:host=$mysql_host;dbname=", $mysql_user, $mysql_password));
       $this->database = new PDO("mysql:host=$mysql_host;dbname=$mysql_database", $mysql_user, $mysql_password);
     }
   }
@@ -35,9 +35,9 @@ class Database {
    * @param PDO $emptyDB -> Eine leere Datenbank
    * @return void
    */
-  private function setupDatabase(PDO $emptyDB) {
+  private function setupDatabase(string $ROOT, PDO $emptyDB) {
 
-    $query = file_get_contents("../../sql/init.sql");
+    $query = file_get_contents($ROOT . "../sql/init.sql");
 
     $stmt = $emptyDB->prepare($query);
 

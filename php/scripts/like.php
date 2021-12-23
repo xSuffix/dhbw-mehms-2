@@ -1,6 +1,9 @@
 <?php
+// Define path to php folder for includes
+$ROOT = '../';
+
 require_once 'Database.php';
-$db = new Database();
+$db = new Database($ROOT);
 if ($_POST['user'] == '') {
     exit;
 }

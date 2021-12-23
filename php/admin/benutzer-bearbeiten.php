@@ -1,5 +1,5 @@
 <?php
-// Define path to php folder for includes in meta.php
+// Define path to php folder for includes
 $ROOT = '../';
 
 require_once $ROOT . 'scripts/Utils.php';
