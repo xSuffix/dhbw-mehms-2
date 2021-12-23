@@ -10,13 +10,25 @@ if ($toChange == 'title') {
     changeDesc($_POST['id'], $_POST['new']);
 }
 
-function changeTitle($id, $new)
+/**
+ * Ändert den Titel zu $new des Mehms $id in der Datenbank.
+ * @param int $id -> ID des Mehms
+ * @param string $new -> Neuer Titel
+ * @return void
+ */
+function changeTitle(int $id, string $new)
 {
     global $db;
     $db->database->query("UPDATE mehms SET Title = '" . $new . "' WHERE ID = " . $id);
 }
 
-function changeDesc($id, $new)
+/**
+ * Ändert die Beschreibung zu $new des Mehms $id in der Datenbank.
+ * @param int $id -> ID des Mehms
+ * @param string $new -> Neue Beschreibung
+ * @return void
+ */
+function changeDesc(int $id, string $new)
 {
     global $db;
     $db->database->query("UPDATE mehms SET Description = '" . $new . "' WHERE ID = " . $id);
