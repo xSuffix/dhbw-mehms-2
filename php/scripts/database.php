@@ -108,6 +108,7 @@ class Database {
     }
 
     switch ($sort) {
+      case 'notVisibleOnly':
       case 'date':
         $query .= ' ORDER BY VisibleOn';
         break;
@@ -117,8 +118,6 @@ class Database {
       case 'comments':
         $query .= ' GROUP BY mehms.ID ORDER BY count(c.MehmID)';
         break;
-      default:
-        return $this->database->query($query)->fetchAll();
     }
 
     if (!$asc) {

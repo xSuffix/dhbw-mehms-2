@@ -34,7 +34,7 @@ CREATE TABLE mehms
     Type        text,
     Description text,
     Visible     boolean DEFAULT FALSE,
-    VisibleOn   timestamp,
+    VisibleOn   timestamp DEFAULT NOW(),
     FOREIGN KEY (UserID) REFERENCES Users (ID) ON DELETE CASCADE
 );
 
@@ -44,7 +44,7 @@ VALUES (1, 1, 'algorithm-parrot.jpg', 'Birb', 'Programmieren', NULL, true, now()
 INSERT INTO mehms
 VALUES (2, 2, 'binary-tree-pants.jpg', 'Binary Tree has pants', 'Programmieren', 'Lollllllllz', false, NULL);
 INSERT INTO mehms
-VALUES (3, 3, 'c++-python-timmy.jpeg', 'Timmy lernt C++', 'Programmieren', 'PROGRAMMING', true, now() - 500);
+VALUES (3, 3, 'c-python-timmy.jpeg', 'Timmy lernt C++', 'Programmieren', 'PROGRAMMING', true, now() - 500);
 INSERT INTO mehms
 VALUES (4, 5, 'daniel-baguecki-baguette-wierbicki.jpg', 'Daniel der Baguette-Meister', 'DHBW', 'DER BESTE!!!!!!!11!!', true, now() - 300);
 INSERT INTO mehms
