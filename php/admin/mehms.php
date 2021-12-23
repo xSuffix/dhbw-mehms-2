@@ -69,21 +69,13 @@ Utils::checkLogin(true);
     <form id="query" name="query" method="GET" class="toolbar">
       <?php include($ROOT . "includes/toolbar/search-box.php"); ?>
       <?php include($ROOT . "includes/toolbar/filter-box.php"); ?>
-      <?php include($ROOT . "includes/toolbar/new-box.php"); ?>
       <?php include($ROOT . "includes/toolbar/order-box.php"); ?>
     </form>
 
-
     <div id="mehm-gallery">
       <?php
-
       $filter = Utils::extractUser($search);
-      if ($new) {
-        Utils::getMehmCards($ROOT, $db, $filter, $category, 'none', $asc, true, false);
-      } else {
-        Utils::getMehmCards($ROOT, $db, $filter, $category, 'notVisibleOnly', $asc, true, false);
-      }
-
+      Utils::getMehmCards($ROOT, $db, $filter, $category, 'notVisibleOnly', $asc, true, false);
       ?>
       <div id="theater"></div>
     </div>
