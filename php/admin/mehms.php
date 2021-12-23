@@ -14,7 +14,7 @@ $ROOT = '../';
     <link rel="stylesheet" href="../../css/mehms.css">
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="../../css/toolbar.css">
-    <script type="text/javascript" src="./scripts/select-mehms.js"></script>
+    <script type="text/javascript" src="../js/select-mehms.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <?php include("../includes/meta.php"); ?>
     <style>

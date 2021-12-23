@@ -8,7 +8,7 @@ session_start();
   <title>Home - DHBW Mehms</title>
   <link rel="stylesheet" href="../css/mehms.css">
   <link rel="stylesheet" href="../css/toolbar.css">
-  <script type="text/javascript" src="./scripts/rick-roll.js"></script>
+  <script type="text/javascript" src="../js/rick-roll.js"></script>
   <?php include("includes/meta.php"); ?>
   <style>
     :root {
