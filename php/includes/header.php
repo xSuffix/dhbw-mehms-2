@@ -453,7 +453,7 @@ if (session_status() == PHP_SESSION_NONE) {
     </svg>
     <div>
       <a href="<?php echo $ROOT ?>../" class="logo">
-        <img src='../assets/logo.png' alt='Dogo the Logo' height='62'>
+        <img src='<?php echo $ROOT ?>../assets/logo.png' alt='Dogo the Logo' height='62'>
         <div>
           <div>DHBW</div>
           <div>Mehms</div>
