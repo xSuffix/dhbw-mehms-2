@@ -1,39 +1,38 @@
 .mehm-card:hover .admin-overlay {
-    display: flex;
+  display: flex;
 }
 
 .admin-overlay {
-    position: absolute;
-    z-index: 4;
-    display: none;
-    bottom: 0;
-    background: var(--color-bg-a);
-    width: 100%;
-    border-top: 1px solid var(--color-border);
-    justify-content: right;
-    flex-wrap: wrap;
+  position: absolute;
+  z-index: 4;
+  display: none;
+  bottom: 0;
+  background: var(--color-bg-a);
+  width: 100%;
+  border-top: 1px solid var(--color-border);
+  justify-content: right;
+  flex-wrap: wrap;
 }
 
-.admin-overlay > div {
-    display: flex;
-    align-items: center;
-    margin: 0 0.5rem;
-    cursor: pointer;
-    font-weight: 500;
+.admin-overlay>div {
+  display: flex;
+  align-items: center;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .admin-overlay .box {
-    width: 24px;
-    margin: 0.5rem;
-    padding: 0.25rem;
-    color: #fff;
+  width: 24px;
+  margin: 0.5rem;
+  padding: 0.25rem;
+  color: #fff;
 }
 
-.admin-overlay > div:first-child .box {
-    background: #2ea114;
+.admin-overlay>div:first-child .box {
+  background: #2ea114;
 }
 
-.admin-overlay > div:last-child .box {
-    background: #a11414;
+.admin-overlay>div:last-child .box {
+  background: #a11414;
 }
-

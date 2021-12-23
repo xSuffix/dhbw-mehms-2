@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (isset($_POST["mAbmelden"])) {
-    // Unset all of the session variables
-    $_SESSION = array();
+  // Unset all of the session variables
+  $_SESSION = array();
 
-    // Destroy the session.
-    session_destroy();
+  // Destroy the session.
+  session_destroy();
 }
 ?>
 <!DOCTYPE html>
@@ -19,19 +19,20 @@ if (isset($_POST["mAbmelden"])) {
 </head>
 
 <body>
-<?php
-if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true) {
+  <?php
+  if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true) {
     echo "Hi user was geht. Ich kenn deinen Namen: " . $_SESSION["username"] . " 
 		<br> Dein Type ist: " . $_SESSION["usertype"];
 
     if ($_SESSION["usertype"] == 1) {
-        echo "<br> oh jooo goil das kann nur der admin lesen";
+      echo "<br> oh jooo goil das kann nur der admin lesen";
     }
-} else {
+  } else {
     echo "hi";
-}
-?>
-<form action="test" method="post" enctype="multipart/form-data">                <!--//wohin geht der login aufruf??? -->
+  }
+  ?>
+  <form action="test" method="post" enctype="multipart/form-data">
+    <!--//wohin geht der login aufruf??? -->
     <button name="mAbmelden">Abmelden</button>
-</form>
+  </form>
 </body>

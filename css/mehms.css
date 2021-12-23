@@ -1,103 +1,103 @@
 body.scrolled:not(.scroll-up) header {
-    padding-bottom: 8px;
+  padding-bottom: 8px;
 }
 
 .admin {
-    margin-bottom: 1rem;
-    display: flex;
-    gap: 0.75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.75rem;
 }
 
 .admin a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    line-height: 24px;
-    background: var(--color-b);
-    color: var(--color-p);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 24px;
+  background: var(--color-b);
+  color: var(--color-p);
 }
 
 .admin svg {
-    height: 24px;
+  height: 24px;
 }
 
 #mehm-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .mehm-card {
-    position: relative;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
 }
 
 .mehm-card img {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    vertical-align: bottom;
-    border-radius: 4px;
-    user-select: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  vertical-align: bottom;
+  border-radius: 4px;
+  user-select: none;
 }
 
 .mehm-card img.selected {
-    z-index: 65;
-    position: relative;
+  z-index: 65;
+  position: relative;
 }
 
 .selected-container {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 65;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
-    cursor: default;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 65;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
+  cursor: default;
 }
 
 .selected-container::before {
-    content: attr(name);
-    position: absolute;
-    z-index: 128;
-    color: #fff;
-    top: -32px;
-    left: 4px;
-    font-weight: 500;
-    text-shadow: var(--stroke-heading);
-    white-space: nowrap;
+  content: attr(name);
+  position: absolute;
+  z-index: 128;
+  color: #fff;
+  top: -32px;
+  left: 4px;
+  font-weight: 500;
+  text-shadow: var(--stroke-heading);
+  white-space: nowrap;
 }
 
 .mehm-card img.selected {
-    width: auto;
-    height: auto;
-    max-width: calc(100vw - 24px);
-    max-height: calc(100vh - 112px);
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 112px);
 }
 
 #close-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 8px;
-    z-index: 128;
-    border-radius: 4px;
-    display: flex;
-    cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 8px;
+  z-index: 128;
+  border-radius: 4px;
+  display: flex;
+  cursor: pointer;
 }
 
 #theater {
-    position: fixed;
-    inset: 0;
-    z-index: 64;
-    transition: background 0.2s;
-    pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 64;
+  transition: background 0.2s;
+  pointer-events: none;
 }
 
 #theater.open {
-    background: rgba(0, 0, 0, 0.65);
-    pointer-events: all;
+  background: rgba(0, 0, 0, 0.65);
+  pointer-events: all;
 }
