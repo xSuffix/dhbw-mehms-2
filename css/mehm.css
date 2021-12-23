@@ -162,6 +162,8 @@ main .write-comment button:hover {
 
 main .editable {
   border-radius: 4px;
+  display: inline-block;
+  width: 100%;
 }
 
 main .editable:focus {
