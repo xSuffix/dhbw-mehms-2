@@ -29,10 +29,10 @@ Utils::checkLogin(true);
         // Verschiebe das hochgeladene Mehm in den assets/mehm/ Ordner.
         $target_dir = "assets/mehms/";
         $target_file = $target_dir . basename($_FILES["mDatei"]["name"]);
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         // Prüfe, ob Dateiformat erlaubt ist.
-        if($imageFileType == 'png' || $imageFileType == 'jpg' || $imageFileType == 'jpeg' || $imageFileType == 'gif'|| $imageFileType == 'webp'){
+        if ($imageFileType == 'png' || $imageFileType == 'jpg' || $imageFileType == 'jpeg' || $imageFileType == 'gif' || $imageFileType == 'webp') {
 
             if (move_uploaded_file($_FILES["mDatei"]["tmp_name"], $target_file)) {
                 // Hole notwendige Parameter aus POST und schreibe die Informationen in die Datenbank.
@@ -47,14 +47,13 @@ Utils::checkLogin(true);
                     '$userID',
                     '$kategorie',
                     '$desc');");
-				
-                echo "<h1> Viele Dank für deine Einsendung der Kategorie ". $_POST["mKategorie"]. "!</h1> <br><p class=\"response\"> Die Datei ". htmlspecialchars( basename( $_FILES["mDatei"]["name"])). " wurde erfolgreich hochgeladen. </p>";
+
+                echo "<h1> Viele Dank für deine Einsendung der Kategorie " . $_POST["mKategorie"] . "!</h1> <br><p class=\"response\"> Die Datei " . htmlspecialchars(basename($_FILES["mDatei"]["name"])) . " wurde erfolgreich hochgeladen. </p>";
 
             } else {
                 echo "<h1> Tut uns Leid, es ist ein Fehler aufgetreten. Bitte versuche es erneut!</h1>";
             }
-        }
-        else {
+        } else {
             echo "<h1>Falsches Dateiformat! Bitte benutze nur .png .jpg .jpeg .gif oder .webp</h1>";
         }
         ?>

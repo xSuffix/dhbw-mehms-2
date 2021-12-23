@@ -16,36 +16,36 @@ session_start();
       --banner-bottom: #4bd8f6;
     }
 
-    /* Color for selected page in navigation */
-    .home {
-      animation: 0.2s color-p-primary forwards;
-    }
+        /* Color for selected page in navigation */
+        .home {
+            animation: 0.2s color-p-primary forwards;
+        }
 
-    .scrolled .toolbar {
-      background: #9054f0;
-      background: linear-gradient(0deg, #8662f2 0%, #7A5FF1 100%);
-    }
+        .scrolled .toolbar {
+            background: #9054f0;
+            background: linear-gradient(0deg, #8662f2 0%, #7A5FF1 100%);
+        }
 
-    @media (min-width: 720px) {
-      .scrolled.scroll-up .toolbar {
-        background: linear-gradient(0deg, #7874f4 0%, #8167f2 100%);
-      }
-    }
-  </style>
+        @media (min-width: 720px) {
+            .scrolled.scroll-up .toolbar {
+                background: linear-gradient(0deg, #7874f4 0%, #8167f2 100%);
+            }
+        }
+    </style>
 </head>
 
 
 <body>
-  <?php
-  include("includes/header.php");
-  require_once "scripts/Database.php";
-  require_once "scripts/Utils.php";
-  $db = new Database();
-  ?>
+<?php
+include("includes/header.php");
+require_once "scripts/Database.php";
+require_once "scripts/Utils.php";
+$db = new Database();
+?>
 
-  <main class="container">
+<main class="container">
     <?php if (isset($_SESSION["loggedIn"]) && $_SESSION['loggedIn'] === true && $_SESSION["usertype"] == 1) {
-      echo '
+        echo '
       <div class="admin">
         <a href="./php/admin" class="box button">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -64,29 +64,29 @@ session_start();
     ?>
 
     <form id="query" name="query" method="GET" class="toolbar">
-      <?php
-      $myMehms = false;
-      if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-        include("includes/toolbar/mymehms.php");
-      }
-      include("includes/toolbar/search-box.php");
-      include("includes/toolbar/filter-box.php");
-      include("includes/toolbar/sort-box.php");
-      include("includes/toolbar/order-box.php");
-      ?>
+        <?php
+        $myMehms = false;
+        if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
+            include("includes/toolbar/mymehms.php");
+        }
+        include("includes/toolbar/search-box.php");
+        include("includes/toolbar/filter-box.php");
+        include("includes/toolbar/sort-box.php");
+        include("includes/toolbar/order-box.php");
+        ?>
     </form>
 
     <div id="mehm-gallery">
-      <?php
-      $filter = Utils::extractUser($search);
-      Utils::getMehmCards($db, $filter, $category, $sort, $asc, false, $myMehms);
-      ?>
-      <div id="theater"></div>
+        <?php
+        $filter = Utils::extractUser($search);
+        Utils::getMehmCards($db, $filter, $category, $sort, $asc, false, $myMehms);
+        ?>
+        <div id="theater"></div>
     </div>
-  </main>
+</main>
 
-  <?php include("includes/footer.php"); ?>
-  <?php include("includes/bottom-navigation.php"); ?>
+<?php include("includes/footer.php"); ?>
+<?php include("includes/bottom-navigation.php"); ?>
 </body>
 
 </html>
