@@ -34,7 +34,22 @@ Utils::checkLogin(true);
 
       // Verschiebe das hochgeladene Mehm in den assets/mehm/ Ordner.
       $target_dir = "../assets/mehms/";
-      $target_file = $target_dir . basename($_FILES["mDatei"]["name"]);
+      $filename = $_FILES["mDatei"]["name"];
+
+      // Ersetze böse Zeichen aus dem Pfad
+      $filename = str_replace(' ', '-', $filename);
+      $filename = str_replace('#', '-', $filename);
+      $filename = str_replace('[', '-', $filename);
+      $filename = str_replace(']', '-', $filename);
+      $filename = str_replace('(', '-', $filename);
+      $filename = str_replace(')', '-', $filename);
+      $filename = str_replace('ä', '-', $filename);
+      $filename = str_replace('ö', '-', $filename);
+      $filename = str_replace('ü', '-', $filename);
+      $filename = str_replace('&', '-', $filename);
+      print_r($filename);
+
+      $target_file = $target_dir . $filename;
       $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
       // Prüfe, ob Dateiformat erlaubt ist.
@@ -43,7 +58,6 @@ Utils::checkLogin(true);
         if (move_uploaded_file($_FILES["mDatei"]["tmp_name"], $target_file)) {
           // Hole notwendige Parameter aus POST und schreibe die Informationen in die Datenbank.
           $desc = $_POST["mBildbeschreibung"] == '' ? NULL : $_POST["mBildbeschreibung"];
-          $filename = $_FILES["mDatei"]["name"];
           $kategorie = $_POST["mKategorie"];
           $title = $_POST["mTitel"];
           $userID = $_SESSION['id'];
