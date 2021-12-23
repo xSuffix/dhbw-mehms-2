@@ -54,8 +54,8 @@
         Das Löschen des Benutzers ist irreversibel. Ist der Benutzer einmal gelöscht, gehen mit ihm auch alle seine
         Mehms verloren und können nicht wiederhergestellt werden.
         <form action="login" method="post" enctype="multipart/form-data">
-            <label for="passwort" class="required">Passwort:</label>
-            <input id="passwort" type="password" placeholder="Passwort" name="mPasswort">
+            <label for="passwortDel" class="required">Passwort:</label>
+            <input id="passwortDel" type="password" placeholder="Passwort" name="mPasswort">
             <br>
             <button name="mDelete" class="secondary">Benutzer löschen</button>
         </form>

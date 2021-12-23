@@ -39,7 +39,7 @@ Utils::checkLogin(true);
     // jQuery-Funktion, die bei Knopfdruck auf approve-/decline-Button das jury.php-Skript ausführt,
     // in dem die Änderung an der Datenbank vollführt werden.
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht geupdated wird.
-    $(document).ready(function () {
+    jQuery(function () {
         $('.button').click(function () {
             const clickBtnValue = $(this).attr('id');
             const btnType = clickBtnValue[0];
