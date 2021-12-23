@@ -77,15 +77,10 @@ class Database {
       $query .= ' LEFT JOIN Users u ON mehms.UserID = u.ID';
     }
 
-    if (!$admin) {
+    if ($sort == 'notVisibleOnly') {
       if ($sort == 'notVisibleOnly') {
         $query .= ' WHERE Visible = FALSE';
-      } else {
-        $query .= ' WHERE Visible = TRUE';
       }
-      $hasConcatenatedFilter = true;
-    } else if ($sort == 'notVisibleOnly') {
-      $query .= ' WHERE Visible = FALSE';
       $hasConcatenatedFilter = true;
     }
 
