@@ -22,7 +22,6 @@
     function approveMehm($index) {
         global $db;
         $db->database->query("UPDATE mehms SET Visible = TRUE, VisibleOn = now() WHERE ID=" . $index);
-        print_r("approve");
     }
 
     // declineMehm setzt ein gewähltes Mehm auf Visible = false, sodass jeder User es sehen kann.
@@ -34,10 +33,7 @@
         $visible = $db->database->query("SELECT Visible FROM mehms WHERE ID=" . $index)->fetch();
         if ($visible['Visible']) {
             $db->database->query("UPDATE mehms SET Visible = FALSE, VisibleOn = NULL WHERE ID=" . $index);
-            print_r("decline");
         } else {
             $db->database->query("DELETE FROM mehms WHERE ID=" . $index);
-            print_r("delete");
         }
     }
-?>

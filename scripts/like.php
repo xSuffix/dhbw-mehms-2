@@ -21,4 +21,3 @@
         global $db;
         $db->database->query("DELETE FROM likes WHERE MehmID = " . $index ." AND UserID = " . $_POST['user']); 
     }
-?>

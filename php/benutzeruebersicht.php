@@ -23,7 +23,8 @@ Utils::checkLogin(true);
 </head>
 
 <body>
-	<?php include("includes/header.php");
+	<?php
+    include("includes/header.php");
 	require_once 'scripts/Database.php';
 	$db = new Database();
 

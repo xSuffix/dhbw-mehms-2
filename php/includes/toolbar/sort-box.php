@@ -3,7 +3,7 @@
   array("value" => "likes", "name" => "Likes"),
   array("value" => "comments", "name" => "Kommentare")
 );
-$sort = isset($_GET["sort"]) ? $_GET["sort"] : "date";
+$sort = $_GET["sort"] ?? "date";
 
 ?>
 

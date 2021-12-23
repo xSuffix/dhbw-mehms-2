@@ -4,4 +4,3 @@
 
     $id = $_POST['id'];
     $db->database->query("DELETE FROM comments WHERE ID = " .$id);
-?>

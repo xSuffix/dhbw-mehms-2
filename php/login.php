@@ -36,7 +36,6 @@ if (isset($_POST["mAnmelden"])) {
             // Nach Login geht es zurück auf die Startseite
             header("location: mehms");
 
-
         } // Passwort ist falsch
         else {
             $text = "Falsches Passwort";
@@ -115,7 +114,7 @@ if (isset($_POST["mPwAendern"])) {
         $sql = BASE_QUERY . $_SESSION["username"] . "'";
         $benutzer = $db->database->query($sql)->fetchAll();
         if (!empty($benutzer)) {
-            $sql = "UPDATE users SET Password = '" . $_POST["mPasswort1"] . "' WHERE ID=" . $benutzer[0]["ID"] . "";
+            $sql = "UPDATE users SET Password = '" . $_POST["mPasswort1"] . "' WHERE ID=" . $benutzer[0]["ID"];
             $db->database->query($sql);
             $text = "Passwort erfolgreich geändert!";
         }
@@ -138,7 +137,7 @@ if (isset($_POST["mUnAendern"])) {
             $benutzer = $db->database->query($sql)->fetchAll();
             // Benutzername wurde noch nicht vergeben
             if (empty($benutzer)) {
-                try { // UPDATE mehms SET Visible = TRUE, VisibleOn = now() WHERE ID=" . $index
+                try {
                     $sql = "UPDATE users SET Name='" . $_POST["mUser"] . "' WHERE ID=" . $_SESSION['id'];
                     $db->database->query($sql);
                     $text = "Erfolgreiche Umbenennung";

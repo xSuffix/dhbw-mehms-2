@@ -36,7 +36,8 @@ session_start();
 
 
 <body>
-  <?php include("includes/header.php");
+  <?php
+  include("includes/header.php");
   require_once "scripts/Database.php";
   require_once "scripts/Utils.php";
   $db = new Database();

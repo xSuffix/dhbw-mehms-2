@@ -19,4 +19,3 @@
         global $db;
         $db->database->query("UPDATE mehms SET Description = '" . $new . "' WHERE ID = " . $id);  
     }
-?>

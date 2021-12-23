@@ -38,7 +38,7 @@
 <script>
   // jQuery-Funktion, die bei Knopfdruck auf approve-/decline-Button das jury.php-Skript ausführt,
   // in dem die Änderung an der Datenbank vollführt werden.
-  // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
+  // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht geupdated wird.
     $(document).ready(function () {
         $('.button').click(function () {
             const clickBtnValue = $(this).attr('id');
@@ -70,6 +70,7 @@ $db = new Database();
 
     <div id="mehm-gallery">
         <?php
+
         $filter = Utils::extractUser($search);
         if ($new) {
             Utils::getMehmCards($db, $filter, $category, 'none', $asc, true, false);

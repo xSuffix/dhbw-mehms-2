@@ -31,13 +31,13 @@
     }
   </style>
 </head>
-
-
 <body>
   <script>
     // jQuery-Funktion, die bei Knopfdruck auf den Like-Button das like.php-Skript ausführt,
     // in dem die Änderung an der Datenbank vollführt werden.
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
+
+    // Beim Submitten eines Kommentars wird stattdessen comment.php aufgerufen.
     $(document).ready(function() {
       $('#like').click(function() {
         const child = $(this).children('svg')[0];
@@ -55,7 +55,6 @@
           window.location.reload();
         });
       });
-
       $("#comment").submit(function(e) {
         e.preventDefault();
 
@@ -77,7 +76,7 @@
       });
     });
 
-    // Kopiert die aktuelle Mehm-URL in den Zwischenspeicher
+    // Kopiert die aktuelle Mehm-URL in die Zwischenablage
     function copyURL() {
       const copy = document.createElement("input"),
         url = window.location.href;
@@ -97,11 +96,11 @@
   $likeCount = 0;
 
   /**
-   * Konvertiert formatierte DateTime in einen formatted string mit dessen Werten
+   * Konvertiert formatiertes DateTime in einen formatted string mit entsprechenden Werten
    *
-   * @param string $datetime Formatted DateTime
+   * @param string $datetime Formatiertes DateTime
    * @param integer $level 7: all values (y,m,w,...); 1: only largest value
-   * @return string
+   * @return string Formatierter String
    * @throws Exception
    */
 
@@ -256,6 +255,7 @@
 
           <button class="meta-icon icon-text" id="like" <?php echo ($isLogedin) ? '' : ' style="cursor: not-allowed;"' ?>>
             <?php
+            // Fragt ab, ob ein User das Mehm bereits geliked hat. Entsprechend dessen kann er das Mehm liken oder das Like zurücknehmen.
             $beat = '';
             $sess = '';
             if ($isLogedin) {
@@ -289,6 +289,9 @@
   <?php include("includes/footer.php"); ?>
   <?php include("includes/bottom-navigation.php"); ?>
   <script>
+      // jQuery-Funktion, die bei Änderung des Mehm-Titels das editmehm.php-Skript ausführt,
+      // in dem die Änderung an der Datenbank vollführt werden.
+      // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
     document.getElementById("title").oninput = function() {
       var t = document.getElementById("title");
       const url = window.location.href.split("id=");
@@ -305,6 +308,7 @@
         };
       $.post(ajaxurl, data, function() {});
     }
+    // Dasselbe für Description (Part 1)
     if (document.getElementById("descp") != null) {
       const t = document.getElementById("descp");
       t.oninput = function() {
@@ -323,7 +327,8 @@
         $.post(ajaxurl, data, function() {});
       }
     }
-    if (document.getElementById("desct") != null) {
+      // Dasselbe für Description (Part 2)
+      if (document.getElementById("desct") != null) {
       const t = document.getElementById("desct");
       t.oninput = function() {
         const url = window.location.href.split("id=");
@@ -342,7 +347,9 @@
       }
     }
 
-    function deleteComment(commentId) {
+      // Ruft deleteComment.php zur Löschung eines Kommentars auf.
+      // Funktion wird durch Knopfdruck auf das Löschen-Icon getriggered.
+      function deleteComment(commentId) {
       const ajaxurl = 'scripts/comment/deleteComment.php',
         data = {
           'id': commentId,
@@ -352,7 +359,9 @@
       });
     }
 
-    function editComment(e, commentId) {
+      // Ruft editComment.php für die Änderung eines Kommentars auf.
+      // Funktion wird durch Knopfdruck auf das Edit-Icon getriggered.
+      function editComment(e, commentId) {
       const p = e.parentNode.parentNode.getElementsByTagName("p")[0];
       p.classList.add("editable");
       p.setAttribute("contenteditable", true);
@@ -368,7 +377,6 @@
           $.post(ajaxurl, data, function() {});
         }
       }
-
     }
   </script>
 </body>

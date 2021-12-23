@@ -1,29 +1,31 @@
 <?php
 
+use JetBrains\PhpStorm\ArrayShape;
+
 class Utils
 {
-    // Wandelt $input-String aus Suchleiste in ein $filter-Array um (['user' => (string), 'search' => (string)])
-    // Notwendig, da in Suchleiste durch "u/xyz abc" nach allen Mehms passend zur Suche "abc" von einem User 
-    // passend zu "xyz" gesucht wird.
-    // Parameter:
-    // $input (string) -> die Eingabe über die Suchleiste
-    // Rückgabewert:
-    // $ret (Array) -> die verarbeitete Suche
-    public static function extractUser($input) : Array {
+    /**
+     * Wandelt $input-String aus Suchleiste in ein $filter-Array um (['user' => (string), 'search' => (string)])
+     * Notwendig, da in Suchleiste durch "u/xyz abc" nach allen Mehms passend zur Suche "abc" von einem User
+     * passend zu "xyz" gesucht wird.
+     * @param string $input -> die Eingabe über die Suchleiste
+     * @return array -> die verarbeitete Suche
+     */
+    #[ArrayShape(["user" => "string", "search" => "string"])] public static function extractUser(string $input) : Array {
         $words = explode(' ', $input);
         $ret = ["user" => '',"search" => ''];
         switch (count($words)) {
             case 0:
                 break;
             case 1:
-                if (substr($words[0],0,2) == "u/") {
+                if (str_starts_with($words[0], "u/")) {
                     $ret = ["user" => substr($words[0],2),"search" => ''];
                     break;
                 }
                 $ret = ["user" => '',"search" => $words[0]];
                 break;
             default:
-                if (substr($words[0],0,2) == "u/") {
+                if (str_starts_with($words[0], "u/")) {
                     $user = substr($words[0],2);
                     $ret = ["user" => $user,"search" => implode(' ',array_slice($words,1))];
                     break;
@@ -33,17 +35,19 @@ class Utils
         return $ret;
     }
 
-    // getMehmCards holt sich die gewollten Mehms aus der Datenbank, wandelt sie in cards um und gibt diese aus. 
-    // Hier wird auch entschieden, ob zusätzliche Features genutzt werden, z.B. für einen Admin.
-    // Parameter: 
-    // $db (database) -> die Datenbank
-    // $filter (Array) -> ein Array der Struktur ['user' => (string), 'search' => (string)], notwendig für die Suchleiste
-    // $category (string) -> die gewünschte Mehm-Kategorie ("Programmieren", "DHBW", "Andere")
-    // $sort (string) -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
-    // $asc (boolean) -> Reihenfolge: ascending (true), oder descending (false)
-    // $admin (boolean) -> Adminansicht (true) oder normale Useransicht (false)
-    // $myMehms (boolean) -> nur eigene Mehms anzeigen (true), andere Filter (false)
-    public static function getMehmCards($db, $filter, $category, $sort, $asc, $admin, $myMehms)
+    /**
+     * getMehmCards holt sich die gewollten Mehms aus der Datenbank, wandelt sie in cards um und gibt diese aus.
+     * Hier wird auch entschieden, ob zusätzliche Features genutzt werden, z.B. für einen Admin.
+     * @param Database $db -> Eine Database.php-Instanz
+     * @param array $filter -> ein Array der Struktur ['user' => (string), 'search' => (string)], notwendig für die Suchleiste
+     * @param string $category -> die gewünschte Mehm-Kategorie ("Alle", Programmieren", "DHBW", "Andere")
+     * @param string $sort -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
+     * @param bool $asc -> Reihenfolge: ascending (true), oder descending (false)
+     * @param bool $admin -> Adminansicht (true) oder normale Useransicht (false)
+     * @param bool $myMehms -> nur eigene Mehms anzeigen (true), andere Filter (false)
+     * @return void
+     */
+    public static function getMehmCards(Database $db, array $filter, string $category, string $sort, bool $asc, bool $admin, bool $myMehms)
     {
         $images = $db->getMehms($filter, $category, $sort, $asc, $admin);
 
@@ -83,12 +87,12 @@ class Utils
         }
     }
 
-    // adminInfix baut die approve- und decline-Buttons für die Adminansicht eines über den $index referenzierten Mehms
-    // Parameter:
-    // $index (Zahl) -> die ID des Mehms
-    // Rückgabewert:
-    // (string) -> die approve- und decline-Buttons für dieses Mehm in der Adminansicht
-    public static function adminInfix($index): string
+    /**
+     * Fügt Approve/Decline-Button zur Card hinzu.
+     * @param int $index -> die ID des Mehms
+     * @return string -> die approve- und decline-Buttons für dieses Mehm in der Adminansicht
+     */
+    public static function adminInfix(int $index): string
     {
         return '<div class="admin-overlay">' .
             '<div><div class="box button" id="a' . $index . '"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></div> Approve </div>' .
@@ -96,15 +100,19 @@ class Utils
             '</div>';
     }
 
-    // Diese Funktion prüft, ob man angemeldet ist und über die nötigen Rechte verfügt.
-    // Andernfalls wird der User auf die Startseite zurückgebracht.
+
+    /**
+     * Prüft, ob man eingeloggt ist (und optional, ob man Admin-Privilegien hat).
+     * @param bool $requireAdmin -> True, wenn die Seite Admin-Privilegien benötigt.
+     * @return void
+     */
     public static function checkLogin(bool $requireAdmin)
     {
         session_start();
 
         if (!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true)) {
             if (!$requireAdmin || (!$_SESSION["type"] == 1)) {
-                header("location: index.php");
+                header("location: mehms.php");
                 exit;
             }
         }
