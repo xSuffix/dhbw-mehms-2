@@ -28,6 +28,11 @@ XAMPP-Version:
   * jQuery: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
   * jdenticon: "https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js"
 
+Video:
+* (Übersicht)   YouTube-Link: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+* (Website)     YouTube-Link: https://www.youtube.com/watch?v=aquEPrcnyAg
+* (Code)        YouTube-Link: https://www.youtube.com/watch?v=ld1HxIpcAr0
+
 Zusätzliche Funktionen
 * Zeitstempel bei Mehms/Kommentaren
 * Generierte Profilbilder
@@ -38,5 +43,3 @@ Zusätzliche Funktionen
 
 Hinweise:
 * Rickroll wird im Local Storage abgespeichert und ist daher nur einmal ausführbar ('rick'->'roll')
-* Die im Video dargestellte Funktionalität unterschreitet die eigentliche Funktionalität stark
-  * Möglicherweise wurde das Video zu früh aufgenommen
