@@ -1,92 +1,92 @@
 .toolbar {
-    position: sticky;
-    top: 0;
-    z-index: 8;
-    padding: 8px 0;
-    margin-bottom: 1rem;
-    transition: top 0.2s;
-    display: flex;
-    flex: 8 1 300px;
-    gap: 0.75rem;
-    flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  padding: 8px 0;
+  margin-bottom: 1rem;
+  transition: top 0.2s;
+  display: flex;
+  flex: 8 1 300px;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .search-box {
-    background: var(--color-bg2);
-    border: 1px solid var(--color-border);
-    padding: 4px 8px;
-    display: flex;
-    align-items: center;
-    border-radius: 4px;
-    flex: inherit;
+  background: var(--color-bg2);
+  border: 1px solid var(--color-border);
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  flex: inherit;
 }
 
 .search-box .i-search {
-    height: 24px;
-    color: var(--color-primary);
+  height: 24px;
+  color: var(--color-primary);
 }
 
 .search-box input {
-    width: 100%;
+  width: 100%;
 }
 
 .search-box input {
-    outline: 0;
-    border: 0;
-    color: var(--color-p);
-    font-size: 1.25rem;
-    background: transparent;
-    width: 100%;
-    padding: 4px;
+  outline: 0;
+  border: 0;
+  color: var(--color-p);
+  font-size: 1.25rem;
+  background: transparent;
+  width: 100%;
+  padding: 4px;
 }
 
 .search-box input::placeholder {
-    color: var(--color-p-a);
+  color: var(--color-p-a);
 }
 
 .toolbar label {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.toolbar label > .box {
-    width: 24px;
+.toolbar label>.box {
+  width: 24px;
 }
 
 
 /* mehms.php, admin/mehms.php */
 
 .toolbar select {
-    flex: 1 4 128px;
+  flex: 1 4 128px;
 }
 
-.toolbar label.desc > .box.asc {
-    display: none;
+.toolbar label.desc>.box.asc {
+  display: none;
 }
 
-.toolbar label.asc > .box.desc {
-    display: none;
+.toolbar label.asc>.box.desc {
+  display: none;
 }
 
 .toolbar input[type="checkbox"] {
-    display: none;
+  display: none;
 }
 
-.toolbar label.active > .box.inactive {
-    display: none;
+.toolbar label.active>.box.inactive {
+  display: none;
 }
 
-.toolbar label.inactive > .box.active {
-    display: none;
+.toolbar label.inactive>.box.active {
+  display: none;
 }
 
 @media (min-width: 720px) {
-    .toolbar {
-        top: 8px;
-        padding: 0 0 8px 0;
-    }
+  .toolbar {
+    top: 8px;
+    padding: 0 0 8px 0;
+  }
 
-    .scroll-up .toolbar {
-        top: 80px;
-    }
+  .scroll-up .toolbar {
+    top: 80px;
+  }
 }

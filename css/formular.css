@@ -1,74 +1,82 @@
 main img {
-    width: 100%;
+  width: 100%;
 }
 
 main .flex {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1rem;
 }
 
 main label {
-    color: var(--color-h);
-    margin-bottom: 0.5rem;
+  color: var(--color-h);
+  margin-bottom: 0.5rem;
 }
 
 main label.required::after {
-    content: " *";
-    color: var(--color-primary);
-    font-size: 1rem;
+  content: " *";
+  color: var(--color-primary);
+  font-size: 1rem;
 }
 
-main input, main textarea, main select, main article {
-    color: var(--color-p);
-    border: 1px solid var(--color-bg);
-    margin-bottom: 1rem;
+main input,
+main textarea,
+main select,
+main article {
+  color: var(--color-p);
+  border: 1px solid var(--color-bg);
+  margin-bottom: 1rem;
 }
 
-main input::placeholder, main textarea::placeholder {
-    color: var(--color-p-a);
+main input::placeholder,
+main textarea::placeholder {
+  color: var(--color-p-a);
 }
 
-main input, main textarea, main label {
-    display: block;
+main input,
+main textarea,
+main label {
+  display: block;
 }
 
 main textarea {
-    height: 10rem;
-    resize: vertical;
-    min-height: 39px;
+  height: 10rem;
+  resize: vertical;
+  min-height: 39px;
 }
 
 main button {
-    background: var(--color-primary);
-    color: #fff;
-    font-weight: 500;
-    margin-top: 1rem;
-    border-radius: 4px;
-    width: 100%;
-    padding: 0.5rem;
-    border: none;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 500;
+  margin-top: 1rem;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
 }
 
 main button:hover {
-    background: linear-gradient(180deg, var(--color-primary) 0%, #6767f5 100%);
+  background: linear-gradient(180deg, var(--color-primary) 0%, #6767f5 100%);
 }
 
 main button.secondary {
-    background: var(--color-secondary);
+  background: var(--color-secondary);
 }
 
 main button.secondary:hover {
-    background: linear-gradient(180deg, var(--color-secondary) 0%, #AF355E 100%);
+  background: linear-gradient(180deg, var(--color-secondary) 0%, #AF355E 100%);
 }
 
-main button, main input[type="file"], main summary {
-    cursor: pointer;
+main button,
+main input[type="file"],
+main summary {
+  cursor: pointer;
 }
 
 main input[type="file"]::-webkit-file-upload-button {
-    margin-right: 0.5rem;
-    cursor: pointer;
+  margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 main input,
@@ -76,21 +84,21 @@ main textarea,
 main select,
 main article,
 .response {
-    background: var(--color-bg-a);
-    padding: 0.5rem;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
+  background: var(--color-bg-a);
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 main article {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 main section article {
-    margin-left: -16px;
-    margin-right: -16px;
-    width: calc(100% + 32px);
+  margin-left: -16px;
+  margin-right: -16px;
+  width: calc(100% + 32px);
 }
 
 main input,
@@ -98,55 +106,55 @@ main textarea,
 main button,
 main label,
 main select {
-    font-family: var(--font-sans);
-    font-size: 1rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
 }
 
 main form {
-    margin: 2rem 0;
+  margin: 2rem 0;
 }
 
 main a {
-    color: var(--color-s);
+  color: var(--color-s);
 }
 
 main a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 main aside {
-    float: right;
-    background: var(--color-bg-aside) !important;
-    border-radius: 4px;
+  float: right;
+  background: var(--color-bg-aside) !important;
+  border-radius: 4px;
 }
 
 main aside p {
-    color: #ccc;
+  color: #ccc;
 }
 
 main aside h4 {
-    color: #ddd;
+  color: #ddd;
 }
 
 main aside button {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .response {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 @media screen and (min-width: 720px) {
-    main .flex {
-        flex-direction: row-reverse;
-    }
+  main .flex {
+    flex-direction: row-reverse;
+  }
 
-    main aside {
-        width: 30%;
-        min-width: 256px;
-    }
+  main aside {
+    width: 30%;
+    min-width: 256px;
+  }
 
-    main button {
-        max-width: 192px;
-    }
+  main button {
+    max-width: 192px;
+  }
 }
