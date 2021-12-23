@@ -112,7 +112,7 @@ class Utils
 
         if (!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true)) {
             if (!$requireAdmin || (!$_SESSION["type"] == 1)) {
-                header("location: index.php");
+                header("location: mehms.php");
                 exit;
             }
         }

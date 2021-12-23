@@ -3,7 +3,7 @@
 
 <head>
 	<title>Kontakt - DHBW Mehms</title>
-	<link href="styles/formular.css" rel="stylesheet">
+	<link href="../styles/formular.css" rel="stylesheet">
 	<?php include("includes/meta.php"); ?>
 	<style>
 		:root {
@@ -37,7 +37,7 @@
 					Falls du gerne mehr über uns erfahren möchtest: <br> Hier kannst du dich für unseren Newsletter amelden, um Informationen über unsere Projekte und unser <strong>Mehm of the Month</strong> zu erhalten!
 				</p>
 				<h4> Mehm of the Month (December 2021):</h4>
-				<img src="assets/mehms/rick.gif" alt="good old Rick">
+				<img src="../assets/mehms/rick.gif" alt="good old Rick">
 				<button onclick="playAudio()">Registrieren</button>
 			</aside>
 			<section class="contact paper">
