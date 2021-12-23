@@ -1,5 +1,5 @@
 <?php
-require_once 'scripts/Utils.php';
+require_once '../scripts/Utils.php';
 Utils::checkLogin(true);
 ?>
 
@@ -65,8 +65,8 @@ if (isset($_GET["delete"])) {
 								<td>' . $benutzer[$i]["Name"] . '</td>
 								<td>' . $benutzer[$i]["ID"] . '</td>
 								<td>' . $benutzer[$i]["Type"] . '</td>
-								<td><a href="benutzerbearbeiten?id=' . $benutzer[$i]["ID"] . '" class="underline">Bearbeiten</a></td>
-								<td><a href="benutzeruebersicht?id=' . $benutzer[$i]["ID"] . '&delete=true" class="underline">Löschen</a></td>
+								<td><a href="benutzer-bearbeiten?id=' . $benutzer[$i]["ID"] . '" class="underline">Bearbeiten</a></td>
+								<td><a href="benutzer-uebersicht?id=' . $benutzer[$i]["ID"] . '&delete=true" class="underline">Löschen</a></td>
 							  </tr>';
                 }
             }

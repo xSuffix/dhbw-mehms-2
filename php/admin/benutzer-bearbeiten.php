@@ -1,5 +1,5 @@
 <?php
-require_once 'scripts/Utils.php';
+require_once '../scripts/Utils.php';
 Utils::checkLogin(true);
 ?>
 
@@ -37,7 +37,7 @@ Utils::checkLogin(true);
         $benutzer = $benutzer[0];
         $isAdmin = $benutzer["Type"] == 'ADMIN';
 
-        echo '<form action="benutzeruebersicht.php" method="post" enctype="multipart/form-data">
+        echo '<form action="benutzer-uebersicht.php" method="post" enctype="multipart/form-data">
             <label for="id">Nutzer-ID</label>
             <input id="id" required type="text" name="mId" value="' . $benutzer["ID"] . '" readonly>
             <label for="benutzer" class="required">Benutzer</label>

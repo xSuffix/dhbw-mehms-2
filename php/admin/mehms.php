@@ -1,5 +1,5 @@
 <?php
-require_once 'scripts/Utils.php';
+require_once '../scripts/Utils.php';
 Utils::checkLogin(true);
 ?>
 
@@ -8,12 +8,12 @@ Utils::checkLogin(true);
 
 <head>
     <title>Admin - DHBW Mehms</title>
-    <link rel="stylesheet" href="../css/mehms.css">
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/toolbar.css">
+    <link rel="stylesheet" href="../../css/mehms.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/toolbar.css">
     <script type="text/javascript" src="./scripts/select-mehms.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <?php include("includes/meta.php"); ?>
+    <?php include("../includes/meta.php"); ?>
     <style>
         :root {
             --banner-top: #60c9b1;
@@ -53,18 +53,18 @@ Utils::checkLogin(true);
     });
 </script>
 <?php
-include("includes/header.php");
-require_once 'scripts/Database.php';
+include("../includes/header.php");
+require_once '../scripts/Database.php';
 $db = new Database();
 ?>
 
 <main class="container">
 
     <form id="query" name="query" method="GET" class="toolbar">
-        <?php include("includes/toolbar/search-box.php"); ?>
-        <?php include("includes/toolbar/filter-box.php"); ?>
-        <?php include("includes/toolbar/new-box.php"); ?>
-        <?php include("includes/toolbar/order-box.php"); ?>
+        <?php include("../includes/toolbar/search-box.php"); ?>
+        <?php include("../includes/toolbar/filter-box.php"); ?>
+        <?php include("../includes/toolbar/new-box.php"); ?>
+        <?php include("../includes/toolbar/order-box.php"); ?>
     </form>
 
 
@@ -83,8 +83,8 @@ $db = new Database();
     </div>
 </main>
 
-<?php include("includes/footer.php"); ?>
-<?php include("includes/bottom-navigation.php"); ?>
+<?php include("../includes/footer.php"); ?>
+<?php include("../includes/bottom-navigation.php"); ?>
 </body>
 
 </html>
