@@ -2,7 +2,7 @@
 // Define path to php folder for includes
 $ROOT = '../';
 
-require_once $ROOT . 'scripts/Utils.php';
+require_once $ROOT . 'scripts/utils.php';
 Utils::checkLogin(true);
 ?>
 
@@ -33,7 +33,7 @@ Utils::checkLogin(true);
     <section class="paper">
       <h1> Gespeicherte Nutzerdaten: </h1>
       <?php
-      require_once $ROOT . 'scripts/Database.php';
+      require_once $ROOT . 'scripts/database.php';
       $db = new Database();
 
       $benutzer = $db->getUser($_GET["id"]);

@@ -37,8 +37,8 @@
 
   </script>
   <?php
-  require_once 'scripts/Database.php';
-  require_once 'scripts/Utils.php';
+  require_once 'scripts/database.php';
+  require_once 'scripts/utils.php';
   $db = new Database();
 
   $likeCount = 0;

@@ -1,5 +1,5 @@
 <?php
-require_once 'scripts/Utils.php';
+require_once 'scripts/utils.php';
 Utils::checkLogin(false);
 ?>
 

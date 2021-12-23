@@ -5,7 +5,7 @@
 // Definiert Pfad zum php-Ordner für includes
 $ROOT = '../';
 
-require_once 'Database.php';
+require_once 'database.php';
 $db = new Database($ROOT);
 if ($_POST['user'] == '') {
     exit;

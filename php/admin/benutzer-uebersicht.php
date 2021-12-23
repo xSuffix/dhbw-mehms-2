@@ -2,7 +2,7 @@
 // Define path to php folder for includes
 $ROOT = '../';
 
-require_once $ROOT . 'scripts/Utils.php';
+require_once $ROOT . 'scripts/utils.php';
 Utils::checkLogin(true);
 ?>
 
@@ -28,7 +28,7 @@ Utils::checkLogin(true);
 <body>
   <?php
   include($ROOT . "includes/header.php");
-  require_once $ROOT . 'scripts/Database.php';
+  require_once $ROOT . 'scripts/database.php';
   $db = new Database();
 
   if (isset($_POST["mBenutzer"]) && isset($_POST["mPasswort"]) && isset($_POST["mType"])) {

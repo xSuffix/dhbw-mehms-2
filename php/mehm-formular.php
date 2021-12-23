@@ -1,5 +1,5 @@
 <?php
-require_once 'scripts/Utils.php';
+require_once 'scripts/utils.php';
 Utils::checkLogin(false);
 ?>
 
@@ -23,7 +23,7 @@ Utils::checkLogin(false);
   <main class="container">
     <section class="paper">
       <?php
-      require_once 'scripts/Database.php';
+      require_once 'scripts/database.php';
       $db = new Database();
 
       if (!isset($_FILES["mDatei"])) {

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'scripts/Database.php';
+require_once 'scripts/database.php';
 $db = new Database();
 const BASE_QUERY = "SELECT * FROM users where Name Like '";
 

@@ -35,7 +35,7 @@ class Utils {
   /**
    * getMehmCards holt sich die gewollten Mehms aus der Datenbank, wandelt sie in cards um und gibt diese aus.
    * Hier wird auch entschieden, ob zusätzliche Features genutzt werden, z.B. für einen Admin.
-   * @param Database $db -> Eine Database.php-Instanz
+   * @param Database $db -> Eine database.php-Instanz
    * @param array $filter -> ein Array der Struktur ['user' => (string), 'search' => (string)], notwendig für die Suchleiste
    * @param string $category -> die gewünschte Mehm-Kategorie ("Alle", Programmieren", "DHBW", "Andere")
    * @param string $sort -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
