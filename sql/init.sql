@@ -40,16 +40,23 @@ CREATE TABLE mehms
 
 -- Beispieldaten
 INSERT INTO mehms
-VALUES (1, 1, 'Algorithm_Parrot.jpg', 'Birb', 'Programmieren', NULL, true, now());
+VALUES (1, 1, 'algorithm_parrot.jpg', 'Birb', 'Programmieren', NULL, true, now());
 INSERT INTO mehms
-VALUES (2, 2, 'Binary_tree_pants.jpg', 'Binary Tree has pants', 'Programmieren', 'Lollllllllz', false, NULL);
+VALUES (2, 2, 'binary_tree_pants.jpg', 'Binary Tree has pants', 'Programmieren', 'Lollllllllz', false, NULL);
 INSERT INTO mehms
-VALUES (3, 3, 'C++_Python_Timmy.jpeg', 'Timmy lernt C++', 'Programmieren', 'PROGRAMMING', true, now());
+VALUES (3, 3, 'c++_python_timmy.jpeg', 'Timmy lernt C++', 'Programmieren', 'PROGRAMMING', true, now());
 INSERT INTO mehms
-VALUES (4, 5, 'Daniel_Baguecki_Baguette_Wierbicki.jpg', 'Daniel der Baguette-Meister', 'DHBW', 'DER BESTE!!!!!!!11!!',
-        true, now());
+VALUES (4, 5, 'daniel_baguecki_baguette_wierbicki.jpg', 'Daniel der Baguette-Meister', 'DHBW', 'DER BESTE!!!!!!!11!!', true, now());
 INSERT INTO mehms
-VALUES (5, 5, 'Pizza_Pineapple.jpeg', 'Pizza Pineapple', 'Andere', NULL, true, now());
+VALUES (5, 5, 'pizza_pineapple.jpeg', 'Pizza Pineapple', 'Andere', NULL, true, now());
+INSERT INTO mehms
+VALUES (6, 5, 'crypto_guru.jpeg', 'Crypto Guru', 'Andere', 'IOTA Besitzer be like', false, now());
+INSERT INTO mehms
+VALUES (7, 5, 'hacker_knows_where_i_live.jpeg', 'Hacker knows where I live', 'Programmieren', 'Hackerman', true, now());
+INSERT INTO mehms
+VALUES (8, 5, 'noble_atom_guillotine.jpeg', 'NOBLE?!', 'Andere', NULL, true, now());
+INSERT INTO mehms
+VALUES (9, 2, 'html_hacker.jpeg', 'Ich vor 2 Jahren', 'Programmieren', 'CSS Injection ist aber legit :o', true, now());
 
 CREATE TABLE comments
 (
