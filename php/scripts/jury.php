@@ -1,6 +1,9 @@
 <?php
+// Define path to php folder for includes
+$ROOT = '../';
+
 require_once 'Database.php';
-$db = new Database();
+$db = new Database($ROOT);
 
 // Entscheidet anhand eingegangener Action, ob es sich um approve oder decline handelt
 if (isset($_POST['action'])) {

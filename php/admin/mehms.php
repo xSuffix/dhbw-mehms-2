@@ -1,5 +1,5 @@
 <?php
-// Define path to php folder for includes in meta.php
+// Define path to php folder for includes
 $ROOT = '../';
 
 require_once $ROOT . 'scripts/Utils.php';
@@ -61,7 +61,7 @@ Utils::checkLogin(true);
   <?php
   include($ROOT . "includes/header.php");
   require_once $ROOT . 'scripts/Database.php';
-  $db = new Database();
+  $db = new Database($ROOT);
   ?>
 
   <main class="container">
