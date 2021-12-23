@@ -26,13 +26,16 @@ Utils::checkLogin(true);
         require_once 'scripts/Database.php';
         $db = new Database();
 
+        // Verschiebe das hochgeladene Mehm in den assets/mehm/ Ordner.
         $target_dir = "assets/mehms/";
         $target_file = $target_dir . basename($_FILES["mDatei"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
+        // Prüfe, ob Dateiformat erlaubt ist.
         if($imageFileType == 'png' || $imageFileType == 'jpg' || $imageFileType == 'jpeg' || $imageFileType == 'gif'|| $imageFileType == 'webp'){
 
             if (move_uploaded_file($_FILES["mDatei"]["tmp_name"], $target_file)) {
+                // Hole notwendige Parameter aus POST und schreibe die Informationen in die Datenbank.
                 $desc = $_POST["mBildbeschreibung"] == '' ? NULL : $_POST["mBildbeschreibung"];
                 $filename = $_FILES["mDatei"]["name"];
                 $kategorie = $_POST["mKategorie"];
@@ -52,7 +55,7 @@ Utils::checkLogin(true);
             }
         }
         else {
-            echo "Falsches Dateiformat! Bitte benutze nur .png .jpg .jpeg .gif oder .webp</h1>";
+            echo "<h1>Falsches Dateiformat! Bitte benutze nur .png .jpg .jpeg .gif oder .webp</h1>";
         }
         ?>
     </section>

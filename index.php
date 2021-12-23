@@ -36,7 +36,8 @@ session_start();
 
 
 <body>
-  <?php include("includes/header.php");
+  <?php
+  include("includes/header.php");
   require_once "scripts/Database.php";
   require_once "scripts/Utils.php";
   $db = new Database();
@@ -66,7 +67,7 @@ session_start();
       <?php
       $myMehms = false;
       if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-        include("includes/toolbar/mymehms.php");
+        include("includes/toolbar/mymehms-box.php");
       }
       include("includes/toolbar/search-box.php");
       include("includes/toolbar/filter-box.php");

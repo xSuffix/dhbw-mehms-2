@@ -1,4 +1,4 @@
-<?php $new = isset($_GET["new"]) ? $_GET["new"] : false; ?>
+<?php $new = $_GET["new"] ?? false; ?>
 
 <label for="new" class="<?php echo $new ? 'active' : 'inactive' ?>">
   <svg xmlns="http://www.w3.org/2000/svg" class="box active" viewBox="0 0 20 20" fill="currentColor">

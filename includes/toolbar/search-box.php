@@ -1,4 +1,4 @@
-<?php $search = isset($_GET["search"]) ? $_GET["search"] : ""; ?>
+<?php $search = $_GET["search"] ?? ""; ?>
 
 <div class="search-box">
   <svg xmlns="http://www.w3.org/2000/svg" class="i-search" viewBox="0 0 20 20" fill="currentColor">

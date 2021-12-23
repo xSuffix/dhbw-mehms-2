@@ -1,4 +1,4 @@
-<?php $asc = isset($_GET["asc"]) ? $_GET["asc"] : false; ?>
+<?php $asc = $_GET["asc"] ?? false; ?>
 
 <label for="asc" class="<?php echo $asc ? 'asc' : 'desc' ?>">
   <svg xmlns="http://www.w3.org/2000/svg" class="box asc" viewBox="0 0 20 20" fill="currentColor">

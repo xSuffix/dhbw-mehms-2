@@ -11,8 +11,12 @@ class Database
         $this->connectToDatabase();
     }
 
-    // connectToDatabase verbindet die hier spezifizierte Datenbank und speichert sie als PDO
-    // Ist die Datenbank noch nicht initialisiert, wird setupDatabase() aufgerufen
+
+    /**
+     * connectToDatabase verbindet die hier spezifizierte Datenbank und speichert sie als PDO in $database
+     * Ist die Datenbank noch nicht initialisiert, wird setupDatabase() aufgerufen
+     * @return void
+     */
     public function connectToDatabase()
     {
         $mysql_host = "localhost";
@@ -30,10 +34,12 @@ class Database
         }
     }
 
-    // Datenbanksetup und Ausführen der init.sql in der $emptyDB
-    // Parameter:
-    // $emptyDB (database) -> Datenbank, die Setup benötigt
-    private function setupDatabase($emptyDB)
+    /**
+     * Datenbanksetup und Ausführen der init.sql auf die $emptyDB
+     * @param PDO $emptyDB -> Eine leere Datenbank
+     * @return void
+     */
+    private function setupDatabase(PDO $emptyDB)
     {
 
         $query = file_get_contents("scripts/init.sql");
@@ -47,18 +53,18 @@ class Database
         }
     }
 
-    // getMehms holt ein Array aus Mehms aus der Datenbank, sortiert nach den Parametern $sort and $asc sowie
-    // gefiltert nach $filter und $category.
-    // Ein Admin kann alle Mehms oder nur solche, die (noch) nicht approved sind, sehen
-    // Parameter:
-    // $filter (Array) -> ein Array der Struktur ['user' => (string), 'search' => (string)], notwendig wegen der Suchleiste
-    // $category (string) -> die gewünschte Mehm-Kategorie ("Programmieren", "DHBW", "Andere")
-    // $sort (string) -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
-    // $asc (boolean) -> Reihenfolge: ascending (true), oder descending (false)
-    // $admin (boolean) -> Adminansicht (true) oder normale Useransicht (false)
-    // Rückgabewert:
-    // (Array) -> alle Mehms, die von der Query erfasst wurden
-    public function getMehms($filter, $category, $sort, $asc, $admin): array
+    /**
+     * getMehms holt ein Array aus Mehms aus der Datenbank, sortiert nach den Parametern $sort and $asc sowie
+     * gefiltert nach $filter und $category.
+     * Ein Admin kann alle Mehms oder nur solche, die (noch) nicht approved sind, sehen
+     * @param array $filter -> ein Array der Struktur ['user' => (string), 'search' => (string)], notwendig wegen der Suchleiste
+     * @param string $category -> die gewünschte Mehm-Kategorie ("Alle", "Programmieren", "DHBW", "Andere")
+     * @param string $sort -> der Parameter, nach dem sortiert werden soll ("date", "likes", "comments", "notVisibleOnly")
+     * @param boolean $asc -> Reihenfolge: ascending (true), oder descending (false)
+     * @param boolean $admin -> Adminansicht (true) oder normale Useransicht (false)
+     * @return array -> alle Mehms, die von der Query erfasst wurden
+     */
+    public function getMehms(array $filter, string $category, string $sort, bool $asc, bool $admin): array
     {
         $query = 'SELECT *, mehms.UserID as UserID, mehms.ID as ID, mehms.Type as Type FROM mehms';
 
@@ -160,12 +166,14 @@ class Database
 
 
     /**
-     * Return specific Mehm from database by ID inside array
+     * Gibt ein spezifisches Mehm anhand seiner ID zurück.
+     * Zusätzlich werden weitere Informationen aus User- und Likes-Tabelle geladen.
      *
-     * @param integer $id ID of Mehm
-     * @param boolean $admin if hidden Mehms should be found
+     * @param integer $id -> ID des Mehms
+     * @param boolean $admin -> Ob nicht sichtbare Mehms erlaubt sind.
+     * @return array -> Das Mehm
      */
-    public function getMehm(int $id, bool $admin): array { //TODO Query einschränken?
+    public function getMehm(int $id, bool $admin): array {
         $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type, mehms.ID AS ID, mehms.UserID as UID
       FROM mehms
       LEFT JOIN users u ON mehms.UserID = u.ID
@@ -187,8 +195,11 @@ class Database
         }
     }
 
-    
-    // Holt sich Kommentare anhand der Mehm-ID aus der Datenbank und gibt diese zurück.
+    /**
+     * Holt sich alle Kommentare anhand der Mehm-ID aus der Datenbank und gibt diese zurück.
+     * @param int $id -> ID des Mehms
+     * @return array -> Kommentare
+     */
     public function getComments(int $id): array
     {
         $query = 'SELECT u.Name AS Name, Comment, u.ID as UID, Timestamp, comments.ID as ID
@@ -204,6 +215,11 @@ class Database
         }
     }
 
+    /**
+     * Löscht einen User aus der Datenbank
+     * @param int $id -> ID des Users
+     * @return void
+     */
     public function deleteUser(int $id) {
         $this->database->query("DELETE FROM users WHERE ID = '$id'");
     }
