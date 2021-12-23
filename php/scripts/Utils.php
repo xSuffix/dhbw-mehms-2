@@ -61,7 +61,11 @@ class Utils {
       $imageName = $image["Title"];
       $imageFile = $dirname . $image["Path"];
       if ($imageFile != "../assets/mehms/rick.gif") {
-        $sizes = getimagesize($imageFile);
+        try {
+          $sizes = getimagesize($imageFile);
+        } catch (Exception $e) {
+          echo '<script>console.log("Picture could not be found.");</script>';
+        }
         try {
           if ($admin) {
             $infix = Utils::adminInfix($image["ID"]);
