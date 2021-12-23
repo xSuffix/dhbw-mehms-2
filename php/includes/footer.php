@@ -15,7 +15,7 @@
       <section>
         <p><strong>Folge uns</strong></p>
         <div class="social-icons">
-          <a href="https://github.com/xSuffix/dhbw-memes" target="_blank" rel="noopener">
+          <a href="https://github.com/xSuffix/dhbw-mehms-2" target="_blank" rel="noopener">
             <img src="<?php echo $ROOT ?>../assets/icons/github.svg" alt="GitHub" width="32">
           </a>
           <a href="mailto:mehms4DHBW@gmail.com">

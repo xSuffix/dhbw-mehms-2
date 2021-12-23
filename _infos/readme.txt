@@ -43,3 +43,5 @@ Zusätzliche Funktionen
 
 Hinweise:
 * Rickroll wird im Local Storage abgespeichert und ist daher nur einmal ausführbar ('rick'->'roll')
+* Wir erinnern: SVG-Errors sind zu vernachlässigen
+* GitHub-Repo: https://github.com/xSuffix/dhbw-mehms-2
