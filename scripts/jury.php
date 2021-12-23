@@ -37,7 +37,7 @@
             print_r("decline");
         } else {
             $db->database->query("DELETE FROM mehms WHERE ID=" . $index);
-            printr("delete");
+            print_r("delete");
         }
     }
 ?>
