@@ -196,8 +196,8 @@
             </p>
           </div>
         </div>
-        <h1 id="title" <?php if ($isPrivileged) echo 'class="editable" contenteditable="true"' ?>><?php echo $mehm["Title"] ?></h1>
-        <p <?php if ($isPrivileged && $mehm["Description"] != "") echo 'class="editable" id="descp" contenteditable="true"' ?>><?php echo $mehm["Description"] ?></p>
+        <h1 id="title" <?php if ($isPrivileged) echo 'class="editable" contenteditable="true"' ?>><?php echo htmlspecialchars($mehm["Title"]) ?></h1>
+        <p <?php if ($isPrivileged && $mehm["Description"] != "") echo 'class="editable" id="descp" contenteditable="true"' ?>><?php echo nl2br(htmlspecialchars($mehm["Description"])) ?></p>
         <?php if ($isPrivileged && $mehm["Description"] == "") {
           echo '<textarea id="desct" placeholder="Beschreibe was du siehst"></textarea>';
         } ?>
@@ -297,8 +297,9 @@
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
     document.getElementById("title").oninput = function() {
       const t = document.getElementById("title");
+      console.log();
       const mehmId = new URLSearchParams(window.location.search).get('id')
-      var edit = t.innerHTML.replace("<br>", " ");
+      var edit = t.innerText.replaceAll("\n", " ");
       if (edit == " " || edit == "") {
         return;
       }
@@ -315,7 +316,7 @@
       const t = document.getElementById("descp");
       t.oninput = function() {
         const mehmId = new URLSearchParams(window.location.search).get('id')
-        var edit = t.innerHTML;
+        var edit = t.innerText;
         if (edit.replace("<br>", "") == "") {
           edit = "";
         }
