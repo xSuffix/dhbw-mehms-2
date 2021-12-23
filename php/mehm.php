@@ -85,7 +85,7 @@
 
   // Redirect auf mehms.php, wenn id-Parameter zur Mehm-Spezifikation nicht vorhanden ist
   if ($id == "") {
-    header('Location: mehms.php');
+    header('Location: mehms');
     exit;
   }
 
@@ -93,7 +93,7 @@
   $isAdmin = isset($_SESSION) && $_SESSION["usertype"] == 1;
   $mehm = $db->getMehm($id, $isAdmin);
   if ($mehm["Title"] == '') {
-    header('Location: mehms.php');
+    header('Location: mehms');
     exit;
   }
 
