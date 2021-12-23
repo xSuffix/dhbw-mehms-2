@@ -111,11 +111,14 @@ class Utils
     {
         session_start();
 
-        if (!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true)) {
-            if (!$requireAdmin || (!$_SESSION["type"] == 1)) {
-                header("location: mehms.php");
+        if ((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] === true)) {
+            if ($requireAdmin && (!$_SESSION["type"] == 1)) {
+                header("location: ../mehms.php");
                 exit;
             }
+        } else {
+            header("location: mehms.php");
+            exit;
         }
     }
 
