@@ -4,7 +4,7 @@
       <section class="about">
         <p><strong>Über DHBW Mehms</strong></p>
         <div class="logo">
-          <img src="./assets/logo.png" alt="Dogo the Logo" height="62">
+          <img src="../assets/logo.png" alt="Dogo the Logo" height="62">
           <div>
             <div>DHBW</div>
             <div>Mehms</div>
@@ -16,10 +16,10 @@
         <p><strong>Folge uns</strong></p>
         <div class="social-icons">
           <a href="https://github.com/xSuffix/dhbw-memes" target="_blank" rel="noopener">
-            <img src="./assets/icons/github.svg" alt="GitHub" width="32">
+            <img src="../assets/icons/github.svg" alt="GitHub" width="32">
           </a>
           <a href="mailto:mehms4DHBW@gmail.com">
-            <img src="./assets/icons/gmail.svg" alt="Mail" width="24">
+            <img src="../assets/icons/gmail.svg" alt="Mail" width="24">
           </a>
         </div>
       </section>
