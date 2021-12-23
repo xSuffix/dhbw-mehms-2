@@ -21,6 +21,8 @@ INSERT INTO users
 VALUES (4, 'Pfandsucher', 'user', 'USER');
 INSERT INTO users
 VALUES (5, 'Kapitän_zur_See', 'user', 'USER');
+INSERT INTO users
+VALUES (6, 'user', 'user', 'USER');
 
 
 CREATE TABLE mehms
