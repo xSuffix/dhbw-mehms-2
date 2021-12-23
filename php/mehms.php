@@ -67,7 +67,7 @@ session_start();
       <?php
       $myMehms = false;
       if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-        include("includes/toolbar/mymehms.php");
+        include("includes/toolbar/mymehms-box.php");
       }
       include("includes/toolbar/search-box.php");
       include("includes/toolbar/filter-box.php");
