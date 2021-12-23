@@ -21,7 +21,7 @@ Login:
 * User: user / user
 
 XAMPP-Version: 
-* XAMPP for Windows 7.3.26
+* XAMPP for Windows 8.0.13
 
 3rd Party Library: 
 * 
