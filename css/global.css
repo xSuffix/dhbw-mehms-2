@@ -127,6 +127,16 @@ summary {
   font-family: var(--font-icon);
 }
 
+.icon-sm {
+  height: 20px;
+  width: 20px;
+}
+
+.icon-md {
+  height: 24px;
+  width: 24px;
+}
+
 .i-home::before {
   content: "\e901";
 }
