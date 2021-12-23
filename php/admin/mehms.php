@@ -14,7 +14,7 @@ Utils::checkLogin(true);
   <link rel="stylesheet" href="<?php echo $ROOT ?>../css/mehms.css">
   <link rel="stylesheet" href="<?php echo $ROOT ?>../css/admin.css">
   <link rel="stylesheet" href="<?php echo $ROOT ?>../css/toolbar.css">
-  <script type="text/javascript" src="../js/select-mehms.js"></script>
+  <script type="text/javascript" src="<?php echo $ROOT ?>../js/select-mehms.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <?php include($ROOT . "includes/meta.php"); ?>
   <style>
@@ -47,7 +47,7 @@ Utils::checkLogin(true);
         const clickBtnValue = $(this).attr('id');
         const btnType = clickBtnValue[0];
         const mehmId = clickBtnValue.substring(1);
-        const ajaxurl = 'scripts/jury.php',
+        const ajaxurl = '<?php echo $ROOT ?>scripts/jury.php',
           data = {
             'action': btnType,
             'id': mehmId
