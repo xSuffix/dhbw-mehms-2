@@ -297,9 +297,8 @@
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
     document.getElementById("title").oninput = function() {
       const t = document.getElementById("title");
-      console.log();
       const mehmId = new URLSearchParams(window.location.search).get('id')
-      var edit = t.innerText.replaceAll("\n", " ");
+      let edit = t.innerText.replaceAll("\n", " ");
       if (edit == " " || edit == "") {
         return;
       }
@@ -316,7 +315,7 @@
       const t = document.getElementById("descp");
       t.oninput = function() {
         const mehmId = new URLSearchParams(window.location.search).get('id')
-        var edit = t.innerText;
+        let edit = t.innerText;
         if (edit.replace("<br>", "") == "") {
           edit = "";
         }
@@ -335,7 +334,7 @@
       t.oninput = function() {
         const url = window.location.href.split("id=");
         const mehmId = url[1];
-        var edit = t.value.replace("\n", "<br>");
+        let edit = t.value.replace("\n", "<br>");
         if (edit == "<br>") {
           edit = "";
         }
