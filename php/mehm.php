@@ -199,7 +199,7 @@
         <h1 id="title" <?php if ($isPrivileged) echo 'class="editable" contenteditable="true"' ?>><?php echo htmlspecialchars($mehm["Title"]) ?></h1>
         <p <?php if ($isPrivileged && $mehm["Description"] != "") echo 'class="editable" id="descp" contenteditable="true"' ?>><?php echo nl2br(htmlspecialchars($mehm["Description"])) ?></p>
         <?php if ($isPrivileged && $mehm["Description"] == "") {
-          echo '<textarea id="desct" placeholder="Beschreibe was du siehst"></textarea>';
+          echo '<textarea id="descp" placeholder="Beschreibe was du siehst"></textarea>';
         } ?>
         <div class="flex">
 
@@ -299,7 +299,7 @@
       const t = document.getElementById("title");
       const mehmId = new URLSearchParams(window.location.search).get('id')
       let edit = t.innerText.replaceAll("\n", " ");
-      if (edit == " " || edit == "") {
+      if (!edit.replace(/\s/g, '').length) {
         return;
       }
       const ajaxurl = 'scripts/mehm/edit-mehm.php',
@@ -315,8 +315,8 @@
       const t = document.getElementById("descp");
       t.oninput = function() {
         const mehmId = new URLSearchParams(window.location.search).get('id')
-        let edit = t.innerText;
-        if (edit.replace("<br>", "") == "") {
+        let edit = t.innerText || t.value;
+        if (!edit.replace(/\s/g, '').length) {
           edit = "";
         }
         const ajaxurl = 'scripts/mehm/edit-mehm.php',
