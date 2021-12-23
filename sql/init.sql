@@ -40,23 +40,23 @@ CREATE TABLE mehms
 
 -- Beispieldaten
 INSERT INTO mehms
-VALUES (1, 1, 'algorithm_parrot.jpg', 'Birb', 'Programmieren', NULL, true, now() - 500);
+VALUES (1, 1, 'algorithm-parrot.jpg', 'Birb', 'Programmieren', NULL, true, now() - 500);
 INSERT INTO mehms
-VALUES (2, 2, 'binary_tree_pants.jpg', 'Binary Tree has pants', 'Programmieren', 'Lollllllllz', false, NULL);
+VALUES (2, 2, 'binary-tree-pants.jpg', 'Binary Tree has pants', 'Programmieren', 'Lollllllllz', false, NULL);
 INSERT INTO mehms
-VALUES (3, 3, 'c++_python_timmy.jpeg', 'Timmy lernt C++', 'Programmieren', 'PROGRAMMING', true, now() - 500);
+VALUES (3, 3, 'c++-python-timmy.jpeg', 'Timmy lernt C++', 'Programmieren', 'PROGRAMMING', true, now() - 500);
 INSERT INTO mehms
-VALUES (4, 5, 'daniel_baguecki_baguette_wierbicki.jpg', 'Daniel der Baguette-Meister', 'DHBW', 'DER BESTE!!!!!!!11!!', true, now() - 300);
+VALUES (4, 5, 'daniel-baguecki-baguette-wierbicki.jpg', 'Daniel der Baguette-Meister', 'DHBW', 'DER BESTE!!!!!!!11!!', true, now() - 300);
 INSERT INTO mehms
-VALUES (5, 5, 'pizza_pineapple.jpeg', 'Pizza Pineapple', 'Andere', NULL, true, now());
+VALUES (5, 5, 'pizza-pineapple.jpeg', 'Pizza Pineapple', 'Andere', NULL, true, now());
 INSERT INTO mehms
-VALUES (6, 5, 'crypto_guru.jpeg', 'Crypto Guru', 'Andere', 'IOTA Besitzer be like', false, now() - 500);
+VALUES (6, 5, 'crypto-guru.jpeg', 'Crypto Guru', 'Andere', 'IOTA Besitzer be like', false, now() - 500);
 INSERT INTO mehms
-VALUES (7, 5, 'hacker_knows_where_i_live.jpeg', 'Hacker knows where I live', 'Programmieren', 'Hackerman', true, now());
+VALUES (7, 5, 'hacker-knows-where-i-live.jpeg', 'Hacker knows where I live', 'Programmieren', 'Hackerman', true, now());
 INSERT INTO mehms
-VALUES (8, 5, 'noble_atom_guillotine.jpeg', 'NOBLE?!', 'Andere', NULL, true, now() - 590);
+VALUES (8, 5, 'noble-atom-guillotine.jpeg', 'NOBLE?!', 'Andere', NULL, true, now() - 590);
 INSERT INTO mehms
-VALUES (9, 2, 'html_hacker.jpeg', 'Ich vor 2 Jahren', 'Programmieren', 'CSS Injection ist aber legit :o', true, now() - 800);
+VALUES (9, 2, 'html-hacker.jpeg', 'Ich vor 2 Jahren', 'Programmieren', 'CSS Injection ist aber legit :o', true, now() - 800);
 
 CREATE TABLE comments
 (
