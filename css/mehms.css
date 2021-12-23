@@ -27,6 +27,11 @@ body.scrolled:not(.scroll-up) header {
   gap: 8px;
 }
 
+#mehm-gallery::after {
+  content: "";
+  flex-grow: 999999999;
+}
+
 .mehm-card {
   position: relative;
   border: 1px solid var(--color-border);
