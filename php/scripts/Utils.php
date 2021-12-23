@@ -11,7 +11,7 @@ class Utils
      * @param string $input -> die Eingabe über die Suchleiste
      * @return array -> die verarbeitete Suche
      */
-    #[ArrayShape(["user" => "string", "search" => "string"])] public static function extractUser(string $input): array
+    public static function extractUser(string $input): array
     {
         $words = explode(' ', $input);
         $ret = ["user" => '', "search" => ''];
