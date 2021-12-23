@@ -6,4 +6,4 @@ require_once '../Database.php';
 $db = new Database($ROOT);
 
 $id = $_POST['id'];
-$db->database->query("DELETE FROM mehms WHERE ID = " . $id);
+$db->deleteMehm($id);

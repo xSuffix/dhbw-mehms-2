@@ -31,12 +31,12 @@ function approveMehm(int $index)
 }
 
 /**
- * declineMehm setzt ein gewähltes Mehm auf Visible = false, sodass jeder User es sehen kann.
- * Ist das Mehm bereits nicht Visible, kann es durch ein weiteres decline vollends abgelehnt und entfernt werden.
+ * declineMehm löscht ein Mehm aus der Datenbank
  * @param int $index
  * @return void
  */
 function declineMehm(int $index)
 {
-    $db->database->query("DELETE FROM mehms WHERE ID=" . $index);
+    global $db;
+    $db->deleteMehm($index);
 }

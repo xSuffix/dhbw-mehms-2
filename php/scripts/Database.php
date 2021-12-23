@@ -207,8 +207,8 @@ class Database {
    * @return void
    */
   public function deleteMehm(int $id) {
-    $mehm = $this->database->query("SELECT Path FROM mehms WHERE ID = '$id'");
-    $mehmPath = "../assets/mehms/" . mehm[0];
+    $mehm = $this->database->query("SELECT Path FROM mehms WHERE ID = '$id'")->fetchAll();
+    $mehmPath = $ROOT . "assets/mehms/" . $mehm[0]["Path"];
     unlink($mehmPath);
 
     $this->database->query("DELETE FROM mehms WHERE ID = '$id'");
