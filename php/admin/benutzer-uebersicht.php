@@ -1,6 +1,9 @@
 <?php
 require_once '../scripts/Utils.php';
 Utils::checkLogin(true);
+
+// Define path to php folder for includes in meta.php
+$ROOT = '../';
 ?>
 
 <!DOCTYPE html>
