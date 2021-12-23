@@ -79,7 +79,7 @@ session_start();
     <div id="mehm-gallery">
       <?php
       $filter = Utils::extractUser($search);
-      Utils::getMehmCards($db, $filter, $category, $sort, $asc, false, $myMehms);
+      Utils::getMehmCards("", $db, $filter, $category, $sort, $asc, false, $myMehms);
       ?>
       <div id="theater"></div>
     </div>

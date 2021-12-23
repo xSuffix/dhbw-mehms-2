@@ -1,7 +1,4 @@
 <?php
-
-use JetBrains\PhpStorm\ArrayShape;
-
 class Utils {
   /**
    * Wandelt $input-String aus Suchleiste in ein $filter-Array um (['user' => (string), 'search' => (string)])
@@ -46,7 +43,7 @@ class Utils {
    * @param bool $myMehms -> nur eigene Mehms anzeigen (true), andere Filter (false)
    * @return void
    */
-  public static function getMehmCards(Database $db, array $filter, string $category, string $sort, bool $asc, bool $admin, bool $myMehms) {
+  public static function getMehmCards(string $ROOT, Database $db, array $filter, string $category, string $sort, bool $asc, bool $admin, bool $myMehms) {
     $images = $db->getMehms($filter, $category, $sort, $asc, $admin);
 
     if ($myMehms) {
@@ -57,7 +54,7 @@ class Utils {
         }
       }
     }
-    $dirname = "../../assets/mehms/";
+    $dirname = $ROOT . "../assets/mehms/";
 
     foreach ($images as $image) {
       $imageID = $image["ID"];
