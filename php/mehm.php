@@ -51,7 +51,6 @@
    * @return string Formatierter String
    * @throws Exception
    */
-
   function timeElapsedString(string $datetime, int $level = 1): string {
     $now = new DateTime;
     $ago = new DateTime($datetime);
@@ -86,7 +85,7 @@
 
   // Redirect auf mehms.php, wenn id-Parameter zur Mehm-Spezifikation nicht vorhanden ist
   if ($id == "") {
-    header('Location: .');
+    header('Location: mehms.php');
     exit;
   }
 
@@ -94,7 +93,7 @@
   $isAdmin = isset($_SESSION) && $_SESSION["usertype"] == 1;
   $mehm = $db->getMehm($id, $isAdmin);
   if ($mehm["Title"] == '') {
-    header('Location: .');
+    header('Location: mehms.php');
     exit;
   }
 
