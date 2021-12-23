@@ -386,6 +386,8 @@
       document.body.removeChild(copy);
       document.getElementById("share-button").classList.add("pressed");
     }
+
+    jdenticon.update("svg");
   </script>
 </body>
 
