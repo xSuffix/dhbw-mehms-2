@@ -499,9 +499,9 @@ if (session_status() == PHP_SESSION_NONE) {
             </a>
             <div class="flex">
                 <nav>
-                    <a href="php/vines">Vines</a>
-                    <a href="php/zahlen">Zahlen</a>
-                    <a href="php/kontakt">Kontakt</a>
+                    <a href="vines">Vines</a>
+                    <a href="zahlen">Zahlen</a>
+                    <a href="kontakt">Kontakt</a>
                 </nav>
                 <a class="box user <?php if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) echo 'logedin' ?>"
                    href="login">
