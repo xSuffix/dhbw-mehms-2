@@ -1,4 +1,6 @@
 <?php
+// Dieses PHP-Skript aktualisiert einen neuen Kommentar in der Datenbank anhand seiner $id mit $text.
+
 // Define path to php folder for includes
 $ROOT = '../../';
 

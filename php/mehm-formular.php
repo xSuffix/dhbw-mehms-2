@@ -1,6 +1,6 @@
 <?php
 require_once 'scripts/Utils.php';
-Utils::checkLogin(true);
+Utils::checkLogin(false);
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,6 @@ Utils::checkLogin(true);
 
 <head>
   <link href="../css/formular.css" rel="stylesheet">
-  <meta charset="UTF-8">
   <title> Dein Mehm - Upload </title>
   <?php include("includes/meta.php"); ?>
   <style>

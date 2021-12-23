@@ -8,10 +8,10 @@ Team:
 * Mehmengineering
 
 Matrikelnummern: 
-*2032766 (Jan)
-*2318815 (Gabriel)
-*1145498 (Miriam)
-*9480980 (Fabian)
+* 2032766 (Jan)
+* 2318815 (Gabriel)
+* 1145498 (Miriam)
+* 9480980 (Fabian)
 
 Programm starten:
 * http://localhost/dhbw/dhbw-mehms-2/
@@ -24,11 +24,19 @@ XAMPP-Version:
 * XAMPP for Windows 8.0.13
 
 3rd Party Library: 
-* 
+* JavaScript:
+  * jQuery: "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+  * jdenticon: "https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js"
 
 Zusätzliche Funktionen
-*Zeitstempel bei Mehms
-*Generierte Profilbilder
+* Zeitstempel bei Mehms/Kommentaren
+* Generierte Profilbilder
+* Beim Hovern über Like/Kommentare wird ein anderes Zeichen als Cursor angezeigt, wenn man nicht eingeloggt ist.
+* Beim Löschen eines Users werden alle User-verwandten Daten vernichtet.
+* Beim Löschen von Mehms wird nicht nur der Datenbankeintrag, sondern auch die physische Datei gelöscht.
+* Hintergrundfarbe ändert sich je nach Seite
 
 Hinweise:
-* ..
+* Rickroll wird im Local Storage abgespeichert und ist daher nur einmal ausführbar ('rick'->'roll')
+* Die im Video dargestellte Funktionalität unterschreitet die eigentliche Funktionalität stark
+  * Möglicherweise wurde das Video zu früh aufgenommen

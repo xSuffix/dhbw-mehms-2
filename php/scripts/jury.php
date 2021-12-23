@@ -1,5 +1,7 @@
 <?php
-// Define path to php folder for includes
+// Dieses Skript führt die Aktion Approve und Decline aus der Admin-Page aus.
+
+// Definiert Pfad zum php-Ordner für includes
 $ROOT = '../';
 
 require_once 'Database.php';

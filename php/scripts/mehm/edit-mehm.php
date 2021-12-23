@@ -1,5 +1,7 @@
 <?php
-// Define path to php folder for includes
+// Dieses Skript ändert ein Mehm anhand seiner $id. Je nach Action wird der Titel oder die Beschreibung geändert.
+
+// Definiert Pfad zum php-Ordner für includes
 $ROOT = '../../';
 
 require_once '../Database.php';

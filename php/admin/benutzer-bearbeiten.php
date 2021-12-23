@@ -48,11 +48,11 @@ Utils::checkLogin(true);
             <label for="passwort" class="required">Passwort</label>
             <input id="passwort" required type="password" placeholder="Passwort" name="mPasswort" value="' . $benutzer["Password"] . '">
             <label for="type" class="required">Typ</label>
-            <select name="mType" id="type" required>
-              <option value="ADMIN"';
+            <select name="mType" id="type">
+              <option value="ADMIN" ';
       echo $isAdmin ? "selected" : "";
       echo '>Admin</option>
-              <option value="USER"';
+              <option value="USER" ';
       echo !$isAdmin ? "selected" : "";
       echo '>User</option>
             </select>

@@ -1,5 +1,6 @@
 <?php
-
+// Diese Klasse hält zum einen die Verbindung zur Datenbank aufrecht,
+// zum anderen befinden sich hier viele Funktionen, die Queries auf der Datenbank ausführen.
 class Database {
   public PDO $database;
 

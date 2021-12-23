@@ -1,5 +1,8 @@
 <?php
-// Define path to php folder for includes
+// Dieses Skript führt die Like-Aktion der Mehm-Seite aus.
+// Je nachdem, ob der User das Mehm bereits geliked hat, wird der Like gesetzt oder gelöscht.
+
+// Definiert Pfad zum php-Ordner für includes
 $ROOT = '../';
 
 require_once 'Database.php';

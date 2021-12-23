@@ -14,7 +14,7 @@
       --banner-bottom: #4bd8f6;
     }
 
-    /* Color for selected page in navigation */
+    /* Farbe für die ausgewählte Seite im Navigationsbereich */
     .home {
       animation: 0.2s color-p-primary forwards;
     }
@@ -129,7 +129,7 @@
             <p>Kommentiere als <a class="underline" href="mehms?search=u/' . $_SESSION["username"] . '">' . $_SESSION["username"] . '</a></p>
             </label>
             <textarea id="message" placeholder="LOL!" required></textarea>
-            <button id="' . $mehm['ID'] . ' ' . $_SESSION['id'] . '">Kommentieren</button>
+            <button id="' . $mehm['ID'] . '-' . $_SESSION['id'] . '">Kommentieren</button>
             </form>';
           } else {
             echo '<a class="underline icon-text" href="./login">
@@ -214,7 +214,7 @@
               $liked = $db->database->query($query)->fetchall();
               if (!empty($liked)) $beat = ' beat';
             }
-            echo '<svg xmlns="http://www.w3.org/2000/svg" class="icon-md' . $beat . '" id="' . $mehm['ID'] . ' ' . $sess . '" viewBox="0 0 20 20" fill="currentColor">
+            echo '<svg xmlns="http://www.w3.org/2000/svg" class="icon-md' . $beat . '" id="a' . $mehm['ID'] . 'a' . $sess . '" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
               </svg>' ?>
             <?php echo $mehm['likeCount'] ?> Like<?php if ($mehm['likeCount'] != 1) echo "s"; ?>
@@ -253,9 +253,9 @@
     jQuery(function() {
       $('#like').click(function() {
         const child = $(this).children('svg')[0];
-        const ids = $(child).attr('id').split(" ");
-        const mehmId = ids[0];
-        const uId = ids[1];
+        const ids = $(child).attr('id').split("a");
+        const mehmId = ids[1];
+        const uId = ids[2];
         const status = $(child).hasClass('beat');
         const ajaxurl = 'scripts/like.php',
           data = {
@@ -275,7 +275,7 @@
         e.preventDefault();
 
         let child = $(this).children('button')[0];
-        const ids = $(child).attr('id').split(" ");
+        const ids = $(child).attr('id').split("-");
         const mehmId = ids[0];
         const uId = ids[1];
         child = $(this).children('textarea')[0];

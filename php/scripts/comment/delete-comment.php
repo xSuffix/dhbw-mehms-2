@@ -1,4 +1,6 @@
 <?php
+// Dieses PHP-Skript löscht einen neuen Kommentar aus der Datenbank anhand seiner $id.
+
 // Define path to php folder for includes
 $ROOT = '../../';
 
