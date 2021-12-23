@@ -9,12 +9,12 @@ xl > 1536px
 
 @font-face {
   font-family: "Press Start 2P";
-  src: url("../fonts/PressStart2P-Regular.woff2");
+  src: url("../assets/fonts/PressStart2P-Regular.woff2");
 }
 
 @font-face {
   font-family: "HeroIcons";
-  src: url("../fonts/HeroIcons.woff2");
+  src: url("../assets/fonts/HeroIcons.woff2");
 }
 
 @keyframes color-p-primary {
