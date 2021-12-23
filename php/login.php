@@ -34,7 +34,7 @@ if (isset($_POST["mAnmelden"])) {
             }
 
             // Nach Login geht es zurück auf die Startseite
-            header("location: index");
+            header("location: mehms");
 
 
         } // Passwort ist falsch
