@@ -285,7 +285,7 @@
       });
     });
 
-    // jQuery-Funktion, die bei Änderung des Mehm-Titels das editmehm.php-Skript ausführt,
+    // jQuery-Funktion, die bei Änderung des Mehm-Titels das edit-mehm.php-Skript ausführt,
     // in dem die Änderung an der Datenbank vollführt werden.
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
     document.getElementById("title").oninput = function() {
@@ -296,7 +296,7 @@
       if (edit == " " || edit == "") {
         return;
       }
-      const ajaxurl = 'scripts/editmehm.php',
+      const ajaxurl = 'scripts/edit-mehm.php',
         data = {
           'changed': 'title',
           'new': edit,
@@ -314,7 +314,7 @@
         if (edit == "<br>") {
           edit = "";
         }
-        const ajaxurl = 'scripts/editmehm.php',
+        const ajaxurl = 'scripts/edit-mehm.php',
           data = {
             'changed': 'desc',
             'new': edit,
@@ -333,7 +333,7 @@
         if (edit == "<br>") {
           edit = "";
         }
-        const ajaxurl = 'scripts/editmehm.php',
+        const ajaxurl = 'scripts/edit-mehm.php',
           data = {
             'changed': 'desc',
             'new': edit,
@@ -343,10 +343,10 @@
       }
     }
 
-    // Ruft deleteComment.php zur Löschung eines Kommentars auf.
+    // Ruft delete-comment.php zur Löschung eines Kommentars auf.
     // Funktion wird durch Knopfdruck auf das Löschen-Icon getriggered.
     function deleteComment(commentId) {
-      const ajaxurl = 'scripts/comment/deleteComment.php',
+      const ajaxurl = 'scripts/comment/delete-comment.php',
         data = {
           'id': commentId,
         };
@@ -355,7 +355,7 @@
       });
     }
 
-    // Ruft editComment.php für die Änderung eines Kommentars auf.
+    // Ruft edit-comment.php für die Änderung eines Kommentars auf.
     // Funktion wird durch Knopfdruck auf das Edit-Icon getriggered.
     function editComment(e, commentId) {
       const p = e.parentNode.parentNode.getElementsByTagName("p")[0];
@@ -365,7 +365,7 @@
       p.oninput = function(e) {
         const text = p.innerText;
         if (text != null) {
-          const ajaxurl = 'scripts/comment/editComment.php',
+          const ajaxurl = 'scripts/comment/edit-comment.php',
             data = {
               'id': commentId,
               'text': text
