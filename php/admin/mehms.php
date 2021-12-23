@@ -43,7 +43,7 @@ Utils::checkLogin(true);
     // in dem die Änderung an der Datenbank vollführt werden.
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht geupdated wird.
     jQuery(function() {
-      $('.button').click(function() {
+      $('.a-button').click(function() {
         const clickBtnValue = $(this).attr('id');
         const btnType = clickBtnValue[0];
         const mehmId = clickBtnValue.substring(1);

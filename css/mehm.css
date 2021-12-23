@@ -225,16 +225,6 @@ main button.meta-icon {
   color: var(--color-p);
 }
 
-main .icon-sm {
-  height: 20px;
-  width: 20px;
-}
-
-main .icon-md {
-  height: 24px;
-  width: 24px;
-}
-
 main .beat {
   color: var(--color-secondary);
 }
