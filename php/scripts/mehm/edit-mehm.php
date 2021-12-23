@@ -1,16 +1,16 @@
 <?php
 // Define path to php folder for includes
-$ROOT = '../';
+$ROOT = '../../';
 
-require_once 'Database.php';
+require_once '../Database.php';
 $db = new Database($ROOT);
 // Entscheidet anhand eingegangener Action, ob es sich um approve oder decline handelt
 print_r($_POST);
 $toChange = $_POST['changed'];
 if ($toChange == 'title') {
-    changeTitle($_POST['id'], $_POST['new']);
+  changeTitle($_POST['id'], $_POST['new']);
 } else {
-    changeDesc($_POST['id'], $_POST['new']);
+  changeDesc($_POST['id'], $_POST['new']);
 }
 
 /**
@@ -19,10 +19,9 @@ if ($toChange == 'title') {
  * @param string $new -> Neuer Titel
  * @return void
  */
-function changeTitle(int $id, string $new)
-{
-    global $db;
-    $db->database->query("UPDATE mehms SET Title = '" . $new . "' WHERE ID = " . $id);
+function changeTitle(int $id, string $new) {
+  global $db;
+  $db->database->query("UPDATE mehms SET Title = '" . $new . "' WHERE ID = " . $id);
 }
 
 /**
@@ -31,8 +30,7 @@ function changeTitle(int $id, string $new)
  * @param string $new -> Neue Beschreibung
  * @return void
  */
-function changeDesc(int $id, string $new)
-{
-    global $db;
-    $db->database->query("UPDATE mehms SET Description = '" . $new . "' WHERE ID = " . $id);
+function changeDesc(int $id, string $new) {
+  global $db;
+  $db->database->query("UPDATE mehms SET Description = '" . $new . "' WHERE ID = " . $id);
 }

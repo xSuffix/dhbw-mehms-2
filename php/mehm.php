@@ -296,9 +296,8 @@
     // in dem die Änderung an der Datenbank vollführt werden.
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
     document.getElementById("title").oninput = function() {
-      var t = document.getElementById("title");
-      const url = window.location.href.split("id=");
-      const mehmId = url[1];
+      const t = document.getElementById("title");
+      const mehmId = new URLSearchParams(window.location.search).get('id')
       var edit = t.innerHTML.replace("<br>", " ");
       if (edit == " " || edit == "") {
         return;
@@ -315,10 +314,9 @@
     if (document.getElementById("descp") != null) {
       const t = document.getElementById("descp");
       t.oninput = function() {
-        const url = window.location.href.split("id=");
-        const mehmId = url[1];
+        const mehmId = new URLSearchParams(window.location.search).get('id')
         var edit = t.innerHTML;
-        if (edit == "<br>") {
+        if (edit.replace("<br>", "") == "") {
           edit = "";
         }
         const ajaxurl = 'scripts/mehm/edit-mehm.php',
