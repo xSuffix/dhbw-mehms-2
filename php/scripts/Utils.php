@@ -19,14 +19,14 @@ class Utils
             case 0:
                 break;
             case 1:
-                if (str_starts_with($words[0], "u/")) {
+                if (substr($words[0],0,2) == "u/") {
                     $ret = ["user" => substr($words[0], 2), "search" => ''];
                     break;
                 }
                 $ret = ["user" => '', "search" => $words[0]];
                 break;
             default:
-                if (str_starts_with($words[0], "u/")) {
+                if (substr($words[0],0,2) == "u/") {
                     $user = substr($words[0], 2);
                     $ret = ["user" => $user, "search" => implode(' ', array_slice($words, 1))];
                     break;
