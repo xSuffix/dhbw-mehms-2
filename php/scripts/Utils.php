@@ -60,7 +60,7 @@ class Utils
                 }
             }
         }
-        $dirname = "./assets/mehms/";
+        $dirname = "../assets/mehms/";
 
         foreach ($images as $image) {
             $imageID = $image["ID"];
