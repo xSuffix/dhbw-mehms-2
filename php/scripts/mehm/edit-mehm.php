@@ -5,7 +5,6 @@ $ROOT = '../../';
 require_once '../Database.php';
 $db = new Database($ROOT);
 // Entscheidet anhand eingegangener Action, ob es sich um approve oder decline handelt
-print_r($_POST);
 $toChange = $_POST['changed'];
 if ($toChange == 'title') {
   changeTitle($_POST['id'], $_POST['new']);

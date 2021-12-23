@@ -47,7 +47,6 @@ Utils::checkLogin(true);
       $filename = str_replace('ö', '-', $filename);
       $filename = str_replace('ü', '-', $filename);
       $filename = str_replace('&', '-', $filename);
-      print_r($filename);
 
       $target_file = $target_dir . $filename;
       $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
