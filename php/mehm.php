@@ -299,7 +299,7 @@
       const t = document.getElementById("title");
       const mehmId = new URLSearchParams(window.location.search).get('id')
       let edit = t.innerText.replaceAll("\n", " ");
-      if (!edit.replace(/\s/g, '').length) {
+      if (!edit || !edit.replace(/\s/g, '').length) {
         return;
       }
       const ajaxurl = 'scripts/mehm/edit-mehm.php',
@@ -316,7 +316,7 @@
       t.oninput = function() {
         const mehmId = new URLSearchParams(window.location.search).get('id')
         let edit = t.innerText || t.value;
-        if (!edit.replace(/\s/g, '').length) {
+        if (!edit || !edit.replace(/\s/g, '').length) {
           edit = "";
         }
         const ajaxurl = 'scripts/mehm/edit-mehm.php',
