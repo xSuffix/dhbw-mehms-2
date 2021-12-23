@@ -33,60 +33,7 @@
 </head>
 <body>
 <script>
-    // jQuery-Funktion, die bei Knopfdruck auf den Like-Button das like.php-Skript ausführt,
-    // in dem die Änderung an der Datenbank vollführt werden.
-    // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
 
-    // Beim Submitten eines Kommentars wird stattdessen comment.php aufgerufen.
-    $(document).ready(function () {
-        $('#like').click(function () {
-            const child = $(this).children('svg')[0];
-            const ids = $(child).attr('id').split(" ");
-            const mehmId = ids[0];
-            const uId = ids[1];
-            const status = $(child).hasClass('beat');
-            const ajaxurl = 'scripts/like.php',
-                data = {
-                    'status': status,
-                    'id': mehmId,
-                    'user': uId
-                };
-            $.post(ajaxurl, data, function () {
-                window.location.reload();
-            });
-        });
-        $("#comment").submit(function (e) {
-            e.preventDefault();
-
-            let child = $(this).children('button')[0];
-            const ids = $(child).attr('id').split(" ");
-            const mehmId = ids[0];
-            const uId = ids[1];
-            child = $(this).children('textarea')[0];
-            const text = $(child).val();
-            const ajaxurl = 'scripts/comment/comment.php',
-                data = {
-                    'text': text,
-                    'id': mehmId,
-                    'user': uId
-                };
-            $.post(ajaxurl, data, function () {
-                window.location.reload();
-            });
-        });
-    });
-
-    // Kopiert die aktuelle Mehm-URL in die Zwischenablage
-    function copyURL() {
-        const copy = document.createElement("input"),
-            url = window.location.href;
-        document.body.appendChild(copy);
-        copy.value = url.split("#")[0];
-        copy.select();
-        document.execCommand("copy");
-        document.body.removeChild(copy);
-        document.getElementById("share-button").classList.add("pressed");
-    }
 </script>
 <?php
 require_once 'scripts/Database.php';
@@ -171,7 +118,7 @@ $isPrivileged = $isLogedin && $_SESSION['id'] == $mehm['UID'] || $isAdmin;
     <div class="content">
         <div class="main">
             <div class="paperlike mehm">
-                <img src="<?php echo "./assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
+                <img src="<?php echo "../assets/mehms/" . $mehm["Path"] ?>" alt="<?php echo $mehm["Description"] ?>">
             </div>
             <div class="paperlike comments" id="comments">
                 <?php if ($isLogedin) {
@@ -297,6 +244,52 @@ $isPrivileged = $isLogedin && $_SESSION['id'] == $mehm['UID'] || $isAdmin;
 <?php include("includes/footer.php"); ?>
 <?php include("includes/bottom-navigation.php"); ?>
 <script>
+
+    // jQuery-Funktion, die bei Knopfdruck auf den Like-Button das like.php-Skript ausführt,
+    // in dem die Änderung an der Datenbank vollführt werden.
+    // Nach Ausführung des PHP-Skriptes wird die Seite neu geladen, sodass die Ansicht upgedated wird.
+    jQuery(function () {
+        $('#like').click(function () {
+            const child = $(this).children('svg')[0];
+            const ids = $(child).attr('id').split(" ");
+            const mehmId = ids[0];
+            const uId = ids[1];
+            const status = $(child).hasClass('beat');
+            const ajaxurl = 'scripts/like.php',
+                data = {
+                    'status': status,
+                    'id': mehmId,
+                    'user': uId
+                };
+            $.post(ajaxurl, data, function () {
+                window.location.reload();
+            });
+        });
+    });
+
+    // Beim Submitten eines Kommentars wird stattdessen comment.php aufgerufen.
+    jQuery(function (){
+        $("#comment").submit(function (e) {
+            e.preventDefault();
+
+            let child = $(this).children('button')[0];
+            const ids = $(child).attr('id').split(" ");
+            const mehmId = ids[0];
+            const uId = ids[1];
+            child = $(this).children('textarea')[0];
+            const text = $(child).val();
+            const ajaxurl = 'scripts/comment/comment.php',
+                data = {
+                    'text': text,
+                    'id': mehmId,
+                    'user': uId
+                };
+            $.post(ajaxurl, data, function () {
+                window.location.reload();
+            });
+        });
+    });
+
     // jQuery-Funktion, die bei Änderung des Mehm-Titels das editmehm.php-Skript ausführt,
     // in dem die Änderung an der Datenbank vollführt werden.
     // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht upgedated wird.
@@ -389,6 +382,18 @@ $isPrivileged = $isLogedin && $_SESSION['id'] == $mehm['UID'] || $isAdmin;
                 });
             }
         }
+    }
+
+    // Kopiert die aktuelle Mehm-URL in die Zwischenablage
+    function copyURL() {
+        const copy = document.createElement("input"),
+            url = window.location.href;
+        document.body.appendChild(copy);
+        copy.value = url.split("#")[0];
+        copy.select();
+        document.execCommand("copy");
+        document.body.removeChild(copy);
+        document.getElementById("share-button").classList.add("pressed");
     }
 </script>
 </body>
