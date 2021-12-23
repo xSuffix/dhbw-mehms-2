@@ -160,7 +160,8 @@ class Database
         }
     }
 
-    public function updateUser(int $id, string $name, string $password, string $type) {
+    public function updateUser(int $id, string $name, string $password, string $type)
+    {
         $this->database->query("UPDATE users SET Name = '$name', Password = '$password', Type = '$type' WHERE ID = '$id'");
     }
 
@@ -173,7 +174,8 @@ class Database
      * @param boolean $admin -> Ob nicht sichtbare Mehms erlaubt sind.
      * @return array -> Das Mehm
      */
-    public function getMehm(int $id, bool $admin): array {
+    public function getMehm(int $id, bool $admin): array
+    {
         $query = 'SELECT *, count(l.MehmID) AS likeCount, mehms.Type AS Type, mehms.ID AS ID, mehms.UserID as UID
       FROM mehms
       LEFT JOIN users u ON mehms.UserID = u.ID
@@ -220,7 +222,8 @@ class Database
      * @param int $id -> ID des Users
      * @return void
      */
-    public function deleteUser(int $id) {
+    public function deleteUser(int $id)
+    {
         $this->database->query("DELETE FROM users WHERE ID = '$id'");
     }
 

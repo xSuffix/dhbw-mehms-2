@@ -11,26 +11,27 @@ class Utils
      * @param string $input -> die Eingabe über die Suchleiste
      * @return array -> die verarbeitete Suche
      */
-    #[ArrayShape(["user" => "string", "search" => "string"])] public static function extractUser(string $input) : Array {
+    #[ArrayShape(["user" => "string", "search" => "string"])] public static function extractUser(string $input): array
+    {
         $words = explode(' ', $input);
-        $ret = ["user" => '',"search" => ''];
+        $ret = ["user" => '', "search" => ''];
         switch (count($words)) {
             case 0:
                 break;
             case 1:
                 if (str_starts_with($words[0], "u/")) {
-                    $ret = ["user" => substr($words[0],2),"search" => ''];
+                    $ret = ["user" => substr($words[0], 2), "search" => ''];
                     break;
                 }
-                $ret = ["user" => '',"search" => $words[0]];
+                $ret = ["user" => '', "search" => $words[0]];
                 break;
             default:
                 if (str_starts_with($words[0], "u/")) {
-                    $user = substr($words[0],2);
-                    $ret = ["user" => $user,"search" => implode(' ',array_slice($words,1))];
+                    $user = substr($words[0], 2);
+                    $ret = ["user" => $user, "search" => implode(' ', array_slice($words, 1))];
                     break;
                 }
-                $ret = ["user" => '',"search" => $input];
+                $ret = ["user" => '', "search" => $input];
         }
         return $ret;
     }
@@ -53,7 +54,7 @@ class Utils
 
         if ($myMehms) {
             $count = count($images);
-            for ($i = 0; $i < $count; $i++)  {
+            for ($i = 0; $i < $count; $i++) {
                 if ($images[$i]['UserID'] != $_SESSION['id']) {
                     unset($images[$i]);
 

@@ -1,6 +1,6 @@
 <?php
-    require_once 'scripts/Utils.php';
-    Utils::checkLogin(true);
+require_once 'scripts/Utils.php';
+Utils::checkLogin(true);
 ?>
 
 <!DOCTYPE html>
@@ -36,9 +36,9 @@
 
 <body>
 <script>
-  // jQuery-Funktion, die bei Knopfdruck auf approve-/decline-Button das jury.php-Skript ausführt,
-  // in dem die Änderung an der Datenbank vollführt werden.
-  // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht geupdated wird.
+    // jQuery-Funktion, die bei Knopfdruck auf approve-/decline-Button das jury.php-Skript ausführt,
+    // in dem die Änderung an der Datenbank vollführt werden.
+    // Nach Ausführung des PHP-Skriptes wird die Seite neugeladen, sodass die Ansicht geupdated wird.
     $(document).ready(function () {
         $('.button').click(function () {
             const clickBtnValue = $(this).attr('id');
@@ -47,7 +47,7 @@
             const ajaxurl = 'scripts/jury.php',
                 data = {'action': btnType, 'id': mehmId};
             $.post(ajaxurl, data, function () {
-              window.location.reload();
+                window.location.reload();
             });
         });
     });
