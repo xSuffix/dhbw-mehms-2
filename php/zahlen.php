@@ -3,8 +3,8 @@
 
 <head>
   <title>Math - DHBW Mehms</title>
-  <link href="styles/numbers.css" rel="stylesheet">
-  <link href="styles/table.css" rel="stylesheet">
+  <link href="css/numbers.css" rel="stylesheet">
+  <link href="css/table.css" rel="stylesheet">
   <?php include("includes/meta.php"); ?>
   <style>
     :root {

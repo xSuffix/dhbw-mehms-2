@@ -3,7 +3,7 @@
 
 <head>
   <title>Vines - DHBW Mehms</title>
-  <link href="styles/vines.css" rel="stylesheet">
+  <link href="css/vines.css" rel="stylesheet">
   <?php include("includes/meta.php"); ?>
   <style>
     :root {

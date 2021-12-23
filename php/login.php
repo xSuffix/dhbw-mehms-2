@@ -166,7 +166,7 @@ if (isset($_POST["mUnAendern"])) {
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <link href="styles/formular.css" rel="stylesheet">
+    <link href="css/formular.css" rel="stylesheet">
     <title> Login - DHBW Mehms </title>
     <?php include("includes/meta.php"); ?>
     <style>

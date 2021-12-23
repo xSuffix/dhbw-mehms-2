@@ -8,7 +8,7 @@ Utils::checkLogin(true);
 
 <head>
 	<title>Benutzerübersicht - DHBW Admin</title>
-	<link href="styles/table.css" rel="stylesheet">
+	<link href="css/table.css" rel="stylesheet">
 	<?php include("includes/meta.php"); ?>
 	<style>
 		:root {

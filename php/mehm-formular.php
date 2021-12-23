@@ -6,7 +6,7 @@ Utils::checkLogin(true);
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <link href="styles/formular.css" rel="stylesheet">
+    <link href="css/formular.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title> Dein Mehm - Upload </title>
     <?php include("includes/meta.php"); ?>

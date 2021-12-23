@@ -3,8 +3,8 @@
 
 <head>
   <title>Mehm - DHBW Mehms</title>
-  <link rel="stylesheet" href="./styles/toolbar.css">
-  <link rel="stylesheet" href="./styles/mehm.css">
+  <link rel="stylesheet" href="./css/toolbar.css">
+  <link rel="stylesheet" href="./css/mehm.css">
   <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js" integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <?php include("includes/meta.php"); ?>
