@@ -126,7 +126,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
             </svg>
-            <p>Kommentiere als <a class="underline" href="mehms?search=u/' . $_SESSION["username"] . '">' . $_SESSION["username"] . '</a></p>
+            <span>Kommentiere als <a class="underline" href="mehms?search=u/' . $_SESSION["username"] . '">' . $_SESSION["username"] . '</a></span>
             </label>
             <textarea id="message" placeholder="LOL!" required></textarea>
             <button id="' . $mehm['ID'] . '-' . $_SESSION['id'] . '">Kommentieren</button>
@@ -199,7 +199,7 @@
         <h1 id="title" <?php if ($isPrivileged) echo 'class="editable" contenteditable="true"' ?>><?php echo htmlspecialchars($mehm["Title"]) ?></h1>
         <p <?php if ($isPrivileged && $mehm["Description"] != "") echo 'class="editable" id="descp" contenteditable="true"' ?>><?php echo nl2br(htmlspecialchars($mehm["Description"])) ?></p>
         <?php if ($isPrivileged && $mehm["Description"] == "") {
-          echo '<textarea id="desct" placeholder="Beschreibe was du siehst"></textarea>';
+          echo '<textarea id="descp" placeholder="Beschreibe was du siehst"></textarea>';
         } ?>
         <div class="flex">
 
@@ -299,7 +299,7 @@
       const t = document.getElementById("title");
       const mehmId = new URLSearchParams(window.location.search).get('id')
       let edit = t.innerText.replaceAll("\n", " ");
-      if (edit == " " || edit == "") {
+      if (!edit || !edit.replace(/\s/g, '').length) {
         return;
       }
       const ajaxurl = 'scripts/mehm/edit-mehm.php',
@@ -315,8 +315,8 @@
       const t = document.getElementById("descp");
       t.oninput = function() {
         const mehmId = new URLSearchParams(window.location.search).get('id')
-        let edit = t.innerText;
-        if (edit.replace("<br>", "") == "") {
+        let edit = t.innerText || t.value;
+        if (!edit || !edit.replace(/\s/g, '').length) {
           edit = "";
         }
         const ajaxurl = 'scripts/mehm/edit-mehm.php',

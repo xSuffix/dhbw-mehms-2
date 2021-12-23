@@ -76,6 +76,11 @@ main textarea::placeholder {
   color: var(--color-p-a);
 }
 
+main textarea#descp {
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+}
+
 main .write-comment button {
   background: var(--color-primary);
   color: #fff;
