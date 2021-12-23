@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const div = card.getElementsByTagName("div")[0]
         const img = card.getElementsByTagName("img")[0]
         div.style.paddingTop = height * 100 + "%"
-        img.src = "./assets/mehms/rick.gif"
+        img.src = "../assets/mehms/rick.gif"
         card.style.width = width + "px"
         card.style.flexGrow = width
       }
