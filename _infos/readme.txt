@@ -27,10 +27,8 @@ XAMPP-Version:
 * 
 
 Zusätzliche Funktionen
-*Dark/Light Mode 
-*Rickroll 
-*Kommentarfunktion 
-*Teilen Funktion
+*Zeitstempel bei Mehms
+*Generierte Profilbilder
 
 Hinweise:
 * ..
