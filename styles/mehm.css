@@ -111,22 +111,23 @@ main .comments .comment-left {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-main .comments .comment-right > div {
-  /* position: relative; */
+  z-index: 4;
 }
 
 main .comments .comment-right button {
-  /* position: absolute;
-  top: 50%;
-  transform: translateY(-50%); */
   margin-left: 4px;
   padding: 2px;
   border: none;
   background: transparent;
   color: var(--color-p);
   cursor: pointer;
+}
+
+main .comments .comment-right p.editable {
+  background: var(--color-bg-a);
+  padding: 8px 15px 8px 25px;
+  margin: 8px -15px 8px -25px;
+  border-radius: 4px;
 }
 
 main .comments .v-line {
@@ -138,6 +139,7 @@ main .comments .v-line {
 
 main .comments p {
   word-break: break-word;
+  white-space: pre-line;
 }
 
 main .comment-list {
@@ -155,8 +157,11 @@ main .write-comment button:hover {
 }
 
 main .editable {
-  background: var(--color-bg-a);
   border-radius: 4px;
+}
+
+main .editable:focus {
+  background: var(--color-bg-a);
 }
 
 main .meta {

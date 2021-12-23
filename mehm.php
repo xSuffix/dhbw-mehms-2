@@ -61,12 +61,11 @@
 
         let child = $(this).children('button')[0];
         const ids = $(child).attr('id').split(" ");
-        console.log(ids);
         const mehmId = ids[0];
         const uId = ids[1];
         child = $(this).children('textarea')[0];
         const text = $(child).val();
-        const ajaxurl = 'scripts/comment.php',
+        const ajaxurl = 'scripts/comment/comment.php',
           data = {
             'text': text,
             'id': mehmId,
@@ -154,7 +153,7 @@
 
   $comments = $db->getComments($id);
   $commentCount = count($comments);
-  
+
   include("includes/header.php");
 
   $isLogedin = isset($_SESSION["loggedIn"]) && $_SESSION['loggedIn'] === true;
@@ -195,7 +194,7 @@
             </a>';
           }
           ?>
-          
+
           <?php if (count($comments) > 0) {
             echo '<div class="comment-list">';
 
@@ -216,20 +215,20 @@
                       <span class="p-a">· ' . timeElapsedString($comment["Timestamp"]) . '</span>
                     </div>';
 
-                    if ($isLogedin && $_SESSION['id'] == $comment['UID'] || $isAdmin) {
-                      echo '<button onclick="deleteComment(' . $comment['ID'] . ')">
+              if ($isLogedin && $_SESSION['id'] == $comment['UID'] || $isAdmin) {
+                echo '<button onclick="deleteComment(' . $comment['ID'] . ')">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                         </svg>
                       </button>
-                      <button onclick="editComment(' . $comment['ID'] . ',\''. $comment['Comment'] .'\')">
+                      <button onclick="editComment(this, ' . $comment['ID'] . ')">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" viewBox="0 0 20 20" fill="currentColor">
                           <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                         </svg>
                       </button>';
-                      }
+              }
 
-                  echo '</div><p>' . $comment["Comment"] . '</p>
+              echo '</div><p>' . $comment["Comment"] . '</p>
                 </div>
               </div>';
             }
@@ -291,7 +290,7 @@
   <?php include("includes/bottom-navigation.php"); ?>
   <script>
     document.getElementById("title").oninput = function() {
-      var t =  document.getElementById("title");
+      var t = document.getElementById("title");
       const url = window.location.href.split("id=");
       const mehmId = url[1];
       var edit = t.innerHTML.replace("<br>", " ");
@@ -299,13 +298,12 @@
         return;
       }
       const ajaxurl = 'scripts/editmehm.php',
-          data = {
-            'changed': 'title',
-            'new': edit,
-            'id': mehmId
-          };
-        $.post(ajaxurl, data, function() {
-        });
+        data = {
+          'changed': 'title',
+          'new': edit,
+          'id': mehmId
+        };
+      $.post(ajaxurl, data, function() {});
     }
     if (document.getElementById("descp") != null) {
       const t = document.getElementById("descp");
@@ -322,8 +320,7 @@
             'new': edit,
             'id': mehmId
           };
-        $.post(ajaxurl, data, function() {
-        });
+        $.post(ajaxurl, data, function() {});
       }
     }
     if (document.getElementById("desct") != null) {
@@ -341,37 +338,39 @@
             'new': edit,
             'id': mehmId
           };
-        $.post(ajaxurl, data, function() {
-        });
+        $.post(ajaxurl, data, function() {});
       }
     }
 
     function deleteComment(commentId) {
       const ajaxurl = 'scripts/comment/deleteComment.php',
-          data = {
-            'id': commentId,
-          };
-        $.post(ajaxurl, data, function() {
-          window.location.reload();
-        });
+        data = {
+          'id': commentId,
+        };
+      $.post(ajaxurl, data, function() {
+        window.location.reload();
+      });
     }
 
-    function editComment(commentId, comment) {
-      let text = prompt("Gib deinen geänderten Kommentar ein.", comment);
+    function editComment(e, commentId) {
+      const p = e.parentNode.parentNode.getElementsByTagName("p")[0];
+      p.classList.add("editable");
+      p.setAttribute("contenteditable", true);
 
-      if (text != null) {
-        const ajaxurl = 'scripts/comment/editComment.php',
-          data = {
-            'id': commentId,
-            'text': text
-          };
-        $.post(ajaxurl, data, function() {
-          window.location.reload();
-        });
+      p.oninput = function(e) {
+        const text = p.innerText;
+        if (text != null) {
+          const ajaxurl = 'scripts/comment/editComment.php',
+            data = {
+              'id': commentId,
+              'text': text
+            };
+          $.post(ajaxurl, data, function() {});
+        }
       }
 
     }
-  </script>  
+  </script>
 </body>
 
 </html>
