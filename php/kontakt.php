@@ -3,7 +3,7 @@
 
 <head>
 	<title>Kontakt - DHBW Mehms</title>
-	<link href="../../css/formular.css" rel="stylesheet">
+	<link href="../css/formular.css" rel="stylesheet">
 	<?php include("includes/meta.php"); ?>
 	<style>
 		:root {
