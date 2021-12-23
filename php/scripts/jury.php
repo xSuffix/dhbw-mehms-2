@@ -38,11 +38,5 @@ function approveMehm(int $index)
  */
 function declineMehm(int $index)
 {
-    global $db;
-    $visible = $db->database->query("SELECT Visible FROM mehms WHERE ID=" . $index)->fetch();
-    if ($visible['Visible']) {
-        $db->database->query("UPDATE mehms SET Visible = FALSE, VisibleOn = NULL WHERE ID=" . $index);
-    } else {
-        $db->database->query("DELETE FROM mehms WHERE ID=" . $index);
-    }
+    $db->database->query("DELETE FROM mehms WHERE ID=" . $index);
 }

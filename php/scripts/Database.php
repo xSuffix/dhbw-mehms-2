@@ -167,7 +167,7 @@ class Database {
      * @return void
      */
     public function updateUser(int $id, string $name, string $password, string $type) {
-    $this->database->query("UPDATE users SET Name = '$name', Password = '$password', Type = '$type' WHERE ID = '$id'");
+      $this->database->query("UPDATE users SET Name = '$name', Password = '$password', Type = '$type' WHERE ID = '$id'");
   }
 
 
@@ -198,6 +198,20 @@ class Database {
     } catch (PDOException $e) {
       return [];
     }
+  }
+
+  /**
+   * Löscht ein Mehm aus der Datenbank anhand seiner ID.
+   * Löscht auch die physische Datei.
+   * @param int $id -> ID des Mehms
+   * @return void
+   */
+  public function deleteMehm(int $id) {
+    $mehm = $this->database->query("SELECT Path FROM mehms WHERE ID = '$id'");
+    $mehmPath = "../assets/mehms/" . mehm[0];
+    unlink($mehmPath);
+
+    $this->database->query("DELETE FROM mehms WHERE ID = '$id'");
   }
 
   /**
